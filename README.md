@@ -20,7 +20,7 @@ Allows the analysis of assembled sequence data from FASTA files all the way to R
 Bio-RNASeq consists of three components. The __rna_seq_expression__ script takes in an aligned sequence file and a corresponding annotation file and creates a spreadsheet with expression values. The script can only handle a single GFF file, so ff the annotation is broken up into several files, __gff3_concat__ can be used to merge the annotation into one single GFF3 compatible file. __differential_expression_with_deseq__ allows analysis of differential gene expression directly from the output of rna_seq_expression, or from a bespoke expression dataset. It makes use of the DESeq Bioconductor R package to carry out differential gene expression analysis.
 
 ## Installation
-Bio-RNASeq has the following dependencies:
+sraX has the following dependencies:
 
 ### Required dependencies
  * [samtools](https://github.com/samtools)
@@ -36,7 +36,7 @@ make
 ```
 __NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
 
-To install Bio-RNASeq, please see the details provided below. If you encounter an issue when installing Bio-RNASeq please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/sanger-pathogens/Bio-RNASeq/issues) or email us at path-help@sanger.ac.uk
+To install sraX, please see the details provided below. If you encounter an issue when installing Bio-RNASeq please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email us at l@gmail.com
 
 Clone the repo:
 ```
