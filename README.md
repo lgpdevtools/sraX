@@ -143,7 +143,7 @@ differential_expression_with_deseq -i [file containing list of files to analyse 
 Bio-RNASeq is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
 
 ## Feedback/Issues
-Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/blob/master/issues) or email l@gmail.com
+Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/issues) or email l@gmail.com
 
 ## Citation
 _Simon Anders and Wolfgang Huber (2010): Differential expression  analysis for sequence count data. Genome Biology 11:R106_
