@@ -1,7 +1,7 @@
 # sraX
 Allows the analysis of assembled sequence data from FASTA files all the way to Resistome Analysis.
 
-[![Build Status](https://travis-ci.org/sanger-pathogens/Bio-RNASeq.svg?branch=master)](https://travis-ci.org/sanger-pathogens/Bio-RNASeq)   
+[![Build Status](https://travis-ci.org/sanger-pathogens/Bio-RNASeq.svg?branch=master)](https://travis-ci.org/sanger-pathogens/Bio-RNASeq)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/edit/master/README.md/GPL-LICENCE)
 
 ## Content
