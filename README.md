@@ -16,16 +16,16 @@ Allows the analysis of assembled sequence data from FASTA files all the way to R
   * [Citation](#citation)
 
 ## Introduction
-Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. Consequently, the accurate detection of current antibiotic resistance genes (ARGs) within an assortment of genomes (e.g., “resistome” analysis) constitutes a valuable portrayal of intricate AMR patterns associated with particular samples. Moreover, the existence of certain mutations on particular loci rationalizes the observed resistant phenotypes. Nevertheless, the relative complexity of current analysis workflows, along with the growing volume of sequenced genomes, makes the resistome profiling a challenging and laborious task. Seeking to overcome these difficulties, the proposed tool systematize the creation of a locally compiled AMR database (DB) from public or proprietary repositories, identifies the AMR determinants by examining the presence of ARGs or point mutations conferring AMR, extends the SNP analysis for detecting new variants, calculates the fractions of drug classes and type of mutated loci comprising individual AMR patterns and carries out an in-depth gene context exploration. The results are presented in fully navigable HTML-formatted files with graphical representations of previously mentioned analysis.
+Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. Consequently, __the accurate detection of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (e.g., “resistome” analysis)__ constitutes a valuable portrayal of intricate AMR patterns associated with particular samples. Moreover, the existence of certain mutations on particular loci rationalizes the observed resistant phenotypes. __sraX__ systematize the creation of a locally compiled AMR database (DB) from public or proprietary repositories, identifies the AMR determinants by examining the presence of ARGs or point mutations conferring AMR, extends the SNP analysis for detecting new variants, calculates the fractions of drug classes and type of mutated loci comprising individual AMR patterns and carries out an in-depth gene context exploration. The results are presented in fully navigable HTML-formatted files with graphical representations of previously mentioned analysis.
 
 ## Installation
 sraX has the following dependencies:
 
 ### Required dependencies
- * [samtools](https://github.com/samtools)
+ * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+ * [DIAMOND]( http://github.com/bbuchfink/diamond/)
  * [R](http://www.r-project.org/)
- * [Bioconductor](http://www.bioconductor.org/)
- * [DESeq](http://bioconductor.org/packages/release/bioc/html/DESeq.html)
+ * [MUSCLE]( http://www.drive5.com/muscle/)
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
 
@@ -35,7 +35,7 @@ make
 ```
 __NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
 
-To install sraX, please see the details provided below. If you encounter an issue when installing Bio-RNASeq please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email us at l@gmail.com
+To install sraX, please see the details provided below. If you encounter an issue when installing sraX please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
 Clone the repo:
 ```
@@ -139,10 +139,10 @@ Example	usage:
 differential_expression_with_deseq -i [file containing list of files to analyse and key descriptions] -o [name to be used for all the output files generated] -c [Number of the read count column (1-1000)]
 ```
 ## License
-Bio-RNASeq is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
+sraX is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
 
 ## Feedback/Issues
-Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/issues) or email l@gmail.com
+Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/issues) or email lgpanunzi@gmail.com
 
 ## Citation
-_Simon Anders and Wolfgang Huber (2010): Differential expression  analysis for sequence count data. Genome Biology 11:R106_
+_Panuzi LG (2019): sraX: a one-step tool for resistome profiling._
