@@ -1,7 +1,6 @@
 # sraX
 Allows the analysis of assembled sequence data from FASTA files all the way to Resistome Analysis.
 
-[![Build Status](https://travis-ci.org/sanger-pathogens/Bio-RNASeq.svg?branch=master)](https://travis-ci.org/sanger-pathogens/Bio-RNASeq)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
 ## Content
@@ -17,7 +16,7 @@ Allows the analysis of assembled sequence data from FASTA files all the way to R
   * [Citation](#citation)
 
 ## Introduction
-Bio-RNASeq consists of three components. The __rna_seq_expression__ script takes in an aligned sequence file and a corresponding annotation file and creates a spreadsheet with expression values. The script can only handle a single GFF file, so ff the annotation is broken up into several files, __gff3_concat__ can be used to merge the annotation into one single GFF3 compatible file. __differential_expression_with_deseq__ allows analysis of differential gene expression directly from the output of rna_seq_expression, or from a bespoke expression dataset. It makes use of the DESeq Bioconductor R package to carry out differential gene expression analysis.
+Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. Consequently, the accurate detection of current antibiotic resistance genes (ARGs) within an assortment of genomes (e.g., “resistome” analysis) constitutes a valuable portrayal of intricate AMR patterns associated with particular samples. Moreover, the existence of certain mutations on particular loci rationalizes the observed resistant phenotypes. Nevertheless, the relative complexity of current analysis workflows, along with the growing volume of sequenced genomes, makes the resistome profiling a challenging and laborious task. Seeking to overcome these difficulties, the proposed tool systematize the creation of a locally compiled AMR database (DB) from public or proprietary repositories, identifies the AMR determinants by examining the presence of ARGs or point mutations conferring AMR, extends the SNP analysis for detecting new variants, calculates the fractions of drug classes and type of mutated loci comprising individual AMR patterns and carries out an in-depth gene context exploration. The results are presented in fully navigable HTML-formatted files with graphical representations of previously mentioned analysis.
 
 ## Installation
 sraX has the following dependencies:
