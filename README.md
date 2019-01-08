@@ -1,5 +1,5 @@
 # systematic resistome analysis (sraX)
-Allows the analysis of assembled sequence data from FASTA files all the way to a one-step resistome analysis.
+Allows a one-step resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -16,13 +16,14 @@ Allows the analysis of assembled sequence data from FASTA files all the way to a
   * [Citation](#citation)
 
 ## Introduction
-Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. __sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following assignments are fully automated:
-- the creation of a locally compiled AMR database (DB) from public or proprietary repositories
-- identifies the AMR determinants by examining the presence of ARGs or point mutations conferring AMR
-- extends the SNP analysis for detecting new variants
-- calculates the fractions of drug classes and type of mutated loci comprising individual AMR patterns.
-- in-depth gene context exploration.
-- The results are presented in fully navigable HTML-formatted files with graphical representations of previously mentioned analysis.
+Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. __sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following tasks comprising the resistome analysis are fully automated:
+- creation and compilation of a local AMR database (DB) using public or proprietary repositories
+- accurate identification of AMR determinants (ARGs or SNPs presence) in a non-redundant manner
+- detection of putative new variants through the SNP analysis
+- calculation and graphical representation of drug classes and type of mutated loci
+- in-depth gene context exploration
+
+The results are presented in fully navigable HTML-formatted files with embedded plots of previously mentioned analysis.
 
 ## Installation
 sraX has the following dependencies:
