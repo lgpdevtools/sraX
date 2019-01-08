@@ -78,8 +78,8 @@ sraX -d [input genome directory]
 ```
 Where:
 ```
---genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
-			consisting of individual assembled genome sequences.
+-d	Mandatory directory containing the input file(s), which must be in FASTA format and
+	consisting of individual assembled genome sequences.
 ```
 
 
@@ -90,27 +90,29 @@ sraX  -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome
 ```
 Where:
 ```
--o		Output folder. If not provided, the following default name will be taken:
+-p	The translated alignments of assembled genome(s) are queried using dblastx
+	(DIAMOND blastx) or blastx (NCBI blastx). In any case, the process is parallelized
+	(up to 100 genome files are run simultaneously) for reducing computing times
+	(default: dblastx)
+
+-i	Use this percent identity cut-off to filter false positives (default: 85)			
+
+-c	Use this fraction aligned query to the reference sequence (default: 60)
+
+-e	Use this evalue cut-off to filter false positives (default: 1e-05)
+
+-t	Use this number of threads (default: 6)
+
+-o	Output folder. If not provided, the following default name will be taken:
 			
-		'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
+	'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
 
-		Example: input folder = 'Test'; id = 85; aln_cov = 95; blast_x = dblastx
+	Example: input folder = 'Test'; id = 85; aln_cov = 95; blast_x = dblastx
 			
-		Output folder = 'Test_sraX_85_95_dblastx'
-
--p		The translated alignments of assembled genome(s) are queried using dblastx
-		(DIAMOND blastx) or blastx (NCBI blastx). In any case, the process is parallelized
-		(up to 100 genome files are run simultaneously) for reducing computing times
-		(default: dblastx)
-
--e		Use this evalue cut-off to filter false positives (default: 1e-05)
-
--i		Use this percent identity cut-off to filter false positives (default: 85)			
-
--c		This fraction of the query must align to the reference sequence (default: 60)
-
--t		Number of threads when running sraX (default: 6)
-                                   
+	Output folder = 'Test_sraX_85_95_dblastx'
+		
+-d	Mandatory directory containing the input file(s), which must be in FASTA format and
+	consisting of individual assembled genome sequences.                                   
 ```
 
 ## License
