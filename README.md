@@ -1,5 +1,5 @@
 # systematic resistome analysis (sraX)
-The proposed tool allows performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
+The proposed tool is written in Perl and constitutes an organized package that through the systematized execution of comprising modules allows performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
