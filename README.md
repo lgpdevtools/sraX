@@ -75,6 +75,7 @@ Usage:
 ```
 --genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
 			consisting of individual assembled genome sequences.
+Example usage:
 ```
 
 Example usage:
@@ -108,7 +109,7 @@ sraX -d [input genome directory]
 
 Example usage:
 ```
-sraX  -p blastx -i 95 -c 90 -t 12 -d [input genome directory]
+sraX  -p blastx -i 95 -c 90 -t 12 -o Test_options -d [input genome directory]
 ```
 
 ## License
