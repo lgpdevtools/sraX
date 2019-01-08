@@ -86,7 +86,7 @@ Where:
 ### Extended options
 Example usage:
 ```
-sraX  -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome directory]
+sraX -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome directory]
 ```
 Where:
 ```
