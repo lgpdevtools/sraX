@@ -58,7 +58,7 @@ There are three components to this application.
 
 __NOTE:__ For a detailed explanation and examples from real datasets, please follow the [Tutorial.](https://github.com/lgpdevtools/sraX/edit/master/Tutorial.md)
 
-### one-step systematic resistome analysis (sraX)
+### Parameters
 ```
 Usage:
   -d|genome_directory	<Mandatory: input genome directory>
@@ -70,10 +70,19 @@ Usage:
   -t|threads      	<Optional: Number of threads to use, defaults to 6>
   -v|version		<print current version>
   -h|help               <print this message>
-  
+```
+### Minimal command
+```
 --genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
 			consisting of individual assembled genome sequences.
+```
 
+Example usage:
+```
+sraX -d [input genome directory]
+```
+### Extended options
+```
 --output		Output folder. If not provided, the following default name will be taken:
 			
 			'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
@@ -94,21 +103,13 @@ Usage:
 --aln_cov		This fraction of the query must align to the reference sequence (default: 60)
 
 --threads		Use this number of threads when running sraX (default: 6)
-
---help			Displays this help information and exits.
-
---version		Displays version information and exits.
                                    
 ```
 
 Example usage:
 ```
-sraX  [options] --genome_dir / -d [input file(s)]
+sraX  -p blastx -i 95 -c 90 -t 12 -d [input genome directory]
 ```
-### Minimal command
-
-### Extended options
-
 
 ## License
 sraX is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
