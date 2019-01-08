@@ -28,7 +28,7 @@ Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samp
 sraX has the following dependencies:
 
 ### Required dependencies
- * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)[[1]](#references[1])
+ * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/)[[2]]
  * [R](http://www.r-project.org/)[[3]]()
  * [MUSCLE](http://www.drive5.com/muscle/)[[4]]
