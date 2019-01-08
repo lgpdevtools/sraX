@@ -1,5 +1,5 @@
 # sraX
-The proposed tool constitutes a package written in Perl and composed of diverse modules that allow performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
+The proposed tool constitutes a Perl package, composed of functional modules, for performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
