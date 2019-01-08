@@ -1,4 +1,4 @@
-# sraX
+# systematic resistome analysis (sraX)
 Allows the analysis of assembled sequence data from FASTA files all the way to Resistome Analysis.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
@@ -28,9 +28,9 @@ Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samp
 sraX has the following dependencies:
 
 ### Required dependencies
- * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)[[1]]
+ * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)[[1]](#[1])
  * [DIAMOND](http://github.com/bbuchfink/diamond/)[[2]]
- * [R](http://www.r-project.org/)[[3]]
+ * [R](http://www.r-project.org/)[[3]]()
  * [MUSCLE](http://www.drive5.com/muscle/)[[4]]
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
@@ -118,9 +118,9 @@ Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioin
 ## References.
 [1] Altschul,S.F. et al. (1990). Basic local alignment search tool. JMB, 215, 403–410.
 
-[2] Buchfink B, Xie C, Huson DH, "Fast and sensitive protein alignment using DIAMOND", Nature Methods 12, 59-60 (2015).
+[2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. Nature Methods 12, 59-60.
 
-[3] Altschul,S.F. et al. (1990). Basic local alignment search tool. JMB, 215, 403–410.
+[3] 
 
 [4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput Nucleic Acids Res. 32(5):1792-1797.
 
