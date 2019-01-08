@@ -74,16 +74,15 @@ __NOTE:__ For a detailed explanation and examples from real datasets, please fol
 ### one-step systematic resistome analysis (sraX)
 ```
 Usage:
-  -d|sequence_file           	<aligned BAM file>
-  -o|output			<Optional: name of output folder>
-  -p|align programme         	<standard|strand_specific>
-  -o|output_base_filename    	<Optional: base name and location to use for output files>
-  -q|minimum_mapping_quality 	<Optional: minimum mapping quality>
-  -c|no_coverage_plots       	<Dont create Artemis coverage plots>
-  -i|intergenic_regions      	<Include intergenic regions>
-  -b|bitwise_flag            	<Only include reads which pass filter>
-  -t|threads      		<Number of CPUs to use, defaults to 1>
-  -h|help                    	<print this message>
+  -d|genome_directory	<Mandatory: input genome directory>
+  -o|output		<Optional: name of output folder>
+  -p|blast_x        	<Optional: standard|strand_specific>
+  -e|eval    		<Optional: base name and location to use for output files>
+  -c|aln_cov       	<Optional: Dont create Artemis coverage plots>
+  -i|id      		<Optional: Include intergenic regions>
+  -t|threads      	<Optional: Number of threads to use, defaults to 6>
+  -v|version		<print current version>
+  -h|help               <print this message>
   
 --genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
 			consisting of individual assembled genome sequences.
@@ -112,8 +111,6 @@ Usage:
 --help			Displays this help information and exits.
 
 --version		Displays version information and exits.
-
---verbose		Verbose output (for debugging).
                                    
 ```
 
