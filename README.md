@@ -33,6 +33,8 @@ sraX has the following dependencies:
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[4]](#references)
+  # Within the `R` environment, the following packages are employed 
+ * [`dplyr`](http://www.r-project.org/) [[5]](#references) 
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
 
@@ -65,7 +67,7 @@ dzil install
 
 There are three components to this application.
 
-__NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
+__NOTE:__ For a detailed explanation and examples from real datasets, please follow the [Tutorial.](https://github.com/lgpdevtools/sraX/edit/master/Tutorial.md)
 
 ### one-step systematic resistome analysis (sraX)
 ```
@@ -119,14 +121,14 @@ sraX is developed by Leonardo G. Panunzi at the lab, Institute, Paris, France.
 Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioinformatics_ for publication.
 
 ## References.
-[1] Altschul,S.F. et al. (1990). Basic local alignment search tool. JMB, 215, 403–410.
+[1] Altschul,S.F. et al. (1990). Basic local alignment search tool. _JMB_, 215, 403–410.
 
-[2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. _Nature Methods 12, 59-60_.
+[2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. _Nature Methods_ 12, 59-60.
 
 [3] R Core Team (2013). R: A Language and Environment for Statistical Computing.
 
-[4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res. 32(5):1792-1797_.
+[4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
 
-[5] Croucher NJ, et al. (2015). Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins. _Nucleic Acids Res. 43:e15_.
+[5] .
 
 
