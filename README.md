@@ -45,13 +45,9 @@ Clone the repository:
 ```
 git clone https://github.com/lgpdevtools/sraX.git
 ```
-To install the required perl modules, in the cloned repository run:
+To verify the existence of required dependencies and ultimately install the perl modules composing sraX, inside the cloned repository, open a bash terminal and run:
 ```
-
-```
-
-Once you've downloaded this, in a bash terminal, in the samtools v0.1.18 directory, run
-```
+bash install.sh
 ```
 
 Make sure the tests pass:
