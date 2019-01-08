@@ -28,10 +28,10 @@ Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samp
 sraX has the following dependencies:
 
 ### Required dependencies
- * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) [[1]](#references)
- * [DIAMOND](http://github.com/bbuchfink/diamond/)[[2]]
- * [R](http://www.r-project.org/)[[3]]()
- * [MUSCLE](http://www.drive5.com/muscle/)[[4]]
+ * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
+ * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
+ * [R](http://www.r-project.org/) [[3]](#references)
+ * [MUSCLE](http://www.drive5.com/muscle/) [[4]](#references)
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
 
