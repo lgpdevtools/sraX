@@ -1,5 +1,5 @@
 # sraX
-The proposed tool constitutes a Perl package, composed of functional modules, for performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
+The proposed tool constitutes a Perl package, composed of functional modules, that allows performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -16,7 +16,7 @@ The proposed tool constitutes a Perl package, composed of functional modules, fo
   * [Citation](#citation)
 
 ## Introduction
-__sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following tasks comprising the resistome analysis are fully automated:
+__sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following assignments are fully automated:
 - creation and compilation of a local AMR database (DB) using public or proprietary repositories
 - accurate identification of AMR determinants (ARGs or SNPs presence) in a non-redundant manner
 - detection of putative new variants through the SNP analysis
@@ -32,10 +32,10 @@ sraX has the following dependencies:
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
- * [`dplyr`](http://www.r-project.org/) [[5]](#references)
- * [`ggplot2`](http://www.r-project.org/) [[6]](#references)
- * [`dplyr`](http://www.r-project.org/) [[7]](#references)
- * [MUSCLE](http://www.drive5.com/muscle/) [[8]](#references)
+ * [`dplyr`](https://cran.r-project.org/web/packages/dplyr/) [[4]](#references)
+ * [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/) [[5]](#references)
+ * [`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/) [[6]](#references)
+ * [MUSCLE](http://www.drive5.com/muscle/) [[7]](#references)
   
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
@@ -138,10 +138,10 @@ Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioin
 
 [3] R Core Team (2013). R: A Language and Environment for Statistical Computing.
 
-[5] 
+[4] Wickham H, Romain Francois R, Henry L and Müller K (2017). dplyr: A Grammar of Data Manipulation.
 
-[6] 
+[5] Wickham H. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
 
-[7] 
+[6] Auguie B, Antonov A, Auguie MB. 2016.
 
-[8] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
+[7] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
