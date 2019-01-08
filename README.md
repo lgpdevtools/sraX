@@ -64,9 +64,9 @@ Usage:
   -d|genome_directory	<Mandatory: input genome directory>
   -o|output		<Optional: name of output folder>
   -p|blast_x        	<Optional: standard|strand_specific>
-  -e|eval    		<Optional: base name and location to use for output files>
-  -c|aln_cov       	<Optional: Dont create Artemis coverage plots>
-  -i|id      		<Optional: Include intergenic regions>
+  -e|eval    		<Optional: evalue cut-off to filter false positives (default: 1e-05)>
+  -c|aln_cov       	<Optional: Fraction of aligned query to the reference sequence (default: 60)>
+  -i|id      		<Optional: sequence identity percentage cut-off to filter false positives (default: 85)>
   -t|threads      	<Optional: Number of threads to use, defaults to 6>
   -v|version		<print current version>
   -h|help               <print this message>
@@ -90,26 +90,26 @@ sraX  -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome
 ```
 Where:
 ```
---output		Output folder. If not provided, the following default name will be taken:
+-o		Output folder. If not provided, the following default name will be taken:
 			
-			'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
+		'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
 
-			Example: input folder = 'Test'; id = 85; aln_cov = 95; blast_x = dblastx
+		Example: input folder = 'Test'; id = 85; aln_cov = 95; blast_x = dblastx
 			
-			Output folder = 'Test_sraX_85_95_dblastx'
+		Output folder = 'Test_sraX_85_95_dblastx'
 
---blast_x		The translated alignments of assembled genome(s) are queried using dblastx
-			(DIAMOND blastx) or blastx (NCBI blastx). In any case, the process is parallelized
-			(up to 100 genome files are run simultaneously) for reducing computing times
-			(default: dblastx)
+-p		The translated alignments of assembled genome(s) are queried using dblastx
+		(DIAMOND blastx) or blastx (NCBI blastx). In any case, the process is parallelized
+		(up to 100 genome files are run simultaneously) for reducing computing times
+		(default: dblastx)
 
---eval			Use this evalue cut-off to filter false positives (default: 1e-05)
+-e		Use this evalue cut-off to filter false positives (default: 1e-05)
 
---id			Use this percent identity cut-off to filter false positives (default: 85)			
+-i		Use this percent identity cut-off to filter false positives (default: 85)			
 
---aln_cov		This fraction of the query must align to the reference sequence (default: 60)
+-c		This fraction of the query must align to the reference sequence (default: 60)
 
---threads		Use this number of threads when running sraX (default: 6)
+-t		Number of threads when running sraX (default: 6)
                                    
 ```
 
