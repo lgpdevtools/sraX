@@ -1,5 +1,5 @@
 # sraX
-The proposed tool constitutes a Perl package, composed of functional modules, that allows performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
+The proposed tool constitutes a Perl package, composed of functional modules, that allows performing a one-step accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -37,33 +37,25 @@ sraX has the following dependencies:
  * [`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/) [[6]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[7]](#references)
   
-
-You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
-
-Once you've downloaded this, in a bash terminal, in the samtools v0.1.18 directory, run
-```
-make
-```
 __NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
 
 To install sraX, please see the details provided below. If you encounter an issue when installing sraX please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
 Clone the repo:
 ```
-git clone https://github.com/sanger-pathogens/Bio-RNASeq.git
+git clone https://github.com/lgpdevtools/sraX.git
 ```
 To install the required perl modules, in the cloned repo run:
 ```
-dzil authordeps | cpanm
-dzil listdeps | cpanm
+
 ```
+
+Once you've downloaded this, in a bash terminal, in the samtools v0.1.18 directory, run
+```
+```
+
 Make sure the tests pass:
 ```
-dzil test
-```
-Install Bio-RNASeq:
-```
-dzil install
 ```
 ## Usage
 
