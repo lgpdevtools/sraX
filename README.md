@@ -118,12 +118,12 @@ Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioin
 ## References.
 [1] Altschul,S.F. et al. (1990). Basic local alignment search tool. JMB, 215, 403–410.
 
-[2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. Nature Methods 12, 59-60.
+[2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. _Nature Methods 12, 59-60_.
 
-[3] 
+[3] R Core Team (2013). R: A Language and Environment for Statistical Computing.
 
-[4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput Nucleic Acids Res. 32(5):1792-1797.
+[4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res. 32(5):1792-1797_.
 
-[5] Croucher NJ, et al. (2015). Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins. Nucleic Acids Res 43:e15.
+[5] Croucher NJ, et al. (2015). Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins. _Nucleic Acids Res. 43:e15_.
 
 
