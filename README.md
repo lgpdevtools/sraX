@@ -31,7 +31,7 @@ sraX has the following dependencies:
 ### Required dependencies
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
- * [R](http://www.r-project.org/) [[3]](#references)
+ * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
  #### Within the R environment, the following packages are employed 
  * [`dplyr`](http://www.r-project.org/) [[5]](#references)
  
