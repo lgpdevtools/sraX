@@ -24,6 +24,9 @@ __sraX__ is designed to read assembled sequence files in FASTA format and system
 
 The results are presented in fully navigable HTML-formatted files with embedded plots of previously mentioned analysis.
 
+Workflow:
+![workflow](https://user-images.githubusercontent.com/42606032/44468917-9c891e00-a626-11e8-8ea5-b5ac7ff63b0b.png)
+
 ## Installation
 sraX has the following dependencies:
 
