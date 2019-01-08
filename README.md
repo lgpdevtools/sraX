@@ -1,5 +1,5 @@
 # systematic resistome analysis (sraX)
-Allows a one-step resistome analysis of assembled sequence data from FASTA files.
+The proposed tool allows performing a one-step and accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -32,9 +32,11 @@ sraX has the following dependencies:
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references)
+ #### Within the R environment, the following packages are employed 
+ * [`dplyr`](http://www.r-project.org/) [[5]](#references)
+ 
  * [MUSCLE](http://www.drive5.com/muscle/) [[4]](#references)
-  #### Within the `R` environment, the following packages are employed 
- * [`dplyr`](http://www.r-project.org/) [[5]](#references) 
+  
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
 
@@ -71,6 +73,18 @@ __NOTE:__ For a detailed explanation and examples from real datasets, please fol
 
 ### one-step systematic resistome analysis (sraX)
 ```
+Usage:
+  -d|sequence_file           	<aligned BAM file>
+  -o|output			<Optional: name of output folder>
+  -p|align programme         	<standard|strand_specific>
+  -o|output_base_filename    	<Optional: base name and location to use for output files>
+  -q|minimum_mapping_quality 	<Optional: minimum mapping quality>
+  -c|no_coverage_plots       	<Dont create Artemis coverage plots>
+  -i|intergenic_regions      	<Include intergenic regions>
+  -b|bitwise_flag            	<Only include reads which pass filter>
+  -t|threads      		<Number of CPUs to use, defaults to 1>
+  -h|help                    	<print this message>
+  
 --genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
 			consisting of individual assembled genome sequences.
 
