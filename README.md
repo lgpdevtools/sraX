@@ -37,15 +37,15 @@ sraX has the following dependencies:
  * [`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/) [[6]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[7]](#references)
   
-__NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
+__NOTE:__ In order to confirm the existence of these dependencies in your computer, a bash script ('`install.sh`') is provided for properly installing them.
 
-To install sraX, please see the details provided below. If you encounter an issue when installing sraX please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
+To successfully install sraX, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
-Clone the repo:
+Clone the repository:
 ```
 git clone https://github.com/lgpdevtools/sraX.git
 ```
-To install the required perl modules, in the cloned repo run:
+To install the required perl modules, in the cloned repository run:
 ```
 
 ```
