@@ -63,7 +63,7 @@ __NOTE:__ For a detailed explanation and examples from real datasets, please fol
 Usage:
   -d|genome_directory	<Mandatory: input genome directory>
   -o|output		<Optional: name of output folder>
-  -p|blast_x        	<Optional: standard|strand_specific>
+  -p|blast_x        	<Optional: >
   -e|eval    		<Optional: evalue cut-off to filter false positives (default: 1e-05)>
   -c|aln_cov       	<Optional: Fraction of aligned query to the reference sequence (default: 60)>
   -i|id      		<Optional: sequence identity percentage cut-off to filter false positives (default: 85)>
@@ -78,8 +78,8 @@ sraX -d [input genome directory]
 ```
 Where:
 ```
--d	Mandatory directory containing the input file(s), which must be in FASTA format and
-	consisting of individual assembled genome sequences.
+-d	<full path to the mandatory directory containing the input sequence data, which must be in FASTA format and
+	consisting of individual assembled genome sequences>.
 ```
 
 
