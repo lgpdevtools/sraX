@@ -16,7 +16,7 @@ Allows a one-step resistome analysis of assembled sequence data from FASTA files
   * [Citation](#citation)
 
 ## Introduction
-Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samples from diverse origins and causes a major widespread concern for public health. __sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following tasks comprising the resistome analysis are fully automated:
+__sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following tasks comprising the resistome analysis are fully automated:
 - creation and compilation of a local AMR database (DB) using public or proprietary repositories
 - accurate identification of AMR determinants (ARGs or SNPs presence) in a non-redundant manner
 - detection of putative new variants through the SNP analysis
@@ -64,6 +64,8 @@ dzil install
 ## Usage
 
 There are three components to this application.
+
+__NOTE:__ You don't need to run `make install`. You don't need to install the older version of samtools on your system.
 
 ### one-step systematic resistome analysis (sraX)
 ```
