@@ -1,5 +1,5 @@
 # systematic resistome analysis (sraX)
-Allows the analysis of assembled sequence data from FASTA files all the way to Resistome Analysis.
+Allows the analysis of assembled sequence data from FASTA files all the way to a one-step resistome analysis.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -28,7 +28,7 @@ Increased __antimicrobial resistance (AMR)__ is being detected elsewhere in samp
 sraX has the following dependencies:
 
 ### Required dependencies
- * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)[[1]](#[1])
+ * [BLAST](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)[[1]](#references[1])
  * [DIAMOND](http://github.com/bbuchfink/diamond/)[[2]]
  * [R](http://www.r-project.org/)[[3]]()
  * [MUSCLE](http://www.drive5.com/muscle/)[[4]]
