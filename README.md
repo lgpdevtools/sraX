@@ -32,10 +32,10 @@ sraX has the following dependencies:
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
- #### Within the R environment, the following packages are employed 
  * [`dplyr`](http://www.r-project.org/) [[5]](#references)
- 
- * [MUSCLE](http://www.drive5.com/muscle/) [[4]](#references)
+ * [`ggplot2`](http://www.r-project.org/) [[6]](#references)
+ * [`dplyr`](http://www.r-project.org/) [[7]](#references)
+ * [MUSCLE](http://www.drive5.com/muscle/) [[8]](#references)
   
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
@@ -138,8 +138,10 @@ Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioin
 
 [3] R Core Team (2013). R: A Language and Environment for Statistical Computing.
 
-[4] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
+[5] 
 
-[5] .
+[6] 
 
+[7] 
 
+[8] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
