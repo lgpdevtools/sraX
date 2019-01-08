@@ -8,9 +8,8 @@ The proposed tool constitutes a Perl package, composed of functional modules, th
   * [Installation](#installation)
     * [Required dependencies](#required-dependencies)
   * [Usage](#usage)
-    * [Calculating Read Counts](#calculating-read-counts)
-    * [Merging GFF Files](#merging-gff-files)
-    * [Quantifying Differential Gene Expression](#quantifying-differential-gene-expression)
+    * [Minimal command](#minimal-command)
+    * [Extended options](#extended-options)
   * [License](#license)
   * [Feedback/Issues](#feedbackissues)
   * [Citation](#citation)
@@ -106,6 +105,10 @@ Example usage:
 ```
 sraX  [options] --genome_dir / -d [input file(s)]
 ```
+### Minimal command
+
+### Extended options
+
 
 ## License
 sraX is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
