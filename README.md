@@ -72,16 +72,23 @@ Usage:
   -h|help               <print this message>
 ```
 ### Minimal command
+Example usage:
+```
+sraX -d [input genome directory]
+```
+Where:
 ```
 --genome_directory	Mandatory directory containing the input file(s), which must be in FASTA format and
 			consisting of individual assembled genome sequences.
 ```
 
+
+### Extended options
 Example usage:
 ```
-sraX -d [input genome directory]
+sraX  -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome directory]
 ```
-### Extended options
+Where:
 ```
 --output		Output folder. If not provided, the following default name will be taken:
 			
@@ -104,11 +111,6 @@ sraX -d [input genome directory]
 
 --threads		Use this number of threads when running sraX (default: 6)
                                    
-```
-
-Example usage:
-```
-sraX  -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome directory]
 ```
 
 ## License
