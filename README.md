@@ -33,7 +33,7 @@ sraX has the following dependencies:
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[4]](#references)
-  # Within the `R` environment, the following packages are employed 
+  #### Within the `R` environment, the following packages are employed 
  * [`dplyr`](http://www.r-project.org/) [[5]](#references) 
 
 You will also need to download samtools v0.1.18 and build it on your system. Bio-RNASeq makes use of the Samtools v0.1.18 C API. You can get it [here](https://github.com/samtools/samtools/tree/0.1.18).
