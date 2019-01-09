@@ -16,11 +16,12 @@ The authors look at the phenotype and genotype correlation in _Salmo
 ### Data-set 2: 641 genomes belonging to _Salmonella enterica spp_
 The authors look at the phenotype and genotype correlation in _Salmo
 
-### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_
+### Data-set 3: [[641 genomes belonging to _Salmonella enterica spp_]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
+
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
 Go to the following **NCBI** repository and download all the genomes assemblies
-https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614
+
 
 Move the compressed downloaded file to the workink directory and extract the genome data:  
 
