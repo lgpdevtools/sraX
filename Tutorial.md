@@ -13,7 +13,7 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-__Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. The main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
+__Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
 
    A) Go to the following **NCBI** repository and download all the genomes assemblies:
 
@@ -21,13 +21,21 @@ __Note__ The following steps are recurrent and should be followed for performing
 
    B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
 
-```
-mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
-tar -zxf genome_assemblies.tar
-rm -f genome_assemblies.tar
-mv genome_assemblies ds1
-```
-
+   ```
+   mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
+   tar -zxf genome_assemblies.tar
+   rm -f genome_assemblies.tar
+   mv genome_assemblies ds1
+   ```
+   C) Run **sraX** using the desired options. The following one is just an example:
+   ```
+   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa    
+   ```
+   D) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
+   ```
+   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 95 -c 95    
+   ```
+   
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
 
@@ -35,7 +43,7 @@ Go to the following **NCBI** repository and download all the genomes assemblies:
 
 [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
-Move the compressed downloaded file to the working directory and extract the genome data: 
+Follow the previous unchanging steps (**B-D**), only 
 
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
