@@ -134,7 +134,7 @@ sraX is developed by Leonardo G. Panunzi at the lab, Institute, Paris, France.
 Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioinformatics_ for publication.
 
 ## References.
-[1] Altschul,S.F. et al. (1990). Basic local alignment search tool. _JMB_, 215, 403–410.
+[1] Altschul SF _et al._ (1990). Basic local alignment search tool. _JMB_, 215, 403–410.
 
 [2] Buchfink B, Xie C & Huson DH (2015). Fast and sensitive protein alignment using DIAMOND. _Nature Methods_ 12, 59-60.
 
@@ -142,8 +142,8 @@ Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioin
 
 [4] Wickham H, Romain Francois R, Henry L and Müller K (2017). dplyr: A Grammar of Data Manipulation.
 
-[5] Wickham H. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+[5] Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. _Springer-Verlag New York_.
 
-[6] Auguie B, Antonov A, Auguie MB. 2016.
+[6] Auguie B, Antonov A and Auguie MB (2016).
 
-[7] Edgar, R.C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
+[7] Edgar RC (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. _Nucleic Acids Res._ 32(5):1792-1797.
