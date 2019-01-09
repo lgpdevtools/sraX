@@ -42,7 +42,7 @@ perl -h
 ```
 If not installed, please go to [Perl's official website](http://www.perl.org) and consult the installation guide.
 
-### Required dependencies
+### Required third-party software
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
@@ -62,10 +62,6 @@ git clone https://github.com/lgpdevtools/sraX.git
 To verify the existence of required dependencies and ultimately install the perl modules composing sraX, inside the cloned repository, open a bash terminal and run:
 ```
 bash install.sh
-```
-
-Make sure the tests pass:
-```
 ```
 ## Usage
 
