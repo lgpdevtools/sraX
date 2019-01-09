@@ -13,9 +13,18 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-Go to the following **NCBI** repository and download all the genomes assemblies:
+   A) Go to the following **NCBI** repository and download all the genomes assemblies:
 
-[[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
+   [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
+
+   B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
+
+```
+mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
+tar -zxf genome_assemblies.tar
+rm -f genome_assemblies.tar
+mv genome_assemblies ds1
+```
 
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
@@ -24,7 +33,7 @@ Go to the following **NCBI** repository and download all the genomes assemblies:
 
 [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
-Move the compressed downloaded file to the workink directory and extract the genome data: 
+Move the compressed downloaded file to the working directory and extract the genome data: 
 
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
