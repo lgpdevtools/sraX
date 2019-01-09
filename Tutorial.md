@@ -17,8 +17,15 @@ Go to the following **NCBI** repository and download all the genomes assemblies:
 
 [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
 
-### Data-set 2: 641 genomes belonging to _Salmonella enterica spp_ [[3]]()
-The authors look at the phenotype and genotype correlation in _Salmo
+### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[2]](https://academic.oup.com/jac/article/70/10/2763/830949)
+The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
+
+Go to the following **NCBI** repository and download all the genomes assemblies:
+
+[[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+
+Move the compressed downloaded file to the workink directory and extract the genome data: 
+
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]]()
 
@@ -36,7 +43,7 @@ Move the compressed downloaded file to the workink directory and extract the gen
 
 [2] 
 
-[3] 
+[3] Tyson GH et al.(2015). WGS accurately predicts antimicrobial resistance in Escherichia coli., _J. Antimicrob. Chemother._, 70(10):2763-9.
 
 [4]
 
