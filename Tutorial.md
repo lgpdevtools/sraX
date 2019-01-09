@@ -20,7 +20,7 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)   
+   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)   
    
    __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
    
@@ -54,7 +54,7 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
    B) Follow previous procedures and only change the genome directory name:
    ```
@@ -69,7 +69,7 @@ The authors studied the multidrug-resistant _E. coli_ from farm isolates and ide
 
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
+   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
 
    B) Follow previous procedures and only change the genome directory name:
    ```
