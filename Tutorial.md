@@ -8,7 +8,7 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
    ```
    wget -O Sample_user_db/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
-   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_DB/argdit_dna.fa >          User_provided_DB/argdit_dna_formatted.fa
+   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_DB/argdit_dna.fa > User_provided_DB/argdit_dna_formatted.fa
    
    sed -i 's/|>/|/g' User_provided_DB/argdit_dna_formatted.fa
    ```
