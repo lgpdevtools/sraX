@@ -13,13 +13,13 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-__Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies:
 
-   [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
+   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
 
    B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
+   
+   __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
 
    ```
    mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
@@ -27,34 +27,56 @@ __Note__ The following steps are recurrent and should be followed for performing
    rm -f genome_assemblies.tar
    mv genome_assemblies ds1
    ```
-   C) Run **sraX** using the desired options. The following one is just an example:
+   C) Run **sraX** using the desired options. The following one is just an example using default options:
    ```
-   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa    
+   sraX -d ds1
    ```
-   D) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
+   
+   D) Adding user-provided ARG sequences:
    ```
-   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 95 -c 95    
+   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa
    ```
+   
+   E) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
+   ```
+   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 95 -c 95
+   ```
+   F) Modifying the output result directory:
+   ```
+   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
+   ```   
    
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
 
-Go to the following **NCBI** repository and download all the genomes assemblies:
+   A) Go to the following **NCBI** repository and download all the genomes assemblies:
 
-[[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+   [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
-Follow the previous unchanging steps (**B-D**), only 
+   B) Follow previous procedures and only change the genome directory name:
 
+   ```
+    mv genome_assemblies ds2
+   ```
+   C) Run **sraX** using your own options. The following one is just an example:
+   ```
+   sraX -d ds2 -u User_ARGs/argdit_dna_formatted.fa    
+   ```
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
 
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
-Go to the following **NCBI** repository and download all the genomes assemblies:
+   A) Go to the following **NCBI** repository and download all the genomes assemblies:
+   [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
 
-[[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
-
-Move the compressed downloaded file to the workink directory and extract the genome data:  
+   B) Follow previous procedures and only change the genome directory name:
+   ```
+    mv genome_assemblies ds3
+   ```
+   C) Run **sraX** using your own options. The following one is just an example:
+   ```
+   sraX -d ds3 -u User_ARGs/argdit_dna_formatted.fa    
 
 
 ## References.
