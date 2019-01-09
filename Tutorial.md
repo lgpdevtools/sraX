@@ -2,7 +2,7 @@
 
 ## 1) User-provided data for AMR DB compilation
 ### Public ARG sequences repositories:
-A recently published work[[1]]() describes the curation and 
+A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. They provide integrated AMR DBs as examples and this information is going to be employed for the utility of sraX.
 
 ### User's own ARG sequences:
 
@@ -13,21 +13,13 @@ A recently published work[[1]]() describes the curation and
 
 ### Data-set 3: 
 
-## 3) User-provided data for AMR DB compilation
-### Public ARG sequences repositories:
-
-### User's own ARG sequences:
-
 ## References.
-[1] Nguyen LT, Schmidt HA, von Haeseler A, Minh BQ (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. Mol Biol Evol 32:268–274.
+[1] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
 
-[1] Nguyen LT, Schmidt HA, von Haeseler A, Minh BQ (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. Mol Biol Evol 32:268–274.
+[2] 
 
-[1] Nguyen LT, Schmidt HA, von Haeseler A, Minh BQ (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. Mol Biol Evol 32:268–274.
+[3] 
 
-[1] Nguyen LT, Schmidt HA, von Haeseler A, Minh BQ (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. Mol Biol Evol 32:268–274.
+[4]
 
-[1] Nguyen LT, Schmidt HA, von Haeseler A, Minh BQ (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. Mol Biol Evol 32:268–274.
-
-
-
+[5]
