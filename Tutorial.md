@@ -4,7 +4,7 @@
 ### Public ARG sequences repositories:
 A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. The authors provided already integrated AMR DBs as examples, and this valuable information is going to be employed for demonstrating the practicality and utility of **sraX** for resistome profiling.
 
-   A) **ARGDIT**'s curated AMR DB will be downloaded and the headers will be formatted for being effective for **sraX** analysis:
+   A) **ARGDIT**'s curated AMR DB will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    ```
    wget -O Sample_user_db/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
@@ -20,11 +20,11 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
-
-   B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
+   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)   
    
    __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
+   
+   B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
 
    ```
    mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
@@ -89,5 +89,3 @@ The authors look at the phenotype and genotype correlation in _Salmonella enteri
 [3] Tyson GH _et al._ (2015). WGS accurately predicts antimicrobial resistance in _Escherichia coli_., _J. Antimicrob. Chemother._, 70(10):2763-9.
 
 [4] McDermott PF _et al._ (2016). Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_. _Antimicrob. Agents Chemother._, 60(9):5515–20.
-
-[5]
