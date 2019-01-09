@@ -10,13 +10,17 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 
 ## 2) Genome data acquisition from already analyzed collections
 
-### Data-set 1: 641 genomes belonging to _Salmonella enterica spp_
+### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]]()
+The authors look at antibiotic resistant commensal strains from _E. coli_.
+
+Go to the following **NCBI** repository and download all the genomes assemblies:
+
+[[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
+
+### Data-set 2: 641 genomes belonging to _Salmonella enterica spp_ [[3]]()
 The authors look at the phenotype and genotype correlation in _Salmo
 
-### Data-set 2: 641 genomes belonging to _Salmonella enterica spp_
-The authors look at the phenotype and genotype correlation in _Salmo
-
-### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_
+### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]]()
 
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
