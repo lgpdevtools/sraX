@@ -2,7 +2,7 @@
 
 ## 1) User-provided data for AMR DB compilation
 ### Public ARG sequences repositories:
-A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. They provide integrated AMR DBs as examples and this information is going to be employed for the utility of sraX.
+A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. They provide integrated AMR DBs as examples and this information is going to be employed for demonstrating the utility and convenience of sraX for resistome profiling.
 
 ### User's own ARG sequences:
 
