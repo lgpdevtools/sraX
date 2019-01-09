@@ -10,14 +10,14 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 
 ## 2) Genome data acquisition from already analyzed collections
 
-### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]]()
+### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
 Go to the following **NCBI** repository and download all the genomes assemblies:
 
 [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
 
-### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[2]](https://academic.oup.com/jac/article/70/10/2763/830949)
+### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
 
 Go to the following **NCBI** repository and download all the genomes assemblies:
@@ -41,7 +41,7 @@ Move the compressed downloaded file to the workink directory and extract the gen
 ## References.
 [1] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
 
-[2] 
+[2] Moran RA, Anantham S, Holt KE, Hall RM. (2017). Prediction of antibiotic resistance from antibiotic resistance genes detected in antibioticresistant commensal Escherichia coli using PCR or WGS. _J Antimicrob. Chemother._ 72:700 –704. .
 
 [3] Tyson GH et al.(2015). WGS accurately predicts antimicrobial resistance in Escherichia coli., _J. Antimicrob. Chemother._, 70(10):2763-9.
 
