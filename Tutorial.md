@@ -4,7 +4,14 @@
 ### Public ARG sequences repositories:
 A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. The authors provided already integrated AMR DBs as examples, and this valuable information is going to be employed for demonstrating the practicality and utility of **sraX** for resistome profiling.
 
+   A) **ARGDIT**'s curated AMR DB will be downloaded and the headers will be formatted for being effective for **sraX** analysis:
+   ```
+   wget -O Sample_user_db/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
+   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_DB/argdit_dna.fa >          User_provided_DB/argdit_dna_formatted.fa
+   
+   sed -i 's/|>/|/g' User_provided_DB/argdit_dna_formatted.fa
+   ```
 
 ### User's own ARG sequences:
 
@@ -32,16 +39,16 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
    
    D) Adding user-provided ARG sequences:
    ```
-   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa
+   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa
    ```
    
    E) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
    ```
-   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 95 -c 95
+   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa -i 95 -c 95
    ```
    F) Modifying the output result directory:
    ```
-   sraX -d ds1 -u User_ARGs/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
+   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
    ```   
    
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
@@ -55,7 +62,7 @@ The authors studied the multidrug-resistant _E. coli_ from farm isolates and ide
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds2 -u User_ARGs/argdit_dna_formatted.fa    
+   sraX -d ds2 -u User_provided_DB/argdit_dna_formatted.fa    
    ```
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
@@ -70,7 +77,7 @@ The authors look at the phenotype and genotype correlation in _Salmonella enteri
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds3 -u User_ARGs/argdit_dna_formatted.fa
+   sraX -d ds3 -u User_provided_DB/argdit_dna_formatted.fa
    ```
 
 
