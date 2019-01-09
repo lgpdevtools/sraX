@@ -1,5 +1,5 @@
 # sraX
-The proposed tool constitutes a perl package, composed of functional modules, that allows performing a one-step accurate resistome analysis of assembled sequence data from FASTA files.
+The proposed tool constitutes a Perl package, composed of functional modules, that allows performing a one-step accurate resistome analysis of assembled sequence data from FASTA files.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-brightgreen.svg)](https://github.com/lgpdevtools/sraX/blob/master/LICENSE)
 
@@ -31,6 +31,16 @@ Workflow:
 
 ## Installation
 sraX has the following dependencies:
+
+### Operating system
+**sraX** is fully written in Perl, therefore it could be theoretically run on almost any operating system. However, it was developed and assessed on computer with a 64-bit Linux operating system installed.
+
+### Perl interpreter
+Perl should have been installed for most of versions of Linux as default. You can verify on your own computer by typing the following command under a bash terminal:
+```
+perl -h
+```
+If not installed, please go to [Perl's official website](http://www.perl.org) and consult the installation guide.
 
 ### Required dependencies
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
