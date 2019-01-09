@@ -23,7 +23,7 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
 mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
 tar -zxf genome_assemblies.tar
 rm -f genome_assemblies.tar
-mv genome_assemblies ds1
+mv genome_assemblies **ds1**
 ```
 
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
