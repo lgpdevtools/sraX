@@ -27,7 +27,7 @@ Go to the following **NCBI** repository and download all the genomes assemblies:
 Move the compressed downloaded file to the workink directory and extract the genome data: 
 
 
-### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]]()
+### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
 
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
@@ -41,10 +41,10 @@ Move the compressed downloaded file to the workink directory and extract the gen
 ## References.
 [1] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
 
-[2] Moran RA, Anantham S, Holt KE, Hall RM. (2017). Prediction of antibiotic resistance from antibiotic resistance genes detected in antibioticresistant commensal Escherichia coli using PCR or WGS. _J Antimicrob. Chemother._ 72:700 –704. .
+[2] Moran RA, Anantham S, Holt KE, Hall RM. (2017). Prediction of antibiotic resistance from antibiotic resistance genes detected in antibioticresistant commensal _Escherichia coli_ using PCR or WGS. _J Antimicrob. Chemother._, 72:700 –704. .
 
-[3] Tyson GH et al.(2015). WGS accurately predicts antimicrobial resistance in Escherichia coli., _J. Antimicrob. Chemother._, 70(10):2763-9.
+[3] Tyson GH _et al._ (2015). WGS accurately predicts antimicrobial resistance in _Escherichia coli_., _J. Antimicrob. Chemother._, 70(10):2763-9.
 
-[4]
+[4] McDermott PF _et al._ (2016). Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_. _Antimicrob. Agents Chemother._, 60(9):5515–20.
 
 [5]
