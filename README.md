@@ -55,11 +55,11 @@ __NOTE:__ In order to confirm the existence of these dependencies in your comput
 
 To successfully install sraX, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
-Clone the repository:
+Open a bash terminal and clone the repository:
 ```
 git clone https://github.com/lgpdevtools/sraX.git
 ```
-To verify the existence of required dependencies and ultimately install the perl modules composing sraX, inside the cloned repository, open a bash terminal and run:
+To verify the existence of required dependencies and ultimately install the perl modules composing sraX, inside the cloned repository run:
 ```
 bash install.sh
 ```
