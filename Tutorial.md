@@ -13,6 +13,8 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
+__Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets.
+
    A) Go to the following **NCBI** repository and download all the genomes assemblies:
 
    [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
@@ -23,7 +25,7 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
 mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
 tar -zxf genome_assemblies.tar
 rm -f genome_assemblies.tar
-mv genome_assemblies **ds1**
+mv genome_assemblies ds1
 ```
 
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
