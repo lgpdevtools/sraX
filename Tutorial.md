@@ -13,8 +13,6 @@ A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) d
 ### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
 The authors look at antibiotic resistant commensal strains from _E. coli_.
 
-
-
    A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)
 
    B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
@@ -49,12 +47,9 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
 The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies:
-
-   [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
    B) Follow previous procedures and only change the genome directory name:
-
    ```
     mv genome_assemblies ds2
    ```
@@ -67,8 +62,7 @@ The authors studied the multidrug-resistant _E. coli_ from farm isolates and ide
 
 The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
 
-   A) Go to the following **NCBI** repository and download all the genomes assemblies:
-   [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
+   A) Go to the following **NCBI** repository and download all the genomes assemblies: [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
 
    B) Follow previous procedures and only change the genome directory name:
    ```
@@ -76,7 +70,8 @@ The authors look at the phenotype and genotype correlation in _Salmonella enteri
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds3 -u User_ARGs/argdit_dna_formatted.fa    
+   sraX -d ds3 -u User_ARGs/argdit_dna_formatted.fa
+   ```
 
 
 ## References.
