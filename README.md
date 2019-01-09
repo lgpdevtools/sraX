@@ -59,7 +59,7 @@ Make sure the tests pass:
 ```
 ## Usage
 
-There are three components to this application.
+sraX effectively operates as one-step application. It means that just a single command is required to obtain the totality of results and their visualization.   
 
 __NOTE:__ For a detailed explanation and examples from real datasets, please follow the [Tutorial.](https://github.com/lgpdevtools/sraX/edit/master/Tutorial.md)
 
