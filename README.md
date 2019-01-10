@@ -44,15 +44,15 @@ perl -h
 
 The latest version of Perl can be obtained from the [official website](http://www.perl.org). Consult the installation guide.
 
-The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
-    - Data::Dumper
+The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):	
+	- Data::Dumper
     - LWP::Simple
     - JSON
     - File::Slurp
     - FindBin
     - Cwd
 
-**3.** Required third-party software
+**3.** Third-party software
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
