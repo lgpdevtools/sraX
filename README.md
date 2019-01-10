@@ -44,12 +44,12 @@ perl -h
 The latest version of Perl can be obtained from the [official website](http://www.perl.org). Consult the installation guide.
 
 The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
-  - Data::Dumper
 	- LWP::Simple
-    - JSON
-    - File::Slurp
-    - FindBin
-    - Cwd
+	- Data::Dumper
+	- JSON
+	- File::Slurp
+	- FindBin
+	- Cwd
 
   **3.** Third-party software
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
