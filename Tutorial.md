@@ -2,15 +2,16 @@
 
 ## 1) User-provided data for AMR DB compilation
 ### Public ARG sequences repositories:
-A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]](https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. The authors provided already integrated AMR DBs as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
+   A) ARGDIT [[1]](https://doi.org/10.1093/bioinformatics/bty987) 
+   A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes a toolkit ([[ARGDIT]]    (https://github.com/phglab/ARGDIT)) for creating curated AMR DBs. The authors provided already integrated AMR DBs as       examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
 
    A) **ARGDIT**'s curated AMR DB will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    ```
-   wget -O Sample_user_db/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
+   wget -O User_provided_ARGs/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
-   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_DB/argdit_dna.fa > User_provided_DB/argdit_dna_formatted.fa
+   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_ARGs/Public_repositories/argdit_dna.fa > User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    
-   sed -i 's/|>/|/g' User_provided_DB/argdit_dna_formatted.fa
+   sed -i 's/|>/|/g' User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    ```
 
 ### User's own ARG sequences:
