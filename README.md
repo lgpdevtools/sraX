@@ -15,7 +15,7 @@ The proposed tool constitutes a Perl package, composed of functional modules, th
   * [Citation](#citation)
 
 ## Introduction
-__sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following assignments are fully automated:
+__sraX__ is designed to read assembled sequence files in FASTA format and systematically detect the presence of AMR determinants and, ultimately, describe the repertoire of antibiotic resistance genes (ARGs) within a collection of genomes (the __“resistome” analysis__). The following assignments are fully automated:
 - creation and compilation of a local AMR database (DB) using public or proprietary repositories
 - accurate identification of AMR determinants (ARGs or SNPs presence) in a non-redundant manner
 - detection of putative new variants through the SNP analysis
