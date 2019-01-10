@@ -1,6 +1,6 @@
 # sraX User Guide: real data examples
 
-## 1) User-provided data for AMR DB compilation
+## 1) AMR DB compilation: User-provided data for increasing its volume and range of detection
 ### Public ARG sequences repositories:
 
    **A)** [ARGDIT](https://github.com/phglab/ARGDIT)
