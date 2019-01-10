@@ -42,16 +42,16 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
    
    D) Adding user-provided ARG sequences:
    ```
-   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa
+   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    ```
    
    E) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
    ```
-   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa -i 95 -c 95
+   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa -i 95 -c 95
    ```
    F) Modifying the output result directory:
    ```
-   sraX -d ds1 -u User_provided_DB/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
+   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
    ```   
    
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
@@ -65,7 +65,7 @@ The authors studied the multidrug-resistant _E. coli_ from farm isolates and ide
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds2 -u User_provided_DB/argdit_dna_formatted.fa    
+   sraX -d ds2 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa    
    ```
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
@@ -80,7 +80,7 @@ The authors look at the phenotype and genotype correlation in _Salmonella enteri
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds3 -u User_provided_DB/argdit_dna_formatted.fa
+   sraX -d ds3 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    ```
 
 
