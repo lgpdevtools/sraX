@@ -1,8 +1,8 @@
-# sraX User Guide: real data examples
+# sraX User Guide
 
-## 1) User-provided data for increasing AMR DB volume and its detection range
+## 1) Increasing the AMR DB volume and its detection range by providing curated ARG data
 ### Public ARG sequences repositories:
-
+User-provided data for increasing AMR DB volume and its detection range
    **A)** [ARGDIT](https://github.com/phglab/ARGDIT)
    
    A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
