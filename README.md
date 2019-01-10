@@ -24,7 +24,7 @@ __sraX__ is designed to read assembled sequence files in FASTA format and system
 
 The results are presented in fully navigable HTML-formatted files with embedded plots of previously mentioned analysis.
 
-Workflow:
+Workflow schematic:
 
 ![workflow](https://user-images.githubusercontent.com/45903129/50822537-421cff80-1332-11e9-9efb-188a179301e4.png)
 
@@ -37,26 +37,22 @@ sraX has the following dependencies:
 
 **1.** Though **sraX** is fully written in Perl and should work with any OS, it has only been tested with a 64-bit Linux distribution.
 
-**2.** Perl version 5.18.x or higher
-The latest version of Perl can be obtained from http://www.cpan.org
-
-The following Perl libraries are also required:
-	- Data::Dumper
-    	- Log:Log4perl
-    	- Config::Simple
-    	- Moose
-    	- MooseX::Singleton
-    	- Bio::Perl
-
-### Operating system
-**sraX** is fully written in Perl, therefore it could be theoretically run on almost any operating system. However, it was developed and assessed on computer with a 64-bit Linux operating system installed.
-
-### Perl interpreter
-Perl should have been installed for most of versions of Linux as default. You can verify on your own computer by typing the following command under a bash terminal:
+**2.** Perl version 5.26.x or higher. You can verify on your own computer by typing the following command under a bash terminal:
 ```
 perl -h
 ```
-If not installed, please go to [Perl's official website](http://www.perl.org) and consult the installation guide.
+
+The latest version of Perl can be obtained from the [official website](http://www.perl.org)
+
+http://www.cpan.org
+
+The following Perl libraries are also required:
+- Data::Dumper
+- Log:Log4perl
+- Config::Simple
+- Moose
+- MooseX::Singleton
+- Bio::Perl
 
 ### Required third-party software
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
