@@ -43,7 +43,7 @@ perl -h
 ```
 The latest version of Perl can be obtained from the [official website](http://www.perl.org). Consult the installation guide.
 
-**3.** The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
+3. The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
 	- LWP::Simple
 	- Data::Dumper
 	- JSON
