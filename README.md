@@ -32,6 +32,24 @@ Workflow:
 ## Installation
 sraX has the following dependencies:
 
+
+### _Dependencies_
+
+**1.** Though **sraX** is fully written in Perl and should work with any OS, it has only been tested with a 64-bit Linux distribution.
+
+**2** Perl version 5.18.x or higher
+The latest version of Perl can be obtained from http://www.cpan.org
+
+The following Perl libraries are also required:
+
+Data::Dumper
+Log:Log4perl
+Config::Simple
+Moose
+MooseX::Singleton
+Bio::Perl
+
+
 ### Operating system
 **sraX** is fully written in Perl, therefore it could be theoretically run on almost any operating system. However, it was developed and assessed on computer with a 64-bit Linux operating system installed.
 
