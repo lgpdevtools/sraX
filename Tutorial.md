@@ -18,7 +18,7 @@ User-provided data can be originated from public repositories or from its own.
    sed -i 's/|>/|/g' User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    ```
    
-   **B)** [NCBI AMR repository](https://github.com/phglab/ARGDIT)
+   **B)** [NCBI Bacterial Antimicrobial Resistance Reference Gene Database](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA313047)
    
    A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
 
