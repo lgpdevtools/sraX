@@ -2,11 +2,12 @@
 
 ## 1) User-provided data for AMR DB compilation
 ### Public ARG sequences repositories:
+
    **A)** [ARGDIT](https://github.com/phglab/ARGDIT)
    
    A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
 
-   A) **ARGDIT**'s curated AMR DB will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
+   The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    ```
    wget -O User_provided_ARGs/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
