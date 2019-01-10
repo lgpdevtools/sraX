@@ -44,7 +44,7 @@ perl -h
 The latest version of Perl can be obtained from the [official website](http://www.perl.org). Consult the installation guide.
 
 The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
- - Data::Dumper
+  - Data::Dumper
     - LWP::Simple
     - JSON
     - File::Slurp
@@ -60,7 +60,7 @@ The following Perl libraries are also required and can be installed using [CPAN]
  * [`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/) [[6]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[7]](#references)
   
-__NOTE:__ In order to confirm the existence of these dependencies in your computer, a bash script ('`install.sh`') is provided. If any of them would be missing, the bash script will guide you for a proper installation.
+__NOTE:__ The bash script '`install.sh`' is provided, in order to confirm the existence of these dependencies in your computer. If any of them would be missing, the bash script will guide you for a proper installation.
 
 To successfully install sraX, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
