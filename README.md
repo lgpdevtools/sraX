@@ -42,19 +42,17 @@ sraX has the following dependencies:
 perl -h
 ```
 
-The latest version of Perl can be obtained from the [official website](http://www.perl.org)
+The latest version of Perl can be obtained from the [official website](http://www.perl.org). Consult the installation guide.
 
-http://www.cpan.org
+The following Perl libraries are also required and can be installed using [CPAN](http://www.cpan.org):
+    - Data::Dumper
+    - LWP::Simple
+    - JSON
+    - File::Slurp
+    - FindBin
+    - Cwd
 
-The following Perl libraries are also required:
-- Data::Dumper
-- Log:Log4perl
-- Config::Simple
-- Moose
-- MooseX::Singleton
-- Bio::Perl
-
-### Required third-party software
+**3.** Required third-party software
  * [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) [[1]](#references)
  * [DIAMOND](http://github.com/bbuchfink/diamond/) [[2]](#references)
  * [R](http://www.r-project.org/) [[3]](#references), plus the following packages:
