@@ -10,25 +10,29 @@ User-provided data can be originated from public repositories or from its own.
    A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
 
    The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
+   
    ```
    wget -O User_provided_ARGs/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
    awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_ARGs/Public_repositories/argdit_dna.fa > User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
    
    sed -i 's/|>/|/g' User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   
+   rm -f User_provided_ARGs/Public_repositories/argdit_dna.fa
    ```
    
    **B)** [NCBI Bacterial Antimicrobial Resistance Reference Gene Database](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA313047)
    
-   The NCBI public repository is comprised by annotated DNA sequences that encode proteins conferring AMR, and it constitutes an aggregation of collections from multiple sources that has already been curated and even expanded by reviewing the literature.
+   The NCBI public repository is comprised by annotated DNA sequences that encode proteins conferring AMR, and it constitutes an aggregation of collections from multiple sources which were previously curated and further expanded by reviewing the dedicated literature.
    
-   The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
+  Using the bash console, run the following commands:
+  
    ```
-   wget -O User_provided_ARGs/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
-
-   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_ARGs/Public_repositories/argdit_dna.fa > User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   wget -O User_provided_ARGs/Public_repositories/ncbi_aa.fa ftp://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinder/data/latest/AMRProt
    
-   sed -i 's/|>/|/g' User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   awk -F \| '/^>/ { print ">"$6"|"$2"|"$9"|protein_homolog|"$8"|Not_indicated"; next } 1' User_provided_ARGs/Public_repositories/ncbi_aa.fa > User_provided_ARGs/Public_repositories/ncbi_aa.fancbi_aa_formatted.fa
+   
+   rm -f User_provided_ARGs/Public_repositories/ncbi_aa.fa
    ```
    
 
