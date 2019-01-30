@@ -81,24 +81,25 @@ __NOTE:__ For a detailed explanation and examples from real datasets, please fol
 ### Parameters
 ```
 Usage:
-  -d|genome_directory	<Mandatory: input genome directory>
+  -i|input		<Mandatory: input genome directory>
   -o|output		<Optional: name of output folder>
-  -p|blast_x        	<Optional: sequence aligning algorithm (default: dblastx)>
+  -p|align_seq        	<Optional: sequence aligning algorithm (default: dblastx)>
   -e|eval    		<Optional: evalue cut-off to filter false positives (default: 1e-05)>
   -c|aln_cov       	<Optional: fraction of aligned query to the reference sequence (default: 60)>
-  -i|id      		<Optional: sequence identity percentage cut-off to filter false positives (default: 85)>
+  -id      		<Optional: sequence identity percentage cut-off to filter false positives (default: 85)>
   -t|threads      	<Optional: number of threads to use (default: 6)>
   -v|version		<print current version>
+  -d|debug		<Optional: print verbose output for debugging (default: No)>
   -h|help               <print this message>
 ```
 ### Minimal command
 Example usage:
 ```
-sraX -d [input genome directory]
+sraX -i [/path/to/input_genome_directory]
 ```
 Where:
 ```
--d	Full path to the mandatory directory containing the input sequence data, which must
+-i	Full path to the mandatory directory containing the input sequence data, which must
 	be in FASTA format and consisting of individual assembled genome sequences.
 ```
 
@@ -106,7 +107,7 @@ Where:
 ### Extended options
 Example usage:
 ```
-sraX -p blastx -i 95 -c 90 -t 12 -o [output results directory] -d [input genome directory]
+sraX -p blastx -id 95 -c 90 -t 12 -o [/path/to/output_results_directory] -i [/path/to/input_genome_directory]
 ```
 Where:
 ```
@@ -115,7 +116,7 @@ Where:
 	(up to 100 genome files are run simultaneously) for reducing computing times
 	(default: dblastx)
 
--i	Use this percent identity cut-off to filter false positives (default: 85)			
+-id	Use this percent identity cut-off to filter false positives (default: 85)			
 
 -c	Use this fraction aligned query to the reference sequence (default: 60)
 
@@ -126,13 +127,14 @@ Where:
 -o	Full path to the directory where the output results will be written in. If not provided,
 	the following default name will be taken:
 			
-	'genome_directory'_'sraX'_'id'_'aln_cov'_'blast_x'
+	'genome_directory'_'sraX'_'id'_'aln_cov'_'align_seq'
 
-	Example: input directory = 'Test'; id = 85; aln_cov = 95; blast_x = dblastx
+	Example:
+	input directory = 'Test'; -id 85; -c 95; -p dblastx
 			
 	Output directory = 'Test_sraX_85_95_dblastx'
 		
--d	Full path to the mandatory directory containing the input sequence data, which must
+-i	Full path to the mandatory directory containing the input sequence data, which must
 	be in FASTA format and consisting of individual assembled genome sequences.
 ```
 
@@ -143,7 +145,7 @@ sraX is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sra
 Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/issues) or email lgpanunzi@gmail.com
 
 ## About
-sraX is developed by Leonardo G. Panunzi at the lab, Institute, Paris, France.
+sraX is developed by Leonardo G. Panunzi.
 
 ## Citation
 Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioinformatics_ for publication.
