@@ -1,0 +1,283 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Getopt::Long;
+use FindBin;
+use lib "$FindBin::RealBin";
+use Cwd qw(getcwd);
+use sraXlib::Functions;
+use sraXlib::Dir;
+use sraXlib::DB;
+use sraXlib::Blast;
+use sraXlib::Parse;
+use sraXlib::SNP;
+
+my $home_dir    = getcwd();
+my $f_log       = "";
+my $err_msg 	= "";
+my $d_gnm_abs   = "";
+my $d_out_abs   = "";
+
+my %opt = (
+    'help'     => undef,
+    'input'    => undef,
+    'output'   => undef,
+    'user_sq'  => undef,
+    'version'  => undef,
+    'debug'    => undef,
+    'align_seq'=> "dblastx",
+    'eval'     => 1e-05, 
+    'id'       => 85,
+    'aln_cov'  => 60,
+    'threads'  => 6,
+);
+
+if (@ARGV == 0){
+$err_msg  = "\nFor running the 'sraX' tool, it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
+$err_msg .= "Suspending the execution of 'sraX' and quitting now!\n";
+print STDERR $err_msg;
+die usage();
+}
+
+
+GetOptions(
+	'input|i=s' 	=> \$opt{input},
+	'output|o=s'	=> \$opt{output},
+	'align_seq|p=s'	=> \$opt{align_seq},
+	'eval|e=f'     	=> \$opt{eval},
+	'id=f'         	=> \$opt{id},
+	'aln_cov|c=f'  	=> \$opt{aln_cov},
+	'user_sq|u=s' 	=> \$opt{user_sq},
+	'threads|t=i' 	=> \$opt{threads},
+	'version|v' 	=> \$opt{version},
+	'debug|d'	=> \$opt{debug},
+	'help|h' 	=> \$opt{help},
+);
+
+die usage() if $opt{help};
+
+if($opt{version}){
+print << "VERSION";
+
+       sraX - Systematic Resistome Analysis 
+
+                            version: sraXv1
+
+         Copyright 2019 Leonardo G. Panunzi
+VERSION
+
+exit;
+}
+
+my $t_start_time_cp = sraXlib::Functions::running_time;
+# my $d_gnm_abs   = "$home_dir/$opt{input}";
+# my $d_out_abs   = "$home_dir/$opt{output}";
+$d_gnm_abs   = "$home_dir/$opt{input}";
+my $d_pres = sraXlib::Functions::check_dir($d_gnm_abs);
+unless($d_pres == 1){
+$err_msg = "\n[Error]: The given directory '$opt{input}' is not present\n";
+$err_msg .= "Please, check its absolute path, existence or given name.\n";
+$err_msg .= "Suspending the execution of sraX and quitting now!\n";
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+my $d_start_time_cp = sraXlib::Functions::print_time;
+warn "\nThe 'sraX' analysis started at:\t$d_start_time_cp\n\n";
+$f_log = "The 'sraX' analysis started at:\t$d_start_time_cp\n\n";
+}
+
+if( $opt{align_seq} ne 'dblastx' && $opt{align_seq} ne 'dblastp' && $opt{align_seq} ne 'blastx' && $opt{align_seq} ne 'blastp' && $opt{align_seq} ne 'blastn'){
+$f_log .= sraXlib::Functions::print_e('p', $opt{align_seq});
+$err_msg = sraXlib::Functions::print_e('p', $opt{align_seq});
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+$f_log .= sraXlib::Functions::print_ne('p', $opt{align_seq});
+$err_msg = sraXlib::Functions::print_ne('p', $opt{align_seq});
+print STDERR $err_msg if $opt{debug};
+}
+
+if( $opt{eval} < 0){
+$f_log .= sraXlib::Functions::print_e('e', $opt{eval});
+$err_msg = sraXlib::Functions::print_e('e', $opt{eval});
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+$f_log .= sraXlib::Functions::print_ne('e', $opt{eval});
+$err_msg = sraXlib::Functions::print_ne('e', $opt{eval});
+print STDERR $err_msg if $opt{debug};
+}
+
+if( $opt{id} > 100 || $opt{id} < 0){
+$f_log .= sraXlib::Functions::print_e('id', $opt{id});
+$err_msg = sraXlib::Functions::print_e('id', $opt{id});
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+$f_log .= sraXlib::Functions::print_ne('id', $opt{id});
+$err_msg = sraXlib::Functions::print_ne('id', $opt{id});
+print STDERR $err_msg if $opt{debug};
+}
+
+if( $opt{aln_cov} > 100 || $opt{aln_cov} < 0){
+$f_log .= sraXlib::Functions::print_e('c', $opt{aln_cov});
+$err_msg = sraXlib::Functions::print_e('c', $opt{aln_cov});
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+$f_log .= sraXlib::Functions::print_ne('c', $opt{aln_cov});
+$err_msg = sraXlib::Functions::print_ne('c', $opt{aln_cov});
+print STDERR $err_msg if $opt{debug};
+}
+
+if( $opt{threads} > 12 || $opt{threads} < 4){
+$f_log .= sraXlib::Functions::print_e('t', $opt{threads});
+$err_msg = sraXlib::Functions::print_e('t', $opt{threads});
+print STDERR $err_msg if $opt{debug};
+die usage();
+}else{
+$f_log .= sraXlib::Functions::print_ne('t', $opt{threads});
+$err_msg = sraXlib::Functions::print_ne('t', $opt{threads});
+print STDERR $err_msg if $opt{debug};
+}
+
+unless ($opt{output}){
+$opt{output}   = $opt{input}."_sraX_".$opt{id}."_".$opt{aln_cov}."_".$opt{align_seq};
+$d_out_abs = "$home_dir/$opt{output}";
+$f_log .= sraXlib::Functions::print_ne('o', $opt{output});
+	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
+        unless($d_pres == 1){
+        warn "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+        $f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+	}else{
+        $err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
+        $err_msg .= "[Warn]: This directory and all previous results are going to be overwritten now.\n";
+	print STDERR $err_msg if $opt{debug};
+	$f_log .= "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
+	$f_log .= "[Warn]: This directory and all previous results are going to be overwritten now.\n";
+        system("rm -r $d_out_abs");
+        }
+}else{
+       	$d_out_abs   = "$home_dir/$opt{output}"; 
+	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
+        unless($d_pres == 1){
+        warn "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+        $f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+	}else{
+        $err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
+        $err_msg .= "[Warn]: This directory and all previous results are going to be overwritten now.\n";
+	print STDERR $err_msg if $opt{debug};
+	$f_log .= "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
+	$f_log .= "[Warn]: This directory and all previous results are going to be overwritten now.\n";
+        system("rm -r $d_out_abs");
+        }
+}
+
+sraXlib::Dir::build_dir_str($d_out_abs);
+
+unless ($opt{user_sq}){
+sraXlib::DB::get_publ_db($d_out_abs,"nsq");
+}else{
+sraXlib::DB::get_publ_db($d_out_abs,"usq");
+sraXlib::DB::get_user_db($d_out_abs,$opt{user_sq});
+}
+
+$f_log .= sraXlib::Blast::set_prmt($d_gnm_abs,$d_out_abs,$opt{align_seq},$opt{eval},$opt{id},$opt{aln_cov},$opt{threads});
+sraXlib::Parse::f_parse($d_gnm_abs,$d_out_abs,$opt{id},$opt{aln_cov});
+sraXlib::SNP::sq_variants($d_out_abs);
+
+my $t_stop_time_cp = sraXlib::Functions::running_time;
+my $d_stop_time_cp = sraXlib::Functions::print_time;
+print "\n\tThe completion of 'sraX' analysis took ";
+printf("%.2f ", $t_stop_time_cp - $t_start_time_cp);
+print " wallclock secs\n\n";
+open	LOG, ">$d_out_abs/Log/sraX_log.txt" or die "Can't open 'log file': $!";
+print	LOG "$f_log\n";
+print	LOG "\n\tThe completion of 'sraX' analysis took ";
+printf	LOG ("%.2f ", $t_stop_time_cp - $t_start_time_cp);
+print	LOG " wallclock secs\n\n";
+close	LOG;
+
+sub usage{
+  warn <<EOF
+
+  USAGE:
+  
+  sraX [options] -i [input genome file(s)]  
+
+  SYNOPSIS:
+
+  sraX is designed to read assembled sequence files in FASTA format and systematically detect the
+  presence of antimicrobial resistance genes (ARGs). The complete analysis relies on the following
+  bioinformatic dependendences: CARD database (ARG repository), MUSCLE (alignment step for SNP
+  detection) and R environment (visualization plots).
+
+  sraX operates in four main stages:
+
+  I) Sequence data acquisition: The CARD database is downloaded, while its metadata is further
+  parsed for compiling a local antimicrobial resistance database (AMR DB).
+
+  II) Sequence homology search: dblastx (DIAMOND blastx) or blastx (NCBI blastx) algorithms are
+  employed for querying the genomes against the previously compiled AMR DB.
+
+  III) SNP analysis: Reference (from AMR DB) and corresponding homolog (from assembled genomes)
+  sequences are gathered into multiple-sequence alignments (MSA) for identifying the SNP positions.     
+
+  IV) Output summary files and visualization: The R software is employed for producing specific
+  plots that complement the resulting summary tables, which on the whole are visualized in HTML format
+  files.
+
+  --------------------
+  - Running commands -
+  --------------------
+  
+  Mandatory:
+  ----------
+
+  -i|input		Input directory [/path/to/input_dir] containing the input file(s), which
+			must be in FASTA format and consisting of individual assembled genome sequences.
+
+  Optional:
+  ---------
+	
+  -o|output		Directory to store obtained results [/path/to/output_dir]. While not
+			provided, the following default name will be taken:
+			
+			'input_directory'_'sraX'_'id'_'aln_cov'_'align_seq'
+
+			Example:
+			--------
+				Input directory: 'Test'
+				Options: -id 85; -c 95; -p dblastx
+				Output directory: 'Test_sraX_85_95_dblastx'
+
+  -p|align_seq		The algorithm employed for aligning the assembled genome(s) to a locally
+			compiled AMR DB. The possible choices are dblastx (DIAMOND blastx) or blastx (NCBI blastx). In any
+			case, the process is parallelized (up to 100 genome files are run simultaneously) for reducing
+			computing times. [string] Default: dblastx (default: dblastx)
+ 
+  -e|eval		Minimum evalue cut-off to filter false positives. [number] Default: 1e-05
+
+  -id			Minimum identity cut-off to filter false positives. [number] Default: 85
+
+  -c|aln_cov		Minimum length of the query which must align to the reference sequence.
+			[number] Default: 60
+
+  -t|threads		Number of threads when running sraX. [number] Default: 6
+
+  -h|help		Displays this help information and exits.
+
+  -v|version		Displays version information and exits.
+
+  -d|debug		Verbose output (for debugging).
+
+                                  
+
+
+					'sraX' was last modified: 30 January 2019
+
+EOF
+;
+
+exit;
+}
