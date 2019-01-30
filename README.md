@@ -30,7 +30,7 @@ Workflow schematic:
 
 
 ## Installation
-sraX has the following dependencies:
+**sraX** has the following dependencies:
 
 
 ### _Dependencies_
@@ -74,7 +74,7 @@ bash install.sh
 ```
 ## Usage
 
-sraX effectively operates as one-step application. It means that just a single command is required to obtain the totality of results and their visualization.   
+**sraX** effectively operates as one-step application. It means that just a single command is required to obtain the totality of results and their visualization.   
 
 __NOTE:__ For a detailed explanation and examples from real datasets, please follow the [Tutorial.](https://github.com/lgpdevtools/sraX/blob/master/Tutorial.md)
 
@@ -139,13 +139,13 @@ Where:
 ```
 
 ## License
-sraX is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
+**sraX** is free software, licensed under [GPLv3](https://github.com/lgpdevtools/sraX/blob/master/LICENSE).
 
 ## Feedback/Issues
 Please report any issues to the [issues page](https://github.com/lgpdevtools/sraX/issues) or email lgpanunzi@gmail.com
 
 ## About
-sraX is developed by Leonardo G. Panunzi.
+**sraX** is developed by Leonardo G. Panunzi.
 
 ## Citation
 Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioinformatics_ for publication.
