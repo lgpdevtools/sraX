@@ -2,33 +2,9 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 program="sraX"
-version="1.1"
+version="1.0"
 abs_path_dir="/usr/local/bin/${program}"
 install_sraX_v=https://raw.githubusercontent.com/lgpdevtools/sraX/master/install_srax.sh
-shell_update(){
-    srax_flag "clear"
-    echo "Check updates for shell..."
-    github_v=`wget --no-check-certificate -qO- ${install_sraX_v} | sed -n '/'^version'/p' | cut -d\" -f2`
-    if [ ! -z ${github_v} ]; then
-        if [[ "${version}" != "${github_v}" ]];then
-            echo -e "${COLOR_GREEN}Found a new version, update now!${COLOR_END}"
-            echo
-            echo -n "Update shell ..."
-            if ! wget --no-check-certificate -qO $0 ${install_sraX_v}; then
-                echo -e " [${COLOR_RED}failed${COLOR_END}]"
-                echo
-                exit 1
-            else
-                echo -e " [${COLOR_GREEN}OK${COLOR_END}]"
-                echo
-                echo -e "${COLOR_GREEN}Please Re-run${COLOR_END} ${COLOR_PINK}$0 ${clang_action}${COLOR_END}"
-                echo
-                exit 1
-            fi
-            exit 1
-        fi
-    fi
-}
 srax_flag(){
     local clear_flag=""
     clear_flag=$1
@@ -36,11 +12,11 @@ srax_flag(){
         clear
     fi
     echo ""
-    echo "+--------------------------------------------------------------+"
-    echo "||       sraX, Written by Leonardo G. Panunzi                 ||"
-    echo "||    A tool to install, uninstall or update sraX on Linux    ||"
-    echo "||   Code repository:  https://github.com/lgpdevtools/sraX    ||"
-    echo "+--------------------------------------------------------------+"
+    echo "+----------------------------------------------------------------------------+"
+    echo "||  sraX, Written by Leonardo G. Panunzi                                    ||"
+    echo "|| 'install_srax.sh' allows to install, uninstall or update sraX on Linux   ||"
+    echo "||  Code repository:  https://github.com/lgpdevtools/sraX                   ||"
+    echo "+----------------------------------------------------------------------------+"
     echo ""
 }
 set_text_color(){
@@ -211,7 +187,6 @@ R_SCRIPT
     echo $?
 }
 
-
 install_depend(){
     echo -e "Check dependences setting, please wait..."
     if [ -d ${abs_path_dir} ]
@@ -371,48 +346,43 @@ update_srax(){
     chk_OS
     chk_centos_version
     chk_bit
-    get_v
     echo "Check updates for sraX..."
-    # github_v=`wget --no-check-certificate -qO- ${install_sraX_v} | sed -n '/'^version'/p' | cut -d\" -f2`
-    github_v=`wget --no-check-certificate -qO- ${install_sraX_v} | sed -n '/'^errs'/p' | cut -d\" -f2`
+    github_v=`wget --no-check-certificate -qO- ${install_sraX_v} | sed -n '/'^version'/p' | cut -d\" -f2`
     local_sraX_v=`${abs_path_dir}/${program} --version`
-    echo -e "${COLOR_GREEN}${program}  local version ${local_sraX_v}${COLOR_END}"
-    echo -e "${COLOR_GREEN}${program} GitHub version ${github_v}${COLOR_END}"
+    echo -e "${COLOR_GREEN}${program}  current local version: ${version}${COLOR_END}" 
+    echo -e "${COLOR_GREEN}${program}         GitHub version: ${github_v}${COLOR_END}"
     if [ ! -z ${github_v} ]; then
         if [[ "${version}" != "${github_v}" ]];then
-	# if [[ "${local_sraX_v}" != "${github_v}" ]];then
-            echo
+	    echo ""
 	    echo -e "${COLOR_GREEN}Found a new version, update now!${COLOR_END}"
-            echo
+            echo ""
             echo -n "Update sraX ..."
             if ! wget --no-check-certificate -qO $0 ${install_sraX_v}; then
                 echo -e " [${COLOR_RED}failed${COLOR_END}]"
-                echo
+		echo ""
                 exit 1
             else
                 echo -e " [${COLOR_GREEN}OK${COLOR_END}]"
-                echo
+		echo ""
 		  if [ -d ${strPath}/${program}_cloned ];then
         	  rm -r ${strPath}/${program}_cloned
-		  rm -r ${strPath}/${program}lib
-		  rm -r ${strPath}/${program}
 	  	  fi
 			if ! git clone https://github.com/lgpdevtools/sraX.git ${program}_cloned; then
                     	echo "Failed to clone the ${program} GitHub repository!"
                     	exit 1
                 	else
                     	mv ${strPath}/${program}_cloned/${program}* ${strPath}/
-			echo
+			echo ""
 			echo -e "${COLOR_GREEN}${program_init}sraX new version and updated scripts were successfully downloaded !${COLOR_END}"
                 	[ ! -x ${program} ] && chmod 755 ${program}
 			echo "${program} version `${strPath}/${program} --version`"
             		echo "${program} update success!"
 			fi
-		echo
+		echo ""
                 echo -e "${COLOR_GREEN}To complete sraX update, please re-run${COLOR_END} ${COLOR_PINK}$0 install${clang_action}${COLOR_END}"
 		rm -r /usr/bin/${program}* ${abs_path_dir}
-                echo
-                exit 1
+                echo ""
+		exit 1
             fi
             exit 1
         else
@@ -433,6 +403,8 @@ set_text_color
 chk_OS
 chk_centos_version
 chk_bit
+echo Linux OS version:
+get_v
 action=$1
 [  -z $1 ]
 case "$action" in
