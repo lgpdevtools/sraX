@@ -60,7 +60,7 @@ The latest version of Perl can be obtained from the [official website](http://ww
  * [`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/) [[6]](#references)
  * [MUSCLE](http://www.drive5.com/muscle/) [[7]](#references)
   
-__NOTE:__ The bash script '`install.sh`' is provided, in order to confirm the existence of these dependencies in your computer. If any of them would be missing, the bash script will guide you for a proper installation.
+__NOTE:__ The bash script '`install_srax.sh`' is provided, in order to confirm the existence of these dependencies in your computer. If any of them would be missing, the bash script will guide you for a proper installation.
 
 To successfully install **sraX**, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
@@ -70,7 +70,7 @@ git clone https://github.com/lgpdevtools/sraX.git
 ```
 To verify the existence of required dependencies and ultimately install the perl modules composing sraX, inside the cloned repository run:
 ```
-bash install.sh
+sudo bash install_srax.sh
 ```
 ## Usage
 
