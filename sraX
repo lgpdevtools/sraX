@@ -33,7 +33,7 @@ my %opt = (
 );
 
 if (@ARGV == 0){
-$err_msg  = "\nFor running the 'sraX' tool, it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
+$err_msg  = "\nFor running 'sraX', it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
 $err_msg .= "Suspending the execution of 'sraX' and quitting now!\n";
 print STDERR $err_msg;
 die usage();
@@ -69,10 +69,16 @@ VERSION
 exit;
 }
 
-my $t_start_time_cp = sraXlib::Functions::running_time;
-# my $d_gnm_abs   = "$home_dir/$opt{input}";
-# my $d_out_abs   = "$home_dir/$opt{output}";
+unless ($opt{input}){
+$err_msg  = "\nFor running 'sraX', it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
+$err_msg .= "Suspending the execution of 'sraX' and quitting now!\n";
+print STDERR $err_msg;
+die usage();
+}else{
 $d_gnm_abs   = "$home_dir/$opt{input}";
+}
+
+my $t_start_time_cp = sraXlib::Functions::running_time;
 my $d_pres = sraXlib::Functions::check_dir($d_gnm_abs);
 unless($d_pres == 1){
 $err_msg = "\n[Error]: The given directory '$opt{input}' is not present\n";
@@ -274,7 +280,7 @@ sub usage{
                                   
 
 
-					'sraX' was last modified: 30 January 2019
+					'sraX' was last modified: 31 January 2019
 
 EOF
 ;
