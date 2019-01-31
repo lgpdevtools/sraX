@@ -271,8 +271,8 @@ install_srax(){
     srax_flag
     echo -e "Installing sraX and its dependences..."
     disable_selinux
-    if [ -s ${abs_path_dir}/${program} ] && [ -x ${abs_path_dir}/${program} ] && [ -d ${abs_path_dir}/sraXli ]; then
-        echo "${program} is installed!"
+    if [ -s ${abs_path_dir}/${program} ] && [ -x ${abs_path_dir}/${program} ] && [ -d ${abs_path_dir}/sraXlib ]; then
+        echo "${program} is already installed!"
     else
         clear
 
