@@ -62,7 +62,7 @@ The latest version of Perl can be obtained from the [official website](http://ww
   
 __NOTE:__ The bash script '`install.sh`' is provided, in order to confirm the existence of these dependencies in your computer. If any of them would be missing, the bash script will guide you for a proper installation.
 
-To successfully install sraX, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
+To successfully install **sraX**, please see the details provided below. If you encounter an issue during the process, please contact your local system administrator. If you encounter a bug please log it [here](https://github.com/lgpdevtools/sraX/issues) or email me at lgpanunzi@gmail.com
 
 Open a bash terminal and clone the repository:
 ```
