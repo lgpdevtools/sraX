@@ -24,8 +24,6 @@ set_text_color(){
     COLOR_GREEN='\E[1;32m'
     COLOR_YELOW='\E[1;33m'
     COLOR_PINK='\E[1;35m'
-    COLOR_PINKBACK_WHITEFONT='\033[45;37m'
-    COLOR_GREEN_LIGHTNING='\033[32m \033[05m'
     COLOR_END='\E[0m'
 }
 chk_root(){
