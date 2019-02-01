@@ -2,7 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 program="sraX"
-version="1.1"
+version="1.0"
 abs_path_dir="/usr/local/bin/${program}"
 install_sraX_v=https://raw.githubusercontent.com/lgpdevtools/sraX/master/install_srax.sh
 srax_flag(){
