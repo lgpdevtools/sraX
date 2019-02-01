@@ -292,6 +292,7 @@ install_srax(){
     	if [ -s ${abs_path_dir}/${program} ]; then
         [ ! -x ${abs_path_dir}/${program} ] && chmod 755 ${abs_path_dir}/${program}
 	ln -sf "${abs_path_dir}/${program}" "/usr/bin/${program}"
+	ln -sf "${abs_path_dir}/sraXlib" "/usr/bin/"
 	ln -sf "${abs_path_dir}/sraXbin" "/usr/bin/"
     	else
         echo -e " ${COLOR_RED}failed${COLOR_END}"
