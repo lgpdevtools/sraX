@@ -23,7 +23,6 @@ set_text_color(){
     COLOR_RED='\E[1;31m'
     COLOR_GREEN='\E[1;32m'
     COLOR_YELOW='\E[1;33m'
-    COLOR_BLUE='\E[1;34m'
     COLOR_PINK='\E[1;35m'
     COLOR_PINKBACK_WHITEFONT='\033[45;37m'
     COLOR_GREEN_LIGHTNING='\033[32m \033[05m'
