@@ -159,40 +159,57 @@ color.colside = hm_pa[[3]]
 
 if(nrow(hm_pa_submat)<=12){
 plotH = 5;
+cex.row.pa = 1
 }else if(nrow(hm_pa_submat)>12 && nrow(hm_pa_submat)<=120){
 plotH = 10;
+cex.row.pa = 0.85
 }else if(nrow(hm_pa_submat)>120 && nrow(hm_pa_submat)<=240){
 plotH = 12;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>240 && nrow(hm_pa_submat)<=360){
 plotH = 14;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>360 && nrow(hm_pa_submat)<=500){
 plotH = 18;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>500 && nrow(hm_pa_submat)<=800){
 plotH = 22;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>800 && nrow(hm_pa_submat)<=1200){
 plotH = 24;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>1200 && nrow(hm_pa_submat)<=1500){
 plotH = 28;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>1500 && nrow(hm_pa_submat)<=2000){
 plotH = 32;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>2000 && nrow(hm_pa_submat)<=10000){
 plotH = 45;
+cex.row.pa = (100/nrow(hm_pa_submat))
 }
 
 if(ncol(hm_pa_submat)<=12){
 plotW = 6;
+cex.col.pa = 1.125
 }else if(ncol(hm_pa_submat)>12 && ncol(hm_pa_submat)<=24){
 plotW = 10;
+cex.col.pa = 1 
 }else if(ncol(hm_pa_submat)>24 && ncol(hm_pa_submat)<=40){
 plotW = 14;
+cex.col.pa = 0.95
 }else if(ncol(hm_pa_submat)>40 && ncol(hm_pa_submat)<=60){
 plotW = 16;
+cex.col.pa = 0.95
 }else if(ncol(hm_pa_submat)>60 && ncol(hm_pa_submat)<=120){
 plotW = 20;
+cex.col.pa = 0.85
 }else if(ncol(hm_pa_submat)>120 && ncol(hm_pa_submat)<=200){
 plotW = 24;
+cex.col.pa = 0.75
 }else if(ncol(hm_pa_submat)>200 && ncol(hm_pa_submat)<=500){
 plotW = 28;
+cex.col.pa = 0.65
 }
 
 lmat_op=rbind(c(5,0,4),c(0,0,1),c(3,0,2),c(0,0,0))
@@ -219,8 +236,8 @@ gplots::heatmap.2(hm_pa_submat,
           lmat 		= lmat_op,
           lwid 		= lwid_op,
           lhei 		= lhei_op,
-          cexCol	= 0.95,
-          cexRow	= 0.95,
+          cexCol	= cex.col.pa,
+          cexRow	= cex.row.pa,
           ColSideColors	= color.colside,
           sepwidth	= c(0,0),
           sepcolor	= 'white',
@@ -269,40 +286,57 @@ color.colside = hm_id[[3]]
 
 if(nrow(hm_id_submat)<=12){
 plotH = 5;
+cex.row.id = 1
 }else if(nrow(hm_id_submat)>12 && nrow(hm_id_submat)<=120){
 plotH = 10;
+cex.row.id = 0.85
 }else if(nrow(hm_id_submat)>120 && nrow(hm_id_submat)<=240){
 plotH = 12;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>240 && nrow(hm_id_submat)<=360){
 plotH = 14;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>360 && nrow(hm_id_submat)<=500){
 plotH = 18;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>500 && nrow(hm_id_submat)<=800){
 plotH = 22;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>800 && nrow(hm_id_submat)<=1200){
 plotH = 24;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>1200 && nrow(hm_id_submat)<=1500){
 plotH = 28;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>1500 && nrow(hm_id_submat)<=2000){
 plotH = 32;
+cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>2000 && nrow(hm_id_submat)<=10000){
 plotH = 45;
+cex.row.id = (100/nrow(hm_id_submat))
 }
 
 if(ncol(hm_id_submat)<=12){
 plotW = 6;
+cex.col.id = 1.125
 }else if(ncol(hm_id_submat)>12 && ncol(hm_id_submat)<=24){
 plotW = 10;
+cex.col.id = 1 
 }else if(ncol(hm_id_submat)>24 && ncol(hm_id_submat)<=40){
 plotW = 14;
+cex.col.id = 0.95
 }else if(ncol(hm_id_submat)>40 && ncol(hm_id_submat)<=60){
 plotW = 16;
+cex.col.id = 0.95
 }else if(ncol(hm_id_submat)>60 && ncol(hm_id_submat)<=120){
 plotW = 20;
+cex.col.id = 0.85
 }else if(ncol(hm_id_submat)>120 && ncol(hm_id_submat)<=200){
 plotW = 24;
+cex.col.id = 0.75
 }else if(ncol(hm_id_submat)>200 && ncol(hm_id_submat)<=500){
 plotW = 28;
+cex.col.id = 0.65
 }
 
 lmat_op=rbind(c(5,0,4),c(0,0,1),c(3,0,2),c(0,0,0))
@@ -334,8 +368,8 @@ gplots::heatmap.2(hm_id_submat,
 	  lmat 		= lmat_op,
 	  lwid 		= lwid_op,
 	  lhei 		= lhei_op,
-          cexCol	= 0.95,
-          cexRow	= 0.95,
+          cexCol	= cex.col.id,
+          cexRow	= cex.row.id,
           ColSideColors	= color.colside,
           sepwidth	= c(0,0),
           sepcolor	= 'white',
@@ -520,45 +554,70 @@ n_classes = length(unique(amr_data_ph[[2]]))
 n_gnms    = length(unique(amr_data_ph[[1]]))
 
 if(n_classes <= 30){
-w = 3 * n_classes
+w.pa = 3 * n_classes
 }else if(n_classes > 30 && n_classes <= 60){
-w = 1.25 * n_classes
+w.pa = 1.25 * n_classes
 }else{
-w = 90
+w.pa = 90
 }
 
 if(n_gnms <= 30){
-h = 3.25 * n_gnms
+h.pa = 3.25 * n_gnms
+fsb.pa = 2
+fsg.pa = 10
 }else if(n_gnms > 30 && n_gnms <= 60){
-h = 1.65 * n_gnms
+h.pa = 1.65 * n_gnms
+fsb.pa = 2
+fsg.pa = 10
 }else if(n_gnms > 60 && n_gnms <= 120){
-h = 0.85 * n_gnms
+h.pa = 0.85 * n_gnms
+fsb.pa = 2
+fsg.pa = 9 
 }else if(n_gnms > 120 && n_gnms <= 240){
-h = 0.45 * n_gnms
+h.pa = 0.55 * n_gnms
+fsb.pa = 2
+fsg.pa = 8.5 
 }else if(n_gnms > 240 && n_gnms <= 360){
-h = 0.3 * n_gnms
+h.pa = 0.45 * n_gnms
+fsb.pa = 1.85
+fsg.pa = 7.5
 }else if(n_gnms > 360 && n_gnms <= 500){
-h = 0.2 * n_gnms
+h.pa = 0.35 * n_gnms
+fsb.pa = 1.75
+fsg.pa = 6
 }else if(n_gnms > 500 && n_gnms <= 800){
-h = 0.12 * n_gnms
+h.pa = 0.25 * n_gnms
+fsb.pa = 1.5
+fsg.pa = 5
 }else if(n_gnms > 800 && n_gnms <= 1200){
-h = 0.1 * n_gnms
+h.pa = 0.18 * n_gnms
+fsb.pa = 1.25
+fsg.pa = 5
 }else if(n_gnms > 1200 && n_gnms <= 1500){
-h = 0.065 * n_gnms
+h.pa = 0.125 * n_gnms
+fsb.pa = 1
+fsg.pa = 4 
 }else if(n_gnms > 1500 && n_gnms <= 2000){
-h = 0.05 * n_gnms
+h.pa = 0.085 * n_gnms
+fsb.pa = 0.85
+fsg.pa = 4 
 }else if(n_gnms > 2000 && n_gnms <= 10000){
-h = 0.01 * n_gnms
+h.pa = 0.05 * n_gnms
+fsb.pa = 0.5
+fsg.pa = 3
 }else{
-h = 100
+h.pa = 100
+fsb.pa = 0.25
+fsg.pa = 2
 }
 
-png(file='$out_plot/Results/Plots/Proportion_ARG/prop_args_ph.png', width=w, height=h, pointsize=10, units='cm',family='sans', res=300)
+png(file='$out_plot/Results/Plots/Proportion_ARG/prop_args_ph.png', width=w.pa, height=h.pa, pointsize=10, units='cm',family='sans', res=300)
 
 p <- ggplot(data = amr_data_ph, aes(x = Genome, y = P, fill= Cls_col)) +  # facet_grid(~Genome) +
 geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
 scale_fill_identity('Drug classes', labels = amr_data_ph[[2]], breaks = amr_data_ph[[5]], guide = 'legend') +
-geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=2) +
+geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb.pa) +
+theme(axis.text.y = element_text(size = fsg.pa)) +
 ylab('Proportion') +
 labs(title = 'Proportion of Drug Classes by Genome',
 subtitle = 'AMR linked to the presence of ARGs.',
@@ -577,41 +636,78 @@ amr_data_pv[[5]] <- l_col[as.factor(amr_data_pv[[2]])]
 names(amr_data_pv)[5]<-'Cls_col'
 
 n_gnms_pv = length(unique(amr_data_pv[[1]]))
-h = 2 * n_gnms_pv
-w = 15 * (length(unique(amr_data_pv[[2]])))
+# h.pv = 2 * n_gnms_pv
+w.pv = 14 * (length(unique(amr_data_pv[[2]])))
 
 if(n_gnms_pv <= 30){
-h = 2 * n_gnms_pv
+h.pv = 2.5 * n_gnms_pv
+fsb.pv = 2
+fsg.pv = 10
+
 }else if(n_gnms_pv > 30   && n_gnms_pv <= 60){
-h = n_gnms_pv
+h.pv = n_gnms_pv
+fsb.pv = 2
+fsg.pv = 10
+
 }else if(n_gnms_pv > 60   && n_gnms_pv <= 120){
-h = 0.5 * n_gnms_pv
+h.pv = 0.85 * n_gnms_pv
+fsb.pv = 2
+fsg.pv = 9
+
 }else if(n_gnms_pv > 120  && n_gnms_pv <= 240){
-h = 0.25 * n_gnms_pv
+h.pv = 0.65 * n_gnms_pv
+fsb.pv = 2
+fsg.pv = 8.5
+
 }else if(n_gnms_pv > 240  && n_gnms_pv <= 360){
-h = 0.165 * n_gnms_pv
+h.pv = 0.45 * n_gnms_pv
+fsb.pv = 1.85
+fsg.pv = 7.5
+
 }else if(n_gnms_pv > 360  && n_gnms_pv <= 500){
-h = 0.12 * n_gnms_pv
+h.pv = 0.35 * n_gnms_pv
+fsb.pv = 1.75
+fsg.pv = 6
+
 }else if(n_gnms_pv > 500  && n_gnms_pv <= 800){
-h = 0.075 * n_gnms_pv
+h.pv = 0.25 * n_gnms_pv
+fsb.pv = 1.5
+fsg.pv = 5
+
 }else if(n_gnms_pv > 800  && n_gnms_pv <= 1200){
-h = 0.05 * n_gnms_pv
+h.pv = 0.15 * n_gnms_pv
+fsb.pv = 1.25
+fsg.pv = 5
+
 }else if(n_gnms_pv > 1200 && n_gnms_pv <= 1500){
-h = 0.04 * n_gnms_pv
+h.pv = 0.075 * n_gnms_pv
+fsb.pv = 1
+fsg.pv = 4
+
 }else if(n_gnms_pv > 1500 && n_gnms_pv <= 2000){
-h = 0.03 * n_gnms_pv
+h.pv = 0.065 * n_gnms_pv
+fsb.pv = 0.85
+fsg.pv = 4
+
 }else if(n_gnms_pv > 2000 && n_gnms_pv <= 10000){
-h = 0.006 * n_gnms_pv
+h.pv = 0.045 * n_gnms_pv
+fsb.pv = 0.5
+fsg.pv = 3
+
 }else{
-h = 60
+h.pv = 100
+fsb.pv = 0.25
+fsg.pv = 2
+
 }
 
-png(file='$out_plot/Results/Plots/Proportion_ARG/prop_args_pv.png',width=w,height=h,pointsize=12,units='cm',family='sans',res=300)
+png(file='$out_plot/Results/Plots/Proportion_ARG/prop_args_pv.png',width=w.pv,height=h.pv,pointsize=12,units='cm',family='sans',res=300)
 
 p <- ggplot(data = amr_data_pv, aes(x = Genome, y = P, fill= Cls_col)) +
 geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
 scale_fill_identity('Mutated locus', labels = amr_data_pv[[2]], breaks = amr_data_pv[[5]], guide = 'legend') +
-geom_text(aes(x=Genome, label = paste(N, '\n', '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=3) +
+geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb.pv) +
+theme(axis.text.y = element_text(size = fsg.pv)) +
 ylab('Proportion') +
 labs(title = 'Type and fraction of ARGs with putative SNPs by Genome',
 subtitle = 'AMR linked to the presence of SNPs on certain ARGs.',

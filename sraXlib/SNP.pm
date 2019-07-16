@@ -14,14 +14,14 @@ my $m_type = "";
 	my $d_start_time_snp = sraXlib::Functions::print_time;
 	print "\nThe SNP analysis started at:\t$d_start_time_snp\n\n";
 
-	my $dna_sqs = sraXlib::Functions::load_files($d_dna_path, ["fasta", "fas", "fa"]);
+	my $dna_sqs = sraXlib::Functions::load_files($d_dna_path, ["fna","fasta", "fas", "fa"]);
         print "\tThe DNA variant detection will be performed in: ", scalar @$dna_sqs, " genes.\n";
         foreach my $dna_sq (@$dna_sqs){
 	$m_type = get_SNPs($d_dna_path, $dna_sq, "DNA");
 		system("mv $d_dna_path/*_snps.tsv $d_out/Analysis/MSA/DNA/SNP/");
 	}
 	       
-        my $aa_sqs = sraXlib::Functions::load_files($d_aa_path, ["fasta", "fas", "fa"]);
+        my $aa_sqs = sraXlib::Functions::load_files($d_aa_path, ["fna","fasta", "fas", "fa"]);
         print "\tThe AA variant detection will be performed in: ", scalar @$aa_sqs, " genes.\n";
         foreach my $aa_sq (@$aa_sqs){
 	$m_type = get_SNPs($d_aa_path, $aa_sq, "AA");
@@ -327,7 +327,9 @@ close OUT;
 
         unless($det_model eq 'protein_homolog'){
         my @locus = split(/\_/, $gn_id);
-		if($det_model eq 'protein_overexpression' && scalar @locus <= 3){
+		# Correction: 26.06.2019 
+		if(($det_model eq 'protein_overexpression' || $det_model eq 'protein_variant') && scalar @locus <= 3){
+		# }elsif($det_model eq 'protein_overexpression' && scalar @locus <= 3){
 		}else{
 		$gn_id = $locus[2];
 		}

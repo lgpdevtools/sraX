@@ -67,7 +67,7 @@ my ($d_gnm,$d_out,$bprog) = @_;
 	print STDOUT "\nThe homology search process started at:\t$d_start_time\n\n";
 	my $msg = "\nThe homology search process started at:\t$d_start_time\n\n";
 
-	my $fasta = sraXlib::Functions::load_files($d_gnm, ["fasta", "fas", "fa"]);
+	my $fasta = sraXlib::Functions::load_files($d_gnm, ["fasta", "fas", "fa", "fna"]);
 	my $t_gnm = scalar @$fasta;
 	print STDOUT "\tNumber of Genomes to analyze: $t_gnm\n";
 	$msg .= "\tNumber of Genomes to analyze: $t_gnm\n";

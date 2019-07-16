@@ -38,7 +38,8 @@ my ($amr_db_fasta,$amr_db_fasta_tmp) = ("","");
 	open(FASTA_AA,">$amr_db_fasta_aa") or die "Cannot open input fasta file: $!\n";       
 
 	my $ua   = LWP::UserAgent->new( ssl_opts => { verify_hostname => 0, } );
-	my $g_card = $ua->get("https://card.mcmaster.ca/download/0/broadstreet-v3.0.0.tar.gz");
+	# my $g_card = $ua->get("https://card.mcmaster.ca/download/0/broadstreet-v3.0.0.tar.gz");
+	my $g_card = $ua->get("https://card.mcmaster.ca/download/0/broadstreet-v3.0.2.tar.gz"); # change: aro_categories_index.csv => aro_categories_index.tsv & aro_index.tsv => aro_index.tsv
 		if (!$g_card->is_success){
 		print "Failed to fetch data from 'CARD' AMR DB\n";
 		print $g_card->status_line ."\n";
@@ -51,12 +52,12 @@ my ($amr_db_fasta,$amr_db_fasta_tmp) = ("","");
         	print {$fh} $g_card->content;
         	}
 
-	system("tar xf $d_out/tmp/outfile.tar.gz ./card.json ./aro_categories_index.csv ./aro_index.csv");
+	system("tar xf $d_out/tmp/outfile.tar.gz ./card.json ./aro_categories_index.tsv ./aro_index.tsv");
 	system("mv card.json $d_out/tmp/");
-	system("mv aro_categories_index.csv $d_out/tmp/");
-	system("mv aro_index.csv $d_out/tmp/");
+	system("mv aro_categories_index.tsv $d_out/tmp/");
+	system("mv aro_index.tsv $d_out/tmp/");
 
-        open(ARO_CAT,"$d_out/tmp/aro_categories_index.csv") or die "Cannot open input 'aro_categories_index.csv' file: $!\n";
+        open(ARO_CAT,"$d_out/tmp/aro_categories_index.tsv") or die "Cannot open input 'aro_categories_index.tsv' file: $!\n";
 	my %recov;
 	my %aro_cat;
         while(<ARO_CAT>){
@@ -69,7 +70,7 @@ my ($amr_db_fasta,$amr_db_fasta_tmp) = ("","");
 	}
 	close ARO_CAT;
 
-        open(ARO_IDX,"$d_out/tmp/aro_index.csv") or die "Cannot open input 'aro_index.csv' file:$!\n";
+        open(ARO_IDX,"$d_out/tmp/aro_index.tsv") or die "Cannot open input 'aro_index.tsv' file:$!\n";
         my %aro_idx;
         while(<ARO_IDX>){
         chomp;

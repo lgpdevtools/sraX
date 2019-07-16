@@ -343,7 +343,8 @@ foreach my $cog_id (sort {$a<=>$b} keys %filt_last){
 			foreach my $cov (sort {$b<=>$a} keys %{$filt_last{$cog_id}{$gnm}{$cng}}){
 				foreach my $idy (sort {$b<=>$a} keys %{$filt_last{$cog_id}{$gnm}{$cng}{$cov}}){
 					for my $i ( 0 .. $#{ $filt_last{$cog_id}{$gnm}{$cng}{$cov}{$idy} } ){
-					my @dat  = split(/\t/, $filt_last{$cog_id}{$gnm}{$cng}{$cov}{$idy}[$i]);                                                		      my $locus = $dat[4];
+					my @dat  = split(/\t/, $filt_last{$cog_id}{$gnm}{$cng}{$cov}{$idy}[$i]);
+					my $locus = $dat[4];
 					my @locus = split(/\_/, $locus);
 					unless($dat[13] eq 'protein_homolog'){
 					$locus = $locus[2];
@@ -357,6 +358,12 @@ foreach my $cog_id (sort {$a<=>$b} keys %filt_last){
                 			}
                 			$dat[12] =~s/\_/ /g;
                 			$dat[13] =~s/\_/ /g;
+
+						# Correction: 25.06.2019 
+						if ($locus eq ''){
+						$locus = $dat[4];
+						}
+
 					print F6 "$cog_id\t$filt_last{$cog_id}{$gnm}{$cng}{$cov}{$idy}[$i]\n";
                                                 unless(exists $uniq_cog_4{$cog_id}{$gnm}){
 						print F1 "$cog_id\t$dat[0]\t$dat[1]\t$dat[2]\t$dat[3]\t$locus\t$dat[5]\t$dat[6]\t$dat[7]\t$dat[8]\t$dat[9]\t$dat[10]\t$dat[11]\t$dat[12]\t$dat[13]\n";
@@ -413,6 +420,12 @@ foreach my $cog_id (sort {$a<=>$b} keys %gn_list){
                         $locus = $dat[4];
                         }
                 }
+
+			# Correction: 25.06.2019 
+                        if ($locus eq ''){
+                        $locus = $dat[4];
+                        }
+
 		my @class = split(/\_/, $dat[10]);
 		unless(scalar @class == 1){
                 $dat[10] = $class[0];
