@@ -39,7 +39,7 @@ Type the following command under a bash terminal:
 docker pull lgpdevtools/srax
 ```
 
-In order to check the appropriate running state of the image file, then run:  
+In order to check the appropriate running state of the image file:  
 
 ```
 sudo docker run -it srax
