@@ -87,6 +87,7 @@ Usage:
   -e|eval    		<Optional: evalue cut-off to filter false positives (default: 1e-05)>
   -c|aln_cov       	<Optional: fraction of aligned query to the reference sequence (default: 60)>
   -id      		<Optional: sequence identity percentage cut-off to filter false positives (default: 85)>
+  -u|user_sq		<Optional: input private AMR DB>
   -t|threads      	<Optional: number of threads to use (default: 6)>
   -v|version		<print current version>
   -d|debug		<Optional: print verbose output for debugging (default: No)>
@@ -111,10 +112,6 @@ sraX -p blastx -id 95 -c 90 -t 12 -o [/path/to/output_results_directory] -i [/pa
 ```
 Where:
 ```
-  --------------------
-  - Running commands -
-  --------------------
-  
   Mandatory:
   ----------
 
