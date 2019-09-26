@@ -31,7 +31,7 @@ Workflow schematic:
 
 ## Installation
 
-***A) Deploy as a Docker image:***
+***A) [Docker](https://www.docker.com/) image:***
 
 Type the following command under a bash terminal:
 
@@ -45,7 +45,7 @@ In order to check the appropriate running state of the image file:
 sudo docker run -it srax
 ```
 
-***B) Deploy as a local installation:***
+***B) Local installation:***
 
 **sraX** has the following dependencies:
 
