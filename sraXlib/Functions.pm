@@ -2,7 +2,6 @@
 package sraXlib::Functions;
 use strict;
 use warnings;
-use Cwd qw(getcwd);
 use Time::HiRes qw(time);
 use Benchmark;
 

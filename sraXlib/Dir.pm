@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use sraXlib::Functions;
 
-
 sub build_dir_str {
 my $out_dir = shift;
 

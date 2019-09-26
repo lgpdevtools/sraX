@@ -359,7 +359,6 @@ foreach my $cog_id (sort {$a<=>$b} keys %filt_last){
                 			$dat[12] =~s/\_/ /g;
                 			$dat[13] =~s/\_/ /g;
 
-						# Correction: 25.06.2019 
 						if ($locus eq ''){
 						$locus = $dat[4];
 						}
@@ -421,7 +420,6 @@ foreach my $cog_id (sort {$a<=>$b} keys %gn_list){
                         }
                 }
 
-			# Correction: 25.06.2019 
                         if ($locus eq ''){
                         $locus = $dat[4];
                         }
@@ -467,6 +465,11 @@ foreach my $cog_id (sort {$a<=>$b} keys %gn_list){
                 $locus = $dat[4];
                 }
         }
+
+        if ($locus eq ''){
+        $locus = $dat[4];
+        }
+
         my @class = split(/\_/, $dat[10]);
         unless(scalar @class == 1){
         $dat[10] = $class[0];

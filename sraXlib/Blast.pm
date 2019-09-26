@@ -174,7 +174,7 @@ my ($d_gnm,$d_out,$bprog) = @_;
         }elsif ($gn_length > 0 && $data[8] > 0){
         $gn_status="Partial gene and internal gaps";
         }else{
-        $gn_status="Check_this_one";
+        $gn_status="Check_this_CDS";
         }
 	next if ($covp<$min_cvrg);
 	print GNM_RNA "$anlzd_fa\t$data[0]\t$data[9]\t$data[10]\t$gn_id\t$cov\t$gn_status\t$gaps\t$covp\t$data[5]\t$atb_class\t$acc_id\t$gn\t$model_type\t$m_dat\n";
