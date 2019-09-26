@@ -121,12 +121,24 @@ Where:
 	be in FASTA format and consisting of individual assembled genome sequences.
 ```
 
+_Docker-based:_
+```
+sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/INPUT_GNMS srax -i INPUT_GNMS
+```
 
 ### Extended options
 Example usage:
 ```
 sraX -p blastx -id 95 -c 90 -t 12 -o [/path/to/output_results_directory] -i [/path/to/input_genome_directory]
 ```
+
+_Docker-based:_
+```
+sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/INPUT_GNMS\
+-v $(pwd)/[/path/to/output_results_directory]:/RESULTS \
+sraX -p blastx -id 95 -c 90 -t 12 -i INPUT_GNMS -o RESULTS
+```
+
 Where:
 ```
   Mandatory:
