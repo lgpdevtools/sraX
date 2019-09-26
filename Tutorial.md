@@ -12,13 +12,13 @@ User-provided data can be originated from public repositories or from its own.
    The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    
    ```
-   wget -O User_provided_ARGs/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
+   wget -O User_AMR_DB/Public_repositories/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
-   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_provided_ARGs/Public_repositories/argdit_dna.fa > User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' User_AMR_DB/Public_repositories/argdit_dna.fa > User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
    
-   sed -i 's/|>/|/g' User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   sed -i 's/|>/|/g' User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
    
-   rm -f User_provided_ARGs/Public_repositories/argdit_dna.fa
+   rm -f User_AMR_DB/Public_repositories/argdit_dna.fa
    ```
    
    **B)** [NCBI Bacterial Antimicrobial Resistance Reference Gene Database](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA313047)
@@ -28,11 +28,11 @@ User-provided data can be originated from public repositories or from its own.
   Using the bash console, run the following commands:
   
    ```
-   wget -O User_provided_ARGs/Public_repositories/ncbi_aa.fa ftp://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinder/data/latest/AMRProt
+   wget -O User_AMR_DB/Public_repositories/ncbi_aa.fa ftp://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinder/data/latest/AMRProt
    
-   awk -F \| '/^>/ { print ">"$6"|"$2"|"$9"|protein_homolog|"$8"|Not_indicated"; next } 1' User_provided_ARGs/Public_repositories/ncbi_aa.fa > User_provided_ARGs/Public_repositories/ncbi_aa.fancbi_aa_formatted.fa
+   awk -F \| '/^>/ { print ">"$6"|"$2"|"$9"|protein_homolog|"$8"|Not_indicated"; next } 1' User_AMR_DB/Public_repositories/ncbi_aa.fa > User_AMR_DB/Public_repositories/ncbi_aa.fancbi_aa_formatted.fa
    
-   rm -f User_provided_ARGs/Public_repositories/ncbi_aa.fa
+   rm -f User_AMR_DB/Public_repositories/ncbi_aa.fa
    ```
    
 
@@ -57,21 +57,21 @@ The authors look at antibiotic resistant commensal strains from _E. coli_.
    ```
    C) Run **sraX** using the desired options. The following one is just an example using default options:
    ```
-   sraX -d ds1
+   sraX -i ds1
    ```
    
    D) Adding user-provided ARG sequences:
    ```
-   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
    ```
    
    E) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
    ```
-   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa -i 95 -c 95
+   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -i 95 -c 95
    ```
    F) Modifying the output result directory:
    ```
-   sraX -d ds1 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
+   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
    ```   
    
 ### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
@@ -85,7 +85,7 @@ The authors studied the multidrug-resistant _E. coli_ from farm isolates and ide
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds2 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa    
+   sraX -i ds2 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa    
    ```
 
 ### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
@@ -100,7 +100,7 @@ The authors look at the phenotype and genotype correlation in _Salmonella enteri
    ```
    C) Run **sraX** using your own options. The following one is just an example:
    ```
-   sraX -d ds3 -u User_provided_ARGs/Public_repositories/argdit_dna_formatted.fa
+   sraX -i ds3 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
    ```
 
 
