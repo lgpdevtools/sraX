@@ -111,31 +111,52 @@ sraX -p blastx -id 95 -c 90 -t 12 -o [/path/to/output_results_directory] -i [/pa
 ```
 Where:
 ```
--p	The translated alignments of assembled genome(s) are queried using dblastx
-	(DIAMOND blastx) or blastx (NCBI blastx). In any case, the process is parallelized
-	(up to 100 genome files are run simultaneously) for reducing computing times
-	(default: dblastx)
+  --------------------
+  - Running commands -
+  --------------------
+  
+  Mandatory:
+  ----------
 
--id	Use this percent identity cut-off to filter false positives (default: 85)			
+  -i|input		Input directory [/path/to/input_dir] containing the input file(s), which
+			must be in FASTA format and consisting of individual assembled genome sequences.
 
--c	Use this fraction aligned query to the reference sequence (default: 60)
-
--e	Use this evalue cut-off to filter false positives (default: 1e-05)
-
--t	Use this number of threads (default: 6)
-
--o	Full path to the directory where the output results will be written in. If not provided,
-	the following default name will be taken:
+  Optional:
+  ---------
+	
+  -o|output		Directory to store obtained results [/path/to/output_dir]. While not
+			provided, the following default name will be taken:
 			
-	'genome_directory'_'sraX'_'id'_'aln_cov'_'align_seq'
+			'input_directory'_'sraX'_'id'_'aln_cov'_'align_seq'
 
-	Example:
-	input directory = 'Test'; -id 85; -c 95; -p dblastx
-			
-	Output directory = 'Test_sraX_85_95_dblastx'
-		
--i	Full path to the mandatory directory containing the input sequence data, which must
-	be in FASTA format and consisting of individual assembled genome sequences.
+			Example:
+			--------
+				Input directory: 'Test'
+				Options: -id 85; -c 95; -p dblastx
+				Output directory: 'Test_sraX_85_95_dblastx'
+
+  -p|align_seq		The algorithm employed for aligning the assembled genome(s) to a locally
+			compiled AMR DB. The possible choices are dblastx (DIAMOND blastx) or blastx (NCBI blastx). In any
+			case, the process is parallelized (up to 100 genome files are run simultaneously) for reducing
+			computing times. [string] Default: dblastx (default: dblastx)
+ 
+  -e|eval		Minimum evalue cut-off to filter false positives. [number] Default: 1e-05
+
+  -id			Minimum identity cut-off to filter false positives. [number] Default: 85
+
+  -c|aln_cov		Minimum length of the query which must align to the reference sequence.
+			[number] Default: 60
+
+  -u|user_sq            Customary AMR DB provided by the user. The sequences must be in FASTA format.
+
+  -t|threads		Number of threads when running sraX. [number] Default: 6
+
+  -h|help		Displays this help information and exits.
+
+  -v|version		Displays version information and exits.
+
+  -d|debug		Verbose output (for debugging).
+
 ```
 
 ## License
@@ -148,7 +169,7 @@ Please report any issues to the [issues page](https://github.com/lgpdevtools/sra
 **sraX** is developed by Leonardo G. Panunzi.
 
 ## Citation
-Panunzi LG, "sraX: a one-step tool for resistome profiling", submitted to _Bioinformatics_ for publication.
+Panunzi LG, "sraX: a novel comprehensive resistome analysis tool", submitted to _Frontiers in Microbiology_ for publication.
 
 ## References.
 [1] Altschul SF _et al._ (1990). Basic local alignment search tool. _JMB_, 215, 403–410.
