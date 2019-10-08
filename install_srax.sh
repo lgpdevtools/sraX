@@ -2,7 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 program="sraX"
-version="1.0"
+version="1.1"
 abs_path_dir="/usr/local/bin/${program}"
 install_sraX_v=https://raw.githubusercontent.com/lgpdevtools/sraX/master/install_srax.sh
 srax_flag(){
@@ -13,7 +13,7 @@ srax_flag(){
     fi
     echo ""
     echo "+----------------------------------------------------------------------------+"
-    echo "||  sraX, Written by Leonardo G. Panunzi                                    ||"
+    echo "||                 sraX, Written by Leonardo G. Panunzi                     ||"
     echo "|| 'install_srax.sh' allows to install, uninstall or update sraX on Linux   ||"
     echo "||  Code repository:  https://github.com/lgpdevtools/sraX                   ||"
     echo "+----------------------------------------------------------------------------+"
@@ -50,6 +50,7 @@ chk_OS(){
     elif grep -Eqi "Ubuntu" /etc/issue || grep -Eq "Ubuntu" /etc/*-release; then
         OS=Ubuntu
     else
+	srax_flag
         echo "Not support OS, Please reinstall OS and retry!"
         exit 1
     fi
@@ -83,6 +84,7 @@ chk_bit(){
 }
 chk_centos_version(){
 if centos_v 5; then
+    srax_flag
     echo "Not support CentOS 5.x, please change to CentOS 6,7 or Debian or Ubuntu and try again."
     exit 1
 fi
@@ -105,7 +107,7 @@ function set_path {
         if [[ ${REPLY} =~ ^[Yy]$ ]]
         then
             echo 1>&2
-            read -p "Please enter the path of ${dname} program (e.g. /home/dir_name/bin/${dname}): " dpath
+            read -p "Please enter the path of ${dname} program (e.g. /home/dir_name/${dname}): " dpath
             [ -e "${dpath}" -a -x "${dpath}" ] && break
         else
             break
@@ -198,12 +200,13 @@ install_depend(){
     if [ -z "$DIAMOND" ]
     then
     echo -e "\nDownloading and installing DIAMOND"
-    wget http://github.com/bbuchfink/diamond/releases/download/v0.9.22/diamond-linux64.tar.gz
+    wget http://github.com/bbuchfink/diamond/releases/download/v0.9.26/diamond-linux64.tar.gz
     tar xvfz diamond-linux64.tar.gz -C "${abs_path_dir}/sraXbin"
+    chmod a+x ${abs_path_dir}/sraXbin/diamond
+    ln -sf "${abs_path_dir}/sraXbin/diamond" "/usr/local/bin/diamond"
     rm -f diamond-linux64.tar.gz
     rm -f ${abs_path_dir}/sraXbin/LICENSE
     rm -f ${abs_path_dir}/sraXbin/diamond_manual.pdf
-    chmod a+x ${abs_path_dir}/sraXbin/diamond
     fi
     
     MUSCLE="$(chk_path "muscle")"
@@ -212,22 +215,25 @@ install_depend(){
     echo -e "\nDownloading and installing MUSCLE"
     wget http://www.drive5.com/muscle/downloads3.8.31/muscle3.8.31_i86linux64.tar.gz
     tar xvfz muscle3.8.31_i86linux64.tar.gz -C "${abs_path_dir}/sraXbin"
-    rm -f muscle3.8.31_i86linux64.tar.gz
-    mv ${abs_path_dir}/sraXbin/muscle3.8.31_i86linux64 ${abs_path_dir}/sraXbin/muscle
     chmod a+x ${abs_path_dir}/sraXbin/muscle3.8.31_i86linux64
+    mv ${abs_path_dir}/sraXbin/muscle3.8.31_i86linux64 ${abs_path_dir}/sraXbin/muscle
+    ln -sf "${abs_path_dir}/sraXbin/muscle" "/usr/local/bin/muscle"
+    rm -f muscle3.8.31_i86linux64.tar.gz
     fi
     
     NCBI_BX="$(chk_path "blastx")"
-    BLAST_V="2.8.1"
+    BLAST_V="2.9.0"
     if [ -z "$NCBI_BX" ]
     then
     echo -e "\nDownloading and installing BLAST+ executables"
     wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-${BLAST_V}+-x64-linux.tar.gz
     tar xvfz ncbi-blast-${BLAST_V}+-x64-linux.tar.gz -C "${abs_path_dir}/sraXbin"
-    rm -f ncbi-blast-${BLAST_V}+-x64-linux.tar.gz
-    chmod -R a+x ${abs_path_dir}/sraXbin/ncbi-blast-${BLAST_V}+/sraXbin/
-    cp ${abs_path_dir}/sraXbin/ncbi-blast-${BLAST_V}+/sraXbin/* ${abs_path_dir}/sraXbin/
+    chmod -R a+x ${abs_path_dir}/sraXbin/ncbi-blast-${BLAST_V}+/bin/
+    cp ${abs_path_dir}/sraXbin/ncbi-blast-${BLAST_V}+/bin/* ${abs_path_dir}/sraXbin/
+    ln -sf "${abs_path_dir}/sraXbin/blastx" "/usr/local/bin/blastx"
+    ln -sf "${abs_path_dir}/sraXbin/blastn" "/usr/local/bin/blastn"
     rm -r ${abs_path_dir}/sraXbin/ncbi-blast-${BLAST_V}+
+    rm -f ncbi-blast-${BLAST_V}+-x64-linux.tar.gz
     fi
 
     R="$(chk_path "R")"
@@ -241,8 +247,6 @@ install_depend(){
     sudo su - -c "R -e \"install.packages('ggplot2', repos='http://cran.rstudio.com/')\""
     sudo su - -c "R -e \"install.packages('gridExtra', repos='http://cran.rstudio.com/')\""
     sudo su - -c "R -e \"install.packages('dplyr', repos='http://cran.rstudio.com/')\""
-    else
-    ln -sf "$R" "${abs_path_dir}/sraXbin/R"
     fi
 
     if [ $(chk_R_pckg) -eq 1 ]
@@ -265,19 +269,17 @@ install_depend(){
     fi
 }
 install_srax(){
-    srax_flag
-    echo -e "Installing sraX and its dependences..."
+    srax_flag "clear"
+    echo -e "${COLOR_PINK}============== INSTALLING ${program} and its dependences ==============${COLOR_END}\n"
     disable_selinux
     if [ -s ${abs_path_dir}/${program} ] && [ -x ${abs_path_dir}/${program} ] && [ -d ${abs_path_dir}/sraXlib ]; then
-        echo "${program} is already installed!"
+        echo -e "${COLOR_GREEN}${program} is already installed!${COLOR_END}\n"
     else
-        clear
-
-	echo "Setup of sraX running environment"
+	echo "Setup of ${program} running environment"
         echo ""
         echo "============== Check your input =============="
-        echo -e "sraX install directory      : ${COLOR_GREEN}${abs_path_dir}${COLOR_END}"
-        echo -e "Install log file            : ${COLOR_GREEN}${strPath}/${program}_install.log}${COLOR_END}"
+        echo -e "${program} install directory      : ${COLOR_GREEN}${abs_path_dir}${COLOR_END}"
+        echo -e "Install log file            : ${COLOR_GREEN}${strPath}/${program}_bash_deployment.log${COLOR_END}"
         echo "=============================================="
         echo ""
         echo "Press any key to start...or Press Ctrl+c to cancel"
@@ -295,44 +297,46 @@ install_srax(){
 	ln -sf "${abs_path_dir}/sraXlib" "/usr/bin/"
 	ln -sf "${abs_path_dir}/sraXbin" "/usr/bin/"
     	else
-        echo -e " ${COLOR_RED}failed${COLOR_END}"
-        exit 1
+	echo -e " ${COLOR_RED}Failed. Shell exit!${COLOR_END}\n"
+       	rm -fr ${abs_path_dir} 
+	exit 1
     	fi
 	
-	echo ""
-    	echo "Congratulations, ${program_name} install completed!"
+    	echo -e "\n${COLOR_GREEN}Congratulations, ${program} has successfully been installed!${COLOR_END}\n"
 
     fi
 }
     
 ############################### uninstall ##################################
 uninstall_srax(){
-    srax_flag
-    if [ -s ${program_init} ] || [ -s ${abs_path_dir}/${program} ] ; then
-        echo "============== Uninstall ${program} =============="
-        str_uninstall="n"
-        echo -n -e "${COLOR_YELOW}You want to uninstall?${COLOR_END}"
-        read -p "[y/N]:" str_uninstall
-        case "${str_uninstall}" in
+    srax_flag "clear"
+    if [ -s ${abs_path_dir}/${program} ] ; then
+        echo -e "${COLOR_PINK}============== UNINSTALLING ${program} and its dependences ==============${COLOR_END}\n"
+        str_bash_deployment="n"
+        echo -n -e "${COLOR_YELOW}Do you want to uninstall ${program}?${COLOR_END}"
+        read -p "[y/N]:" str_bash_deployment
+        case "${str_bash_deployment}" in
         [yY]|[yY][eE][sS])
         echo ""
         echo "You select [Yes], press any key to continue."
-        str_uninstall="y"
+        str_bash_deployment="y"
         char=`get_char`
         ;;
         *)
         echo ""
-        str_uninstall="n"
+        str_bash_deployment="n"
         esac
-        if [ "${str_uninstall}" == 'n' ]; then
-            echo "You select [No], shell exit!"
+        if [ "${str_bash_deployment}" == 'n' ]; then
+            echo -e "You select [No], ${COLOR_RED}shell exit!${COLOR_END}\n"
         else
             rm -fr ${abs_path_dir}
             rm -fr /usr/bin/${program}*
-	    echo "${program} uninstall success!"
+	    echo -e "${COLOR_GREEN}${program} has successfully been uninstalled!${COLOR_END}\n"
         fi
     else
-        echo "${program} Not install!"
+	echo "${program} is not installed yet."
+  	echo "Please, run this script with the 'install' option instead."
+  	echo -e " ${COLOR_RED}Failed. Shell exit!${COLOR_END}\n"
     fi
     exit 0
 }
@@ -340,7 +344,7 @@ uninstall_srax(){
 update_srax(){
     srax_flag "clear"
     if [ -s ${abs_path_dir}/${program} ] ; then
-    echo "============== Update ${program} =============="
+    echo -e "${COLOR_PINK}============== UPDATING ${program} and its dependences ==============${COLOR_END}\n"
     chk_OS
     chk_centos_version
     chk_bit
@@ -351,45 +355,41 @@ update_srax(){
     echo -e "${COLOR_GREEN}${program}         GitHub version: ${github_v}${COLOR_END}"
     if [ ! -z ${github_v} ]; then
         if [[ "${version}" != "${github_v}" ]];then
-	    echo ""
-	    echo -e "${COLOR_GREEN}Found a new version, update now!${COLOR_END}"
-            echo ""
+	    echo -e "\n${COLOR_GREEN}Found a new version, update now!${COLOR_END}\n"
             echo -n "Update sraX ..."
             if ! wget --no-check-certificate -qO $0 ${install_sraX_v}; then
-                echo -e " [${COLOR_RED}failed${COLOR_END}]"
-		echo ""
+                echo -e " [${COLOR_RED}failed${COLOR_END}]\n"
                 exit 1
             else
-                echo -e " [${COLOR_GREEN}OK${COLOR_END}]"
-		echo ""
-		  if [ -d ${strPath}/${program}_cloned ];then
-        	  rm -r ${strPath}/${program}_cloned
+                echo -e " [${COLOR_GREEN}OK${COLOR_END}]\n"
+		  if [ -d ${strPath}/${program}_latest ];then
+        	  rm -r ${strPath}/${program}_latest
 	  	  fi
-			if ! git clone https://github.com/lgpdevtools/sraX.git ${program}_cloned; then
+			if ! git clone https://github.com/lgpdevtools/sraX.git ${program}_latest; then
                     	echo "Failed to clone the ${program} GitHub repository!"
                     	exit 1
                 	else
-                    	mv ${strPath}/${program}_cloned/${program}* ${strPath}/
-			echo ""
-			echo -e "${COLOR_GREEN}${program_init}sraX new version and updated scripts were successfully downloaded !${COLOR_END}"
+                    	mv ${strPath}/${program}_latest/${program}* ${strPath}/
+			echo -e "\n${COLOR_GREEN}${program_init}sraX new version and updated scripts were successfully downloaded!${COLOR_END}\n"
                 	[ ! -x ${program} ] && chmod 755 ${program}
 			echo "${program} version `${strPath}/${program} --version`"
-            		echo "${program} update success!"
+			echo -e "${COLOR_GREEN}${program} has successfully been updated!${COLOR_END}\n"
+			rm -r ${strPath}/${program}_latest
 			fi
-		echo ""
-                echo -e "${COLOR_GREEN}To complete sraX update, please re-run${COLOR_END} ${COLOR_PINK}$0 install${clang_action}${COLOR_END}"
+                echo -e "\n${COLOR_GREEN}To complete sraX update, please re-run${COLOR_END} ${COLOR_PINK}$0 install${clang_action}${COLOR_END}\n"
 		rm -r /usr/bin/${program}* ${abs_path_dir}
-                echo ""
 		exit 1
             fi
             exit 1
         else
-        echo -e "no need to update !!!${COLOR_END}"
+        echo -e "There is no need to update!${COLOR_END}"
         fi
     fi
 
   else
-  echo "${program} Not install!"
+  echo "${program} is not installed yet."
+  echo "Please, run this script with the 'install' option instead."
+  echo -e " ${COLOR_RED}Failed. Shell exit!${COLOR_END}\n"
   fi
   exit 0
 }
@@ -407,19 +407,19 @@ action=$1
 [  -z $1 ]
 case "$action" in
 install)
-    [ -e "${strPath}/${program}_install.log" ] && rm -f "/${program}_install.log"
-    touch "${strPath}/${program}_install.log"
-    install_srax 2>&1 | tee ${strPath}/${program}_install.log
+    [ -e "${strPath}/${program}_bash_deployment.log" ] && rm -f "/${program}_bash_deployment.log"
+    touch "${strPath}/${program}_bash_deployment.log"
+    install_srax 2>&1 | tee ${strPath}/${program}_bash_deployment.log
     ;;
 uninstall)
-    [ -e "${strPath}/${program}_uninstall.log" ] && rm -f "/${program}_uninstall.log"
-    touch "${strPath}/${program}_uninstall.log"
-    uninstall_srax 2>&1 | tee ${strPath}/${program}_uninstall.log
+    [ -e "${strPath}/${program}_bash_deployment.log" ] && rm -f "/${program}_bash_deployment.log"
+    touch "${strPath}/${program}_bash_deployment.log"
+    uninstall_srax 2>&1 | tee ${strPath}/${program}_bash_deployment.log
     ;;
 update)
-    [ -e "${strPath}/${program}_update.log" ] && rm -f "/${program}_update.log"
-    touch "${strPath}/${program}_update.log"
-    update_srax 2>&1 | tee ${strPath}/${program}_update.log
+    [ -e "${strPath}/${program}_bash_deployment.log" ] && rm -f "/${program}_bash_deployment.log"
+    touch "${strPath}/${program}_bash_deployment.log"
+    update_srax 2>&1 | tee ${strPath}/${program}_bash_deployment.log
     ;;
 *)
     srax_flag
