@@ -1,11 +1,9 @@
 # User Guide
 
-## From default to precise parameters 
-
 ### 1) Genome data acquisition from previously analyzed collections
 In order to analyze the performance and efficacy of **sraX**, diverse public datasets, composed of a variable number of fasta assembly files belonging to different bacteria spp, are going to be acquired:
 
-#### [Dataset #1: 197 genomes belonging to _Enterococcus spp_ [1]](https://doi.org/10.1093/femspd/fty018)
+#### Dataset #1: 197 genomes belonging to _Enterococcus spp_ [1](#references)
 
    __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with 
 alternative genome datasets. The main modifications are the repository hyperlink and the name of the genome directory. 
@@ -30,15 +28,15 @@ etc...):
    sraX -i Enterococcus_spp -id 75 -c 90 -o Enterococcus_spp_defined_options
    ```
 
-#### [Dataset #2: 112 genomes belonging to _Shigella sonnei_ [2]](http://www.nature.com/doifinder/10.1038/ng.2369)
+#### Dataset #2: 112 genomes belonging to _Shigella sonnei_ [2](#references)
 
    Link to compressed file: [dataset #2: _Shigella sonnei_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/BGsKRLSLTri5bTd/download)
 
-#### [Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [3]](http://dx.doi.org/10.1128/AAC.03954-14)
+#### Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [3](#references)
 
    Link to compressed file: [dataset #3: _Pseudomonas aeruginosa_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/SZpE2TNHtEzrd8c/download)
 
-#### [Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [4]](https://doi.org/10.1128/AAC.01030-16)
+#### Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [4](#references)
 
    a) Link to the compressed file from the **NCBI** repository: [dataset #4: _Salmonella enterica_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
 
@@ -56,7 +54,7 @@ etc...):
    sraX -i Salmonella_enterica -id 98 -c 85 -o Salmonella_enterica_AMR_profiles
    ```
 
-#### [Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [5]](https://academic.oup.com/jac/article/70/10/2763/830949)
+#### Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [5](#references)
 
    a) Link to the compressed file from the **NCBI** repository: [dataset #5: _Escherichia coli_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
@@ -139,14 +137,14 @@ Employing any of acquired genome datasets we can perform its resistome profiling
 
 ## References.
 
-[1] Tyson GH _et al._ (2018). Whole-genome sequencing based characterization of antimicrobial resistance in _Enterococcus_, Pathogens and Disease, Volume 76, Issue 2.
+[1] Tyson GH _et al._ (2018). [Whole-genome sequencing based characterization of antimicrobial resistance in _Enterococcus_](https://doi.org/10.1093/femspd/fty018), Pathogens and Disease, Volume 76, Issue 2.
 
-[2] Holt KE _et al._ (2012). _Shigella sonnei_ genome sequencing and phylogenetic analysis indicate recent global dissemination from Europe, _Nat. Genet._ 44(9): 1056-1059. 
+[2] Holt KE _et al._ (2012). [_Shigella sonnei_ genome sequencing and phylogenetic analysis indicate recent global dissemination from Europe](http://www.nature.com/doifinder/10.1038/ng.2369), _Nat. Genet._ 44(9): 1056-1059. 
 
-[3] Kos VN _et al._ (2015). The resistome of _Pseudomonas aeruginosa_ in relationship to phenotypic susceptibility, _Antimicrob Agents Chemother_ 59:427– 436.
+[3] Kos VN _et al._ (2015). [The resistome of _Pseudomonas aeruginosa_ in relationship to phenotypic susceptibility](http://dx.doi.org/10.1128/AAC.03954-14), _Antimicrob Agents Chemother_ 59:427– 436.
 
-[4] Tyson GH _et al._ (2015). WGS accurately predicts antimicrobial resistance in _Escherichia coli_, _J. Antimicrob. Chemother._, 70(10):2763-9.
+[4] Tyson GH _et al._ (2015). [WGS accurately predicts antimicrobial resistance in _Escherichia coli_](https://doi.org/10.1128/AAC.01030-16), _J. Antimicrob. Chemother._, 70(10):2763-9.
 
-[5] McDermott PF _et al._ (2016). Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_,  _Antimicrob. Agents Chemother._, 60(9):5515–20.
+[5] McDermott PF _et al._ (2016). [Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_](https://academic.oup.com/jac/article/70/10/2763/830949),  _Antimicrob. Agents Chemother._, 60(9):5515–20.
 
 [6] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
