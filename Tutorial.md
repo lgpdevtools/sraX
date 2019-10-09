@@ -143,8 +143,8 @@ Employing any of acquired genome datasets we can perform its resistome profiling
 
 [3] Kos VN _et al._ (2015). [The resistome of _Pseudomonas aeruginosa_ in relationship to phenotypic susceptibility](http://dx.doi.org/10.1128/AAC.03954-14), _Antimicrob Agents Chemother_ 59:427– 436.
 
-[4] Tyson GH _et al._ (2015). [WGS accurately predicts antimicrobial resistance in _Escherichia coli_](https://doi.org/10.1128/AAC.01030-16), _J. Antimicrob. Chemother._, 70(10):2763-9.
+[4] Tyson GH _et al._ (2015). [WGS accurately predicts antimicrobial resistance in _Escherichia coli_](https://academic.oup.com/jac/article/70/10/2763/830949), _J. Antimicrob. Chemother._, 70(10):2763-9.
 
-[5] McDermott PF _et al._ (2016). [Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_](https://academic.oup.com/jac/article/70/10/2763/830949),  _Antimicrob. Agents Chemother._, 60(9):5515–20.
+[5] McDermott PF _et al._ (2016). [Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_](https://doi.org/10.1128/AAC.01030-16),  _Antimicrob. Agents Chemother._, 60(9):5515–20.
 
 [6] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
