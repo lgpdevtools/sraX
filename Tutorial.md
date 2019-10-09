@@ -127,7 +127,7 @@ Employing any of acquired genome datasets we can perform its resistome profiling
    sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/cat_amrdb.fa
    ```
 
-   a) Under defined options:
+   b) Under defined options:
 
    ```
    sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -id 95 -c 98
