@@ -147,4 +147,4 @@ Employing any of acquired genome datasets we can perform its resistome profiling
 
 [5] McDermott PF _et al._ (2016). [Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_](https://doi.org/10.1128/AAC.01030-16),  _Antimicrob. Agents Chemother._, 60(9):5515–20.
 
-[6] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
+[6] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong (2018). [ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases](https://doi.org/10.1093/bioinformatics/bty987), _Bioinformatics_, Volume 35, Issue 14, Pages 2466–2474.
