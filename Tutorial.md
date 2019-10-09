@@ -3,7 +3,7 @@
 ### 1) Genome data acquisition from previously analyzed collections
 In order to analyze the performance and efficacy of **sraX**, diverse public datasets, composed of a variable number of fasta assembly files belonging to different bacteria spp, are going to be acquired:
 
-#### Dataset #1: 197 genomes belonging to _Enterococcus spp_ [1](#references)
+#### Dataset #1: 197 genomes belonging to _Enterococcus spp_ [[1]](#references)
 
    __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with 
 alternative genome datasets. The main modifications are the repository hyperlink and the name of the genome directory. 
@@ -28,15 +28,15 @@ etc...):
    sraX -i Enterococcus_spp -id 75 -c 90 -o Enterococcus_spp_defined_options
    ```
 
-#### Dataset #2: 112 genomes belonging to _Shigella sonnei_ [2](#references)
+#### Dataset #2: 112 genomes belonging to _Shigella sonnei_ [[2]](#references)
 
    Link to compressed file: [dataset #2: _Shigella sonnei_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/BGsKRLSLTri5bTd/download)
 
-#### Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [3](#references)
+#### Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [[3]](#references)
 
    Link to compressed file: [dataset #3: _Pseudomonas aeruginosa_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/SZpE2TNHtEzrd8c/download)
 
-#### Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [4](#references)
+#### Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [[4]](#references)
 
    a) Link to the compressed file from the **NCBI** repository: [dataset #4: _Salmonella enterica_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
 
@@ -54,7 +54,7 @@ etc...):
    sraX -i Salmonella_enterica -id 98 -c 85 -o Salmonella_enterica_AMR_profiles
    ```
 
-#### Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [5](#references)
+#### Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [[5]](#references)
 
    a) Link to the compressed file from the **NCBI** repository: [dataset #5: _Escherichia coli_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
 
