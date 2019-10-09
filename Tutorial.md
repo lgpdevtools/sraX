@@ -1,13 +1,89 @@
-# sraX User Guide
+# User Guide
 
-## 1) Increasing the AMR DB volume and its detection range
-User-provided data can be originated from public repositories or from its own.
+## From default to precise parameters 
+
+### 1) Genome data acquisition from previously analyzed collections
+In order to analyze the performance and efficacy of **sraX**, diverse public datasets, composed of a variable number of fasta assembly files belonging to different bacteria spp, are going to be acquired:
+
+#### [Dataset #1: 197 genomes belonging to _Enterococcus spp_ [1]](https://doi.org/10.1093/femspd/fty018)
+
+   __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with 
+alternative genome datasets. The main modifications are the repository hyperlink and the name of the genome directory. 
+
+   a) Download the compressed file: [dataset #1: _Enterococcus spp_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/PFLfFfkjiok9yxX/download)
+
+   b) Using the bash console, extract the genome data into the working directory:
+
+   ```
+   tar -zxvf /download_full_path/Enterococcus_spp.tar.gz -C /working_dir_full_path/
+   ```
+   c) Run **sraX** using default options:
+
+   ```
+   sraX -i Enterococcus_spp
+   ```
+
+   d) Specifying particular desired options (like sequence identity percentage, alignment coverage, output result directory,
+etc...):
+
+   ```
+   sraX -i Enterococcus_spp -id 75 -c 90 -o Enterococcus_spp_defined_options
+   ```
+
+#### [Dataset #2: 112 genomes belonging to _Shigella sonnei_ [2]](http://www.nature.com/doifinder/10.1038/ng.2369)
+
+   Link to compressed file: [dataset #2: _Shigella sonnei_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/BGsKRLSLTri5bTd/download)
+
+#### [Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [3]](http://dx.doi.org/10.1128/AAC.03954-14)
+
+   Link to compressed file: [dataset #3: _Pseudomonas aeruginosa_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/SZpE2TNHtEzrd8c/download)
+
+#### [Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [4]](https://doi.org/10.1128/AAC.01030-16)
+
+   a) Link to the compressed file from the **NCBI** repository: [dataset #4: _Salmonella enterica_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
+
+   b) Using the bash console, extract the genome data and rename it into the working directory:
+
+   ```
+   tar -zxvf /download_full_path/genome_assemblies.tar -C /working_dir_full_path/
+   mv genome_assemblies Salmonella_enterica
+   rm -f genome_assemblies.tar
+   ```
+
+   c) Run **sraX** using your own options. The following command, is just an example:
+
+   ```
+   sraX -i Salmonella_enterica -id 98 -c 85 -o Salmonella_enterica_AMR_profiles
+   ```
+
+#### [Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [5]](https://academic.oup.com/jac/article/70/10/2763/830949)
+
+   a) Link to the compressed file from the **NCBI** repository: [dataset #5: _Escherichia coli_](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+
+   b) Using the bash console, extract the genome data and rename it into the working directory:
+
+   ```
+   tar -zxvf /download_full_path/genome_assemblies.tar -C /working_dir_full_path/
+   mv genome_assemblies Escherichia_coli
+   rm -f genome_assemblies.tar
+   ```
+
+   c) Run **sraX** using your own options. The following command, is just an example:
+
+   ```
+   sraX -i Escherichia_coli -t 10 -id 85 -c 75 -o Escherichia_coli_AMR_analysis
+   ```
+
+
+## 2) Compilation of an external AMR DB, originated from public repositories or user-provided
 
 ### Public ARG sequences repositories:
+The following are just examples of additional ARGs that can be provided to the **sraX** analysis, in
+order to increase AMR DB volume and its detection range.
 
    **A)** [ARGDIT](https://github.com/phglab/ARGDIT)
    
-   A recently published work [[1]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
+   A recently published work [[6]](https://doi.org/10.1093/bioinformatics/bty987) describes the **ARGDIT** toolkit for creating curated AMR DBs. The authors provided already [pre-compiled AMR DBs](https://github.com/phglab/ARGDIT/tree/master/sample_integrated_dbs) as examples, and this valuable information is going to be employed for demonstrating **sraX**'s practicality and utility for resistome profiling.
 
    The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    
@@ -30,85 +106,47 @@ User-provided data can be originated from public repositories or from its own.
    ```
    wget -O User_AMR_DB/Public_repositories/ncbi_aa.fa ftp://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinder/data/latest/AMRProt
    
-   awk -F \| '/^>/ { print ">"$6"|"$2"|"$9"|protein_homolog|"$8"|Not_indicated"; next } 1' User_AMR_DB/Public_repositories/ncbi_aa.fa > User_AMR_DB/Public_repositories/ncbi_aa.fancbi_aa_formatted.fa
+   awk -F \| '/^>/ { print ">"$6"|"$2"|"$9"|protein_homolog|"$8"|Not_indicated"; next } 1' User_AMR_DB/Public_repositories/ncbi_aa.fa > User_AMR_DB/Public_repositories/ncbi_aa_formatted.fa
    
    rm -f User_AMR_DB/Public_repositories/ncbi_aa.fa
    ```
-   
+#### Incorporating the previously compiled external AMR DB to the **sraX** analysis:
+Employing any of acquired genome datasets we can perform its resistome profiling by adding extra ARG sequences.
 
-### User's own ARG sequences:
-
-## 2) Genome data acquisition from already analyzed collections
-
-### Data-set 1: 52 genomes belonging to _Escherichia coli_ [[2]](https://doi.org/10.1093/jac/dkw511)
-The authors look at antibiotic resistant commensal strains from _E. coli_.
-
-   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-1]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=335932)   
-   
-   __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with alternative genome data-sets. For analyzing other data, the main modifications are the repository hyperlink (**[data-set-1]**) and the renamed genome directory (**ds1**).
-   
-   B) Move the compressed downloaded file to the working directory and, using the bash console, extract the genome data and rename the directory:
+   a) Under deafult options:
 
    ```
-   mv /download_full_path/genome_assemblies.tar /working_dir_full_path/
-   tar -zxf genome_assemblies.tar
-   rm -f genome_assemblies.tar
-   mv genome_assemblies ds1
-   ```
-   C) Run **sraX** using the desired options. The following one is just an example using default options:
-   ```
-   sraX -i ds1
+   sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
+
+   sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/ncbi_aa_formatted.fa
    ```
    
-   D) Adding user-provided ARG sequences:
-   ```
-   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
-   ```
-   
-   E) Modifying the amino-acid identity percentage and alignment coverage for detecting positive hits:
-   ```
-   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -i 95 -c 95
-   ```
-   F) Modifying the output result directory:
-   ```
-   sraX -i ds1 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -i 75 -c 90 -o ds1_another_test
-   ```   
-   
-### Data-set 2: 76 genomes belonging to _Escherichia coli_ [[3]](https://academic.oup.com/jac/article/70/10/2763/830949)
-The authors studied the multidrug-resistant _E. coli_ from farm isolates and identified the specific genetic determinants contributing to AMR.
+   We also can concatenate several AMR DBs into a single file, as a new AMR DB:
 
-   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-2]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=266657)
+   ```
+   cat User_AMR_DB/Public_repositories/argdit_dna_formatted.fa User_AMR_DB/Public_repositories/ncbi_aa_formatted.fa > User_AMR_DB/Public_repositories/cat_amrdb.fa
 
-   B) Follow previous procedures and only change the genome directory name:
-   ```
-    mv genome_assemblies ds2
-   ```
-   C) Run **sraX** using your own options. The following one is just an example:
-   ```
-   sraX -i ds2 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa    
+   sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/cat_amrdb.fa
    ```
 
-### Data-set 3: 641 genomes belonging to _Salmonella enterica spp_ [[4]](https://doi.org/10.1128/AAC.01030-16)
+   a) Under defined options:
 
-The authors look at the phenotype and genotype correlation in _Salmonella enterica_ with different antibiotic resistance patterns.
+   ```
+   sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa -id 95 -c 98
 
-   A) Go to the following **NCBI** repository and download all the genome assemblies: [[data-set-3]](https://www.ncbi.nlm.nih.gov/assembly?LinkName=bioproject_assembly_all&from_uid=242614)
-
-   B) Follow previous procedures and only change the genome directory name:
+   sraX -i Enterococcus_spp -u User_AMR_DB/Public_repositories/ncbi_aa_formatted.fa -id 80 -c 80
    ```
-    mv genome_assemblies ds3
-   ```
-   C) Run **sraX** using your own options. The following one is just an example:
-   ```
-   sraX -i ds3 -u User_AMR_DB/Public_repositories/argdit_dna_formatted.fa
-   ```
-
 
 ## References.
-[1] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
 
-[2] Moran RA, Anantham S, Holt KE, Hall RM. (2017). Prediction of antibiotic resistance from antibiotic resistance genes detected in antibioticresistant commensal _Escherichia coli_ using PCR or WGS. _J Antimicrob. Chemother._, 72:700 –704. .
+[1] Tyson GH _et al._ (2018). Whole-genome sequencing based characterization of antimicrobial resistance in _Enterococcus_, Pathogens and Disease, Volume 76, Issue 2.
 
-[3] Tyson GH _et al._ (2015). WGS accurately predicts antimicrobial resistance in _Escherichia coli_., _J. Antimicrob. Chemother._, 70(10):2763-9.
+[2] Holt KE _et al._ (2012). _Shigella sonnei_ genome sequencing and phylogenetic analysis indicate recent global dissemination from Europe, _Nat. Genet._ 44(9): 1056-1059. 
 
-[4] McDermott PF _et al._ (2016). Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_. _Antimicrob. Agents Chemother._, 60(9):5515–20.
+[3] Kos VN _et al._ (2015). The resistome of _Pseudomonas aeruginosa_ in relationship to phenotypic susceptibility, _Antimicrob Agents Chemother_ 59:427– 436.
+
+[4] Tyson GH _et al._ (2015). WGS accurately predicts antimicrobial resistance in _Escherichia coli_, _J. Antimicrob. Chemother._, 70(10):2763-9.
+
+[5] McDermott PF _et al._ (2016). Whole-genome sequencing for detecting antimicrobial resistance in nontyphoidal _Salmonella_,  _Antimicrob. Agents Chemother._, 60(9):5515–20.
+
+[6] Jimmy Ka Ho Chiu, Rick Twee-Hee Ong; ARGDIT: a validation and integration toolkit for Antimicrobial Resistance Gene Databases, _Bioinformatics_, , bty987, 
