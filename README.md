@@ -7,7 +7,7 @@ The proposed tool constitutes a Perl package, composed of functional modules, th
   * [Introduction](#introduction)
   * [Installation](#installation)
     * [Required dependencies](#required-dependencies)
-  * [Usage](#usage)
+  * [Usage](#usage) / [Tutorial](https://github.com/lgpdevtools/sraX/blob/master/Tutorial.md)
     * [Minimal command](#minimal-command)
     * [Extended options](#extended-options)
   * [License](#license)
@@ -89,7 +89,7 @@ To verify the existence of required dependencies and ultimately install the perl
 ```
 sudo bash install_srax.sh
 ```
-## Usage
+## Usage: 
 
 **sraX** effectively operates as one-step application. It means that just a single command is required to obtain the totality of results and their visualization.   
 
