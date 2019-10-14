@@ -7,7 +7,7 @@ The proposed tool constitutes a Perl package, composed of functional modules, th
   * [Introduction](#introduction)
   * [Installation](#installation)
     * [Required dependencies](#required-dependencies)
-  * [Usage](#usage) / [Tutorial](https://github.com/lgpdevtools/sraX/blob/master/Tutorial.md)
+  * [Usage](#usage) --> Follow this comprehensive [Tutorial](https://github.com/lgpdevtools/sraX/blob/master/Tutorial.md)
     * [Minimal command](#minimal-command)
     * [Extended options](#extended-options)
   * [License](#license)
