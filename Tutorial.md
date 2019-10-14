@@ -8,7 +8,7 @@ In order to analyze the performance and efficacy of **sraX**, diverse public dat
    __Note__ The following steps are recurrent and should be followed for performing the **sraX** analysis with 
 alternative genome datasets. The main modifications are the repository hyperlink and the name of the genome directory. 
 
-   a) Download the compressed file: [dataset #1: _Enterococcus spp_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/PFLfFfkjiok9yxX/download)
+   a) Download the compressed file: [dataset #1: _Enterococcus spp_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/CXZij5cAw4Cb8Kn/download) (md5: 0c03dcd441ae5ed60a80ac34decb626e)
 
    b) Using the bash console, extract the genome data into the working directory:
 
@@ -30,11 +30,11 @@ etc...):
 
 #### Dataset #2: 112 genomes belonging to _Shigella sonnei_ [[2]](#references)
 
-   Link to compressed file: [dataset #2: _Shigella sonnei_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/BGsKRLSLTri5bTd/download)
+   Link to compressed file: [dataset #2: _Shigella sonnei_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/jZiKABo3rCgP8jQ/download) (md5: 108ccf78e5aeac28111ae6264542f5cc)
 
 #### Dataset #3: 390 genomes belonging to _Pseudomonas aeruginosa_ [[3]](#references)
 
-   Link to compressed file: [dataset #3: _Pseudomonas aeruginosa_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/SZpE2TNHtEzrd8c/download)
+   Link to compressed file: [dataset #3: _Pseudomonas aeruginosa_](http://usegalaxy.sorbonne-universite.fr/nextcloud/index.php/s/em7NJDJWwEwwK9e/download) (md5: d88758001ca8abae8171d8bc764b732e)
 
 #### Dataset #4: 641 genomes belonging to _Salmonella enterica_ with different antibiotic resistance patterns [[4]](#references)
 
