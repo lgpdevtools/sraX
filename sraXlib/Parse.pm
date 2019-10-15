@@ -6,7 +6,7 @@ use sraXlib::Functions;
 use sraXlib::Plot;
 
 sub f_parse {
-my ($d_gnm,$d_out,$idty,$cvrg,$a_type)=@_;
+my ($d_gnm,$d_out,$idty,$cvrg)=@_;
 
 
 my $t_start_time_sf = sraXlib::Functions::running_time;
