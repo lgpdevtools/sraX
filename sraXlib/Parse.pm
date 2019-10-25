@@ -3,7 +3,6 @@ package sraXlib::Parse;
 use strict;
 use warnings;
 use sraXlib::Functions;
-use sraXlib::Plot;
 
 sub f_parse {
 my ($d_gnm,$d_out,$idty,$cvrg)=@_;
@@ -622,7 +621,9 @@ print F5 "\n";
 close F4;
 close F5;
 
-my ($htmp_pa_plot, $htmp_id_plot) = sraXlib::Plot::htmps($htmp_pa,$htmp_id); 
+system("Rscript sraXlib/Plot.r $d_out");
+my ($htmp_pa_plot,$htmp_id_plot,$arg_prop,$snp_prop) = ('sraX_hmPA.png','sraX_hmSI.png','prop_args_ph.png','prop_args_pv.png');
+
 
 print HTML "<style>
 img {
@@ -641,7 +642,6 @@ print HTML "<h2 align=center>Prot. Seq. Ident. (%) of detected ARGs</h2>\n";
 print HTML "<div style='width:100%; text-align:center'>\n";
 print HTML "<img src='Plots/Heatmaps/$htmp_id_plot' alt='Seq_Ident' align:center>\n";
 print HTML "</div>\n";
-my ($arg_prop, $snp_prop) = sraXlib::Plot::prop_arg($gn_coord);
 print HTML "<table border=0><tr><td></td>\n";
 print HTML "<table border=0><tr><td></td>\n";
 print HTML "<h2 align=center></h2>\n";
