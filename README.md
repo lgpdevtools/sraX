@@ -1,7 +1,3 @@
-<p align="center">
-	<img src="https://zenodo.org/record/3525874/files/sraX_logo.jpg?download=1" alt="sraX's logo" width="250"/>
-</p>
-
 # sraX
 The proposed tool constitutes a Perl package, composed of functional modules, that allows performing a one-step accurate resistome analysis of assembled sequence data from FASTA files.
 
