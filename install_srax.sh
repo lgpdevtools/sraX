@@ -2,7 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 program="sraX"
-version="1.2"
+version="1.3"
 abs_path_dir="/usr/local/bin/${program}"
 install_sraX_v=https://raw.githubusercontent.com/lgpdevtools/sraX/master/install_srax.sh
 srax_flag(){
@@ -236,6 +236,44 @@ install_depend(){
     rm -f ncbi-blast-${BLAST_V}+-x64-linux.tar.gz
     fi
 
+    CLUSTALO="$(chk_path "clustalo")"
+    CLO_V="1.2.4"
+    if [ -z "$CLUSTALO" ]
+    then
+    echo -e "\nDownloading and installing Clustal Ω executables"
+    wget http://www.clustal.org/omega/clustalo-${CLO_V}-Ubuntu-x86_64
+    cp clustalo-${CLO_V}-Ubuntu-x86_64 ${abs_path_dir}/sraXbin/
+    chmod a+x ${abs_path_dir}/sraXbin/clustalo-${CLO_V}-Ubuntu-x86_64
+    ln -sf "${abs_path_dir}/sraXbin/clustalo-${CLO_V}-Ubuntu-x86_64" "/usr/local/bin/clustalo"
+    rm -f clustalo-${CLO_V}-Ubuntu-x86_64
+    fi
+
+    PRANK="$(chk_path "prank")"
+    if [ -z "$PRANK" ]
+    then
+    echo -e "\nDownloading and installing PRANK executables"
+    wget http://wasabiapp.org/download/prank/prank.linux64.170427.tgz
+    tar xvfz prank.linux64.170427.tgz -C "${abs_path_dir}"
+    chmod -R a+x ${abs_path_dir}/prank/
+    cp -r ${abs_path_dir}/prank/bin/* ${abs_path_dir}/sraXbin/
+    ln -sf "${abs_path_dir}/sraXbin/prank" "/usr/local/bin/prank"
+    rm -f prank.linux64.170427.tgz
+    rm -rf ${abs_path_dir}/prank
+    fi
+
+    MAFFT="$(chk_path "mafft")"
+    MFF_V="7.453"
+    if [ -z "$MAFFT" ]
+    then
+    echo -e "\nDownloading and installing MAFFT executables"
+    wget https://mafft.cbrc.jp/alignment/software/mafft-$MFF_V-with-extensions-src.tgz
+    tar xvfz mafft-$MFF_V-with-extensions-src.tgz -C "${abs_path_dir}/sraXbin" 
+    cd ${abs_path_dir}/sraXbin/mafft-$MFF_V-with-extensions/core
+    make clean && make && make install
+    rm -rf ${abs_path_dir}/sraXbin/mafft-$MFF_V-with-extensions
+    rm -f 'mafft-7.453-with-extensions-src.tgz'
+    fi
+   
     R="$(chk_path "R")"
     if [ -z "$R" ]
     then
@@ -331,6 +369,8 @@ uninstall_srax(){
         else
             rm -fr ${abs_path_dir}
             rm -fr /usr/bin/${program}*
+	    rm -fr /usr/bin/clustalo
+	    rm -fr /usr/bin/prank
 	    echo -e "${COLOR_GREEN}${program} has successfully been uninstalled!${COLOR_END}\n"
         fi
     else
