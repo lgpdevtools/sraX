@@ -480,7 +480,7 @@ coord_flip() +
 theme_bar
 
 try({
-png(file=paste(args[1],'Results/Plots/Proportion_ARG/prop_args_ph.png', sep='/'),width=w.pa,height=h.pa,pointsize=10,units='cm',family='sans',res=300)
+png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_ph.png', sep='/'),width=w.pa,height=h.pa,pointsize=10,units='cm',family='sans',res=300)
 print(pdrgclss)
 dev.off()
 }, silent=T)
@@ -571,7 +571,7 @@ coord_flip() +
 theme_bar
 
 try({
-png(file=paste(args[1],'Results/Plots/Proportion_ARG/prop_args_pv.png', sep='/'),width=w.pv,height=h.pv,pointsize=12,units='cm',family='sans',res=600)
+png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_pv.png', sep='/'),width=w.pv,height=h.pv,pointsize=12,units='cm',family='sans',res=600)
 print(pmutloc)
 dev.off()
 }, silent=T)
@@ -650,7 +650,14 @@ x_min = gn_min - 500
 }
 	if(cnt==1){
 	arg_span = (gn_max - gn_min)
-	n_regions = (arg_span %/% 5e5)
+		if(arg_span >= 1e6){
+		scalefact = 5e5
+		}else{
+		scalefact = 5e4
+		}
+
+	n_regions = (arg_span %/% scalefact)
+
 	w = 45
 	h = 6
 	gtx = 2.5
@@ -682,13 +689,13 @@ x_min = gn_min - 500
 
 		if (r == 1){
 		r_min = x_min
-		r_max = r_min + 5e5
+		r_max = r_min + scalefact
 		}else if (r == max(n_regions+1)){
 		r_max = x_max
-		r_min = r_max - 5e5
+		r_min = r_max - scalefact
 		}else{
-		r_max = r * 5e5
-                r_min = r_max - 5e5
+		r_max = r * scalefact
+                r_min = r_max - scalefact
 		}
 
 		zoom_r[[r]] <- ggplot(data = dfj, aes(x=x, y=y)) +
@@ -758,9 +765,16 @@ x_min = gn_min - 500
 		x_min = cnt_min - 500
 		}
 	arg_span_cnt  = (cnt_max - cnt_min)
-        n_regions_cnt = (arg_span_cnt %/% 5e5)
 
-		if(arg_span_cnt > 15000 && n_regions_cnt <= 1){
+		if(arg_span_cnt >= 5e4){
+        	        scalfct_cnt = 5e4
+                }else{
+                	scalfct_cnt = 1e4
+                }
+
+	n_regions_cnt = (arg_span_cnt %/% scalfct_cnt)
+
+		if(arg_span_cnt > 1.5e4 && n_regions_cnt <= 1){
 		zoom_cnt[[k]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
 		geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
 		geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
@@ -774,20 +788,9 @@ x_min = gn_min - 500
 		n_cnt_plot <- n_cnt_plot + 1
 		}else if (n_regions_cnt > 1) {
 		
-        		for (r in 1:(n_regions_cnt + 1)){
-		
-			if (r == 1){
-                	r_min = x_min
-                	r_max = r_min + 5e5
-                	}else if (r == max(n_regions_cnt+1)){
-                	r_max = x_max
-                	r_min = r_max - 5e5
-                	}else{
-                	r_max = r * 5e5
-                	r_min = r_max - 5e5
-                	}
-
-			zoom_cnt[[r]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
+        		r_min = x_min
+			r_max = r_min + scalfct_cnt	
+			zoom_cnt[[1]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
                 	geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
                 	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
                 	facet_wrap(~ contig, scales = 'free', ncol = 1) +
@@ -797,8 +800,22 @@ x_min = gn_min - 500
 			xlab('Chromosome position (bp)') +
                 	ylab(paste(k, ' genomic region')) +
                 	theme_arg()
-			n_cnt_plot <- r
-			}
+			
+			r_max = x_max
+                        r_min = r_max - scalfct_cnt	
+			zoom_cnt[[2]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
+                	geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
+                	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
+                	facet_wrap(~ contig, scales = 'free', ncol = 1) +
+                	scale_fill_identity('AMR genes', labels = cnt_data[[3]], breaks = cnt_data[[10]], guide = 'legend') +
+                	ggtitle(paste('Distribution of AMR genes: '),paste(j, ' genome')) +
+                	coord_cartesian(xlim = c(r_min, r_max)) +	
+			xlab('Chromosome position (bp)') +
+                	ylab(paste(k, ' genomic region')) +
+                	theme_arg()
+		
+			n_cnt_plot <- max(n_regions_cnt+1)
+
 		}else{
 		next
 		}
