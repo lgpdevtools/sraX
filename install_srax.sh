@@ -222,7 +222,7 @@ install_depend(){
     fi
     
     NCBI_BX="$(chk_path "blastx")"
-    BLAST_V="2.9.0"
+    BLAST_V="2.10.0"
     if [ -z "$NCBI_BX" ]
     then
     echo -e "\nDownloading and installing BLAST+ executables"
