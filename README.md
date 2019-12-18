@@ -1,5 +1,5 @@
 <p align="center">
-        <img src="https://zenodo.org/record/3540437/files/sraX_logo_v2.png?download=1" alt="sraX's logo" width="650"/>
+        <img src="https://zenodo.org/record/3582769/files/sraX_logo_v2.png?download=1" alt="sraX's logo" width="650"/>
 </p>
 
 # sraX
@@ -36,8 +36,9 @@ plots of previously mentioned analysis.
 
 Workflow schematic:
 
-![workflow](https://user-images.githubusercontent.com/45903129/50822537-421cff80-1332-11e9-9efb-188a179301e4.png)
-
+<p align="center">
+	<img src="https://zenodo.org/record/3582769/files/workflow.png?download=1" alt="sraX's workflow" width="650"/>
+</p>
 
 ## Installation
 
