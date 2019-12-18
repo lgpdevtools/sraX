@@ -37,7 +37,7 @@ plots of previously mentioned analysis.
 Workflow schematic:
 
 <p align="center">
-	<img src="https://zenodo.org/record/3582769/files/workflow.png?download=1" alt="sraX's workflow" width="650"/>
+	<img src="https://zenodo.org/record/3582769/files/workflow.png?download=1" alt="sraX's workflow" width="750"/>
 </p>
 
 ## Installation
