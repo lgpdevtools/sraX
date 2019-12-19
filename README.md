@@ -37,7 +37,7 @@ plots of previously mentioned analysis.
 Workflow schematic:
 
 <p align="center">
-	<img src="https://zenodo.org/record/3582769/files/workflow.png?download=1" alt="sraX's workflow" width="750"/>
+	<img src="https://zenodo.org/record/3582769/files/workflow.png?download=1" alt="sraX's workflow" width="650"/>
 </p>
 
 ## Installation
@@ -53,7 +53,7 @@ docker pull lgpdevtools/srax
 In order to check the appropriate running state of the image file:  
 
 ```
-sudo docker run -it srax
+sudo docker run -it lgpdevtools/srax -v
 ```
 
 ***B) Local installation:***
@@ -159,14 +159,14 @@ sraX -a mafft -db ext -s blastx -id 95 -c 90 -t 12 -o [/path/to/output_results_d
 **Docker-based:**
 
 ```
-sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/INPUT_GNMS srax -i INPUT_GNMS
+sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/IN lgpdevtools/srax -i IN
 ```
 
 With further options:
 ```
-sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/INPUT_GNMS\
--v $(pwd)/[/path/to/output_results_directory]:/RESULTS \
-sraX -a mafft -db ext -s blastx -id 95 -c 90 -t 12 -i INPUT_GNMS -o RESULTS
+sudo docker run --rm -v $(pwd)/[/path/to/input_genome_directory]:/IN \
+-v $(pwd)/[/path/to/output_results_directory]:/OUT \
+lgpdevtools/srax -a mafft -db ext -s blastx -id 95 -c 90 -t 12 -i IN -o OUT
 ```
 
 Where:
