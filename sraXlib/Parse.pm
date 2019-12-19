@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 package sraXlib::Parse;
+use FindBin;
+use lib "$FindBin::Bin";
 use strict;
 use warnings;
 use sraXlib::Functions;
@@ -695,7 +697,7 @@ sub f_parse {
 	close F4;
 	close F5;
 
-	system("Rscript sraXlib/Plot.r $d_out");
+	system("Rscript $FindBin::Bin/sraXlib/Plot.r $d_out");
 	my ($htmp_pa_plot,$htmp_id_plot,$arg_prop,$snp_prop) = ('sraX_hmPA.png','sraX_hmSI.png','sraX_prop_args_ph.png','sraX_prop_args_pv.png');
 
 
