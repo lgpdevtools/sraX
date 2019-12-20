@@ -42,9 +42,23 @@ Workflow schematic:
 
 ## Installation
 
-***A) [Docker](https://www.docker.com/) image:***
+***A) [Bioconda package](https://anaconda.org/lgpdevtools/srax):***
 
-Type the following command under a bash terminal:
+Execute the following command:
+
+```
+conda install -c lgpdevtools srax
+```
+
+Verify the appropriate installation by running:
+
+```
+sraX -v
+```
+
+***B) [Docker image](https://hub.docker.com/r/lgpdevtools/srax):***
+
+Execute the following command:
 
 ```
 docker pull lgpdevtools/srax
@@ -56,7 +70,7 @@ In order to check the appropriate running state of the image file:
 sudo docker run -it lgpdevtools/srax -v
 ```
 
-***B) Local installation:***
+***C) Local installation:***
 
 **sraX** has the following dependencies:
 
@@ -67,7 +81,7 @@ sudo docker run -it lgpdevtools/srax -v
 has only been tested with a 64-bit Linux distribution.
 
 **2.** Perl version 5.26.x or higher. You can verify on your own computer by
-typing the following command under a bash terminal:
+typing the following command in a bash terminal:
 ```
 perl -h
 ```
