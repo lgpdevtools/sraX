@@ -42,7 +42,7 @@ Workflow schematic:
 
 ## Installation
 
-***A) [Bioconda package](https://anaconda.org/lgpdevtools/srax):***
+***A) [Conda package](https://anaconda.org/lgpdevtools/srax):***
 
 Execute the following command:
 
