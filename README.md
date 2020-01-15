@@ -42,9 +42,14 @@ Workflow schematic:
 
 ## Installation
 
-***A) [Conda package](https://anaconda.org/lgpdevtools/srax):***
+***A) Bioconda / [Conda package](https://anaconda.org/lgpdevtools/srax) package:***
 
 Execute the following command:
+
+```
+conda install srax
+```
+or
 
 ```
 conda install -c lgpdevtools srax
@@ -55,6 +60,7 @@ Verify the appropriate installation by running:
 ```
 sraX -v
 ```
+
 
 ***B) [Docker image](https://hub.docker.com/r/lgpdevtools/srax):***
 
