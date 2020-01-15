@@ -253,7 +253,7 @@ Please report any issues to the [issues page](https://github.com/lgpdevtools/sra
 **sraX** is developed by Leonardo G. Panunzi.
 
 ## Citation
-Panunzi LG, "sraX: a novel comprehensive resistome analysis tool", submitted to _Frontiers in Microbiology_ for publication.
+Panunzi LG, [sraX: a novel comprehensive resistome analysis tool](https://www.frontiersin.org/articles/10.3389/fmicb.2020.00052/abstract), submitted to _Frontiers in Microbiology_ for publication.
 
 ## References.
 [1] Altschul SF _et al._ (1990). Basic local alignment search tool. _JMB_, 215, 403–410.
