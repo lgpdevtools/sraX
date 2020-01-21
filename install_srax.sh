@@ -2,7 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 program="sraX"
-version="1.4"
+version="1.5"
 abs_path_dir="/usr/local/bin/${program}"
 install_sraX_v=https://raw.githubusercontent.com/lgpdevtools/sraX/master/install_srax.sh
 srax_flag(){
@@ -357,7 +357,6 @@ uninstall_srax(){
             rm -fr ${abs_path_dir}
             rm -fr /usr/bin/${program}*
 	    rm -fr /usr/bin/clustalo
-	    rm -fr /usr/bin/prank
 	    echo -e "${COLOR_GREEN}${program} has successfully been uninstalled!${COLOR_END}\n"
         fi
     else
