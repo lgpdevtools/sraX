@@ -17,6 +17,7 @@ my $rna_abs_path= "";
 sub set_prmt {
 	my ($d_gnm,$d_out,$bprog,$eval,$idty,$cvrg,$thrd) = @_;
 
+	my $f_out = "$d_out/Analysis/Homology_Search/sraX_hs.tsv";
 	$min_eval = $eval;
 	$min_idty = $idty;
 	$min_cvrg = $cvrg;
@@ -26,8 +27,6 @@ sub set_prmt {
 	$dna_abs_path	= "$d_out/ARG_DB/arg_dna.fa";
 	$rna_abs_path 	= "$d_out/ARG_DB/arg_rna.fa";
 
-	my $f_out       = "$d_out/Analysis/Homology_Search/sraX_hs.tsv";
-
 	if($bprog eq "dblastx"){
 		system("diamond makedb --in $aa_abs_path -d $aa_abs_path --quiet");
 		system("makeblastdb -in $rna_abs_path -dbtype nucl -hash_index -logfile '$rna_abs_path.log'");
@@ -36,22 +35,13 @@ sub set_prmt {
 		system("makeblastdb -in $rna_abs_path -dbtype nucl -hash_index -logfile '$rna_abs_path.log'");
 	}else{}
 
-	my $f_pres = sraXlib::Functions::check_file($f_out);
 	my $msg = "";
-	unless($f_pres == 1){
-		print STDERR "\nThe parsed data is written in the '$f_out' output file.\n";
-		print STDERR "Carrying out the execution of sraX!\n";
-		$msg .= "\nThe parsed data is written in the '$f_out' output file.\n"; 
-		$msg .= "Carrying out the execution of sraX!\n";
-	}else{
-		print STDERR "\n[Warn]: The homology search output file exists, implying that the script has already been run.\n";
-		print STDERR "[Warn]: This file is going to be overwritten now.\n";
-		$msg .= "\n[Warn]: The homology search output file exists, implying that the script has already been run.\n";
-		$msg .= "[Warn]: This file is going to be overwritten now.\n";
-		system ("rm $f_out");
-	}
+	print STDOUT "\nThe parsed data is written in the '$f_out' output file.\n";
+	print STDOUT "Carrying out the execution of sraX!\n";
+	$msg .= "\nThe parsed data is written in the '$f_out' output file.\n"; 
+	$msg .= "Carrying out the execution of sraX!\n";
 
-	open (OUT, ">$f_out") or die "\nThe output file can't be opened!\n";
+	open (OUT, ">$f_out") || die sraXlib::Functions::print_errf($f_out,"o");
 	print OUT "Fasta_file\tContig_ID\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\tNum_gaps\tCoverage_%\tIdentity_%\tATB_Drug_Class\tAccession_ID\tAMR_gene_definition\tAMR_detection_model\tMeta_data\n";
 
 	$msg .=	homology_seach($d_gnm,$d_out,$bprog);
@@ -78,7 +68,7 @@ sub homology_seach{
 		my $bprog_out = "$d_out/Analysis/Homology_Search/Individual_Genomes/$anlzd_fa";
 		$fasta = "$d_gnm/$fasta";
 
-		print STDERR "\tThe genome $anlzd_fa is being analyzed\n";
+		print STDOUT "\tThe genome $anlzd_fa is being analyzed\n";
 		$msg .= "\tThe genome $anlzd_fa is being analyzed\n";
 
 		if($bprog eq "dblastx"){
@@ -89,98 +79,109 @@ sub homology_seach{
 			system("blastn -db $rna_abs_path -query $fasta -out $bprog_out"."_rna.out -outfmt '6 qseqid sseqid gaps qcovs slen pident length mismatch gapopen qstart qend sstart send' -evalue $min_eval -num_threads $num_thrd -show_gis 2> $fasta.log");
 		}else{}
 
-		open(BLAST_AA,"$bprog_out"."_aa.out") || die "[WARN]: There are not homolog to protein AMR genes in the '$anlzd_fa' genome: $!\n";
-		open (GNM_AA, ">$bprog_out"."_aa.bparsd") or die "\nThe output file can't be opened; $!\n";
-		while (<BLAST_AA>) {
-			chomp($_);
-			my @data = split (/\t/, $_);
-			my @hdr = split(/\.@\./, $data[1]);
-			my ($gn_id,$acc_id,$gn,$model_type,$atb_class,$m_dat) = ($hdr[1],$hdr[2],$hdr[3],$hdr[4],$hdr[5]);
-			unless(defined $hdr[6]){
-				$m_dat = "Not_indicated";
-			}else{
-				$m_dat = $hdr[$#hdr];
-			}
-			if($model_type eq "protein_variant"){
-				$atb_class = "Mutations on protein gene";
-			}elsif($model_type eq "protein_overexpression"){
-				$atb_class = "Mutations on protein gene (overexpression)";
-			}
-			my $cov = $data[11].'-'.$data[12].'/'. $data[4];
-			my $gaps = $data[8].'/'.$data[2];
-			my $covp = sprintf("%.2f", 100 * ($data[6]-$data[2]) / $data[4]);
-			my $gn_status='';
-			my $gn_length =0;
-			if ($data[11]>$data[12]){
-				$gn_length = ($data[4]-($data[11]-$data[12])-1);
-			}else{
-				$gn_length = ($data[4]-($data[12]-$data[11])-1);
-			}
-			if ($gn_length == 0 && $data[8] == 0){
-				$gn_status="Full gene, no gaps";
-			}elsif ($gn_length == 0 && $data[8] > 0){
-				$gn_status="Full gene and internal gaps";
-			}elsif ($gn_length > 0 && $data[8] == 0){
-				$gn_status="Partial gene, no gaps";
-			}elsif ($gn_length > 0 && $data[8] > 0){
-				$gn_status="Partial gene and internal gaps";
-			}else{
-				$gn_status="Check_this_one";
-			}
-			next if ($covp<$min_cvrg);
-			print GNM_AA "$anlzd_fa\t$data[0]\t$data[9]\t$data[10]\t$gn_id\t$cov\t$gn_status\t$gaps\t$covp\t$data[5]\t$atb_class\t$acc_id\t$gn\t$model_type\t$m_dat\n";
-		}
-		close (BLAST_AA);
-		close (GNM_AA);
 
-		open(BLAST_RNA,"$bprog_out"."_rna.out") || die die "[WARN]: There are not homolog to rRNA AMR genes in the '$anlzd_fa' genome: $!\n";
-		open (GNM_RNA, ">$bprog_out"."_rna.bparsd") or die "\nThe output file can't be opened: $!\n";
-		while (<BLAST_RNA>) {
-			chomp($_);
-			my @data = split (/\t/, $_);
-			my @hdr = split(/\.@\./, $data[1]);
-			my ($gn_id,$acc_id,$gn,$model_type,$atb_class,$m_dat) = ($hdr[1],$hdr[2],$hdr[3],$hdr[4],$hdr[5]);
-			unless(defined $hdr[6]){
-				$m_dat = "Not_indicated";
-			}else{
-				$m_dat = $hdr[$#hdr];
+		if(sraXlib::Functions::check_file($bprog_out."_aa.out") == 1){
+			open(BLAST_AA,"$bprog_out"."_aa.out") || die sraXlib::Functions::print_errf($bprog_out."_aa.out","i");
+			open (GNM_AA, ">$bprog_out"."_aa.bparsd") || die sraXlib::Functions::print_errf($bprog_out."_aa.bparsd","o");
+
+			while (<BLAST_AA>) {
+				chomp($_);
+				my @data = split (/\t/, $_);
+				my @hdr = split(/\.@\./, $data[1]);
+				my ($gn_id,$acc_id,$gn,$model_type,$atb_class,$m_dat) = ($hdr[1],$hdr[2],$hdr[3],$hdr[4],$hdr[5]);
+				unless(defined $hdr[6]){
+					$m_dat = "Not_indicated";
+				}else{
+					$m_dat = $hdr[$#hdr];
+				}
+				if($model_type eq "protein_variant"){
+					$atb_class = "Mutations on protein gene";
+				}elsif($model_type eq "protein_overexpression"){
+					$atb_class = "Mutations on protein gene (overexpression)";
+				}
+				my $cov = $data[11].'-'.$data[12].'/'. $data[4];
+				my $gaps = $data[8].'/'.$data[2];
+				my $covp = sprintf("%.2f", 100 * ($data[6]-$data[2]) / $data[4]);
+				my $gn_status='';
+				my $gn_length =0;
+				if ($data[11]>$data[12]){
+					$gn_length = ($data[4]-($data[11]-$data[12])-1);
+				}else{
+					$gn_length = ($data[4]-($data[12]-$data[11])-1);
+				}
+				if ($gn_length == 0 && $data[8] == 0){
+					$gn_status="Full gene, no gaps";
+				}elsif ($gn_length == 0 && $data[8] > 0){
+					$gn_status="Full gene and internal gaps";
+				}elsif ($gn_length > 0 && $data[8] == 0){
+					$gn_status="Partial gene, no gaps";
+				}elsif ($gn_length > 0 && $data[8] > 0){
+					$gn_status="Partial gene and internal gaps";
+				}else{
+					$gn_status="Check_this_one";
+				}
+				next if ($covp<$min_cvrg);
+				print GNM_AA "$anlzd_fa\t$data[0]\t$data[9]\t$data[10]\t$gn_id\t$cov\t$gn_status\t$gaps\t$covp\t$data[5]\t$atb_class\t$acc_id\t$gn\t$model_type\t$m_dat\n";
 			}
-			if($gn_id =~ m/16S/g){
-				$atb_class = "Mutations on rRNA gene (16S)";
-			}elsif($gn_id =~ m/23S/g){
-				$atb_class = "Mutations on rRNA gene (23S)";
-			}else{
-				$atb_class = "Mutations on rRNA gene";
-			}
-			my $cov = $data[11].'-'.$data[12].'/'. $data[4];
-			my $gaps = $data[8].'/'.$data[2];
-			my $covp = sprintf("%.2f", 100 * ($data[6]-$data[2]) / $data[4]);
-			my $gn_status='';
-			my $gn_length =0;
-			if ($data[11]>$data[12]){
-				$gn_length = ($data[4]-($data[11]-$data[12])-1);
-				my $q_corr = $data[10];
-				$data[10]  = $data[9];
-				$data[9]   = $q_corr;
-			}else{
-				$gn_length = ($data[4]-($data[12]-$data[11])-1);
-			}
-			if ($gn_length == 0 && $data[8] == 0){
-				$gn_status="Full gene, no gaps";
-			}elsif ($gn_length == 0 && $data[8] > 0){
-				$gn_status="Full gene and internal gaps";
-			}elsif ($gn_length > 0 && $data[8] == 0){
-				$gn_status="Partial gene, no gaps";
-			}elsif ($gn_length > 0 && $data[8] > 0){
-				$gn_status="Partial gene and internal gaps";
-			}else{
-				$gn_status="Check_this_CDS";
-			}
-			next if ($covp<$min_cvrg);
-			print GNM_RNA "$anlzd_fa\t$data[0]\t$data[9]\t$data[10]\t$gn_id\t$cov\t$gn_status\t$gaps\t$covp\t$data[5]\t$atb_class\t$acc_id\t$gn\t$model_type\t$m_dat\n";
+			close (BLAST_AA);
+			close (GNM_AA);
+		}else{
+			warn "[WARN]: There are not homolog to protein AMR genes in the '$anlzd_fa' genome!\n";
 		}
-		close BLAST_RNA;
-		close GNM_RNA;
+
+		if(sraXlib::Functions::check_file($bprog_out."_rna.out") == 1){
+			open(BLAST_RNA,"$bprog_out"."_rna.out") || die sraXlib::Functions::print_errf($bprog_out."_rna.out","i");
+			open (GNM_RNA, ">$bprog_out"."_rna.bparsd") || die sraXlib::Functions::print_errf($bprog_out."_rna.bparsd","o");
+
+			while (<BLAST_RNA>) {
+				chomp($_);
+				my @data = split (/\t/, $_);
+				my @hdr = split(/\.@\./, $data[1]);
+				my ($gn_id,$acc_id,$gn,$model_type,$atb_class,$m_dat) = ($hdr[1],$hdr[2],$hdr[3],$hdr[4],$hdr[5]);
+				unless(defined $hdr[6]){
+					$m_dat = "Not_indicated";
+				}else{
+					$m_dat = $hdr[$#hdr];
+				}
+				if($gn_id =~ m/16S/g){
+					$atb_class = "Mutations on rRNA gene (16S)";
+				}elsif($gn_id =~ m/23S/g){
+					$atb_class = "Mutations on rRNA gene (23S)";
+				}else{
+					$atb_class = "Mutations on rRNA gene";
+				}
+				my $cov = $data[11].'-'.$data[12].'/'. $data[4];
+				my $gaps = $data[8].'/'.$data[2];
+				my $covp = sprintf("%.2f", 100 * ($data[6]-$data[2]) / $data[4]);
+				my $gn_status='';
+				my $gn_length =0;
+				if ($data[11]>$data[12]){
+					$gn_length = ($data[4]-($data[11]-$data[12])-1);
+					my $q_corr = $data[10];
+					$data[10]  = $data[9];
+					$data[9]   = $q_corr;
+				}else{
+					$gn_length = ($data[4]-($data[12]-$data[11])-1);
+				}
+				if ($gn_length == 0 && $data[8] == 0){
+					$gn_status="Full gene, no gaps";
+				}elsif ($gn_length == 0 && $data[8] > 0){
+					$gn_status="Full gene and internal gaps";
+				}elsif ($gn_length > 0 && $data[8] == 0){
+					$gn_status="Partial gene, no gaps";
+				}elsif ($gn_length > 0 && $data[8] > 0){
+					$gn_status="Partial gene and internal gaps";
+				}else{
+					$gn_status="Check_this_CDS";
+				}
+				next if ($covp<$min_cvrg);
+				print GNM_RNA "$anlzd_fa\t$data[0]\t$data[9]\t$data[10]\t$gn_id\t$cov\t$gn_status\t$gaps\t$covp\t$data[5]\t$atb_class\t$acc_id\t$gn\t$model_type\t$m_dat\n";
+			}
+			close BLAST_RNA;
+			close GNM_RNA;
+		}else{
+			warn "[WARN]: There are not homolog to rRNA AMR genes in the '$anlzd_fa' genome!\n";
+		}
 
 		my $stop_time_gnm = sraXlib::Functions::running_time;
 		my $span_time_gnm = ($stop_time_gnm - $start_time_gnm);
@@ -194,7 +195,7 @@ sub homology_seach{
 
 	my $f_gnm = sraXlib::Functions::load_files("$d_out/Analysis/Homology_Search/Individual_Genomes/", ["bparsd"]);
 	foreach my $fd_gnm (@$f_gnm){
-		open(F_GNM,"$d_out/Analysis/Homology_Search/Individual_Genomes/$fd_gnm") || die die "[ERROR]: The input file '$fd_gnm' cannot be opened: $!\n";
+		open(F_GNM,"$d_out/Analysis/Homology_Search/Individual_Genomes/$fd_gnm") || die sraXlib::Functions::print_errf("$d_out/Analysis/Homology_Search/Individual_Genomes/$fd_gnm","i");
 		while (<F_GNM>) {
 			chomp;
 			print OUT "$_\n"
@@ -205,8 +206,7 @@ sub homology_seach{
 	my $t_stop_time = sraXlib::Functions::running_time;
 	my $t_span_time = ($t_stop_time - $t_start_time);
 	my $d_stop_time = sraXlib::Functions::print_time;
-	print STDOUT "\n\tThe homology search of AMR genes in the complete dataset took ";
-	print STDOUT " wallclock secs\n\n";
+	print STDOUT "\n\tThe homology search of AMR genes in the complete dataset took $t_span_time wallclock secs\n\n";
 	print STDOUT "\nThe homology search process finished at:\t$d_stop_time\n\n";
 
 	$msg .= "\n\tThe homology search of AMR genes in the complete dataset took $t_span_time wallclock secs\n\n";

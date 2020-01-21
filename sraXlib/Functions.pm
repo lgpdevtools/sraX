@@ -5,30 +5,6 @@ use warnings;
 use Time::HiRes qw(time);
 use Benchmark;
 
-sub check_dir {
-	my $dir = shift;
-	my $dir_pres='';
-	unless(-d $dir){
-		$dir_pres = 0;
-	}else{
-		$dir_pres = 1;
-	}
-
-	return ($dir_pres);
-}
-
-sub check_file {
-	my $file = shift;
-	my $f_pres='';
-	unless(-f $file){
-		$f_pres = 0;
-	}else{
-		$f_pres = 1;
-	}
-
-	return ($f_pres);
-}
-
 sub translate_sq {
 	my $dna_sq = shift;
 	no warnings "exiting";
@@ -90,8 +66,6 @@ sub get_aa_sq{
 	return($aa_sq);
 }
 
-
-
 sub determine_aa {
 	my $codon = shift;
 	$codon=lc($codon);
@@ -142,7 +116,6 @@ sub determine_aa {
 	}
 	return($aa);
 }
-
 
 sub revcmp {
 	my $dna_sq = shift;
@@ -254,7 +227,7 @@ sub print_e{
 	my ($opt,$val)=@_;
 	my $msg = "\n[Error]: The '$opt' option does not recognize the given value '$val'.\n";
 	$msg .= "Please, read the 'help' section.\n";
-	$msg .= "\nSuspending the execution of 'sraX' and quitting now!\n";
+	$msg .= "\nsraX execution is stopped and the resistome analysis is aborted now.\n";
 	return($msg);
 }
 
@@ -262,6 +235,46 @@ sub print_ne {
 	my ($opt,$val)=@_;
 	my $msg = "\nThe option '$opt' will be run under the following value: '$val'.\n";
 	return($msg);
+}
+
+sub print_errf {
+	my ($file,$type)=@_;
+	unless($type ne "o"){
+		warn "\n[Error]: The output '$file' file cannot be created. sraX execution is stopped and the resistome analysis is aborted now.\n";
+	}else{
+		warn "\n[Error]: The input '$file' file cannot be opened. sraX execution is stopped and the resistome analysis is aborted now.\n";
+	}
+	exit;
+}
+
+sub check_dir {
+	my $dir = shift;
+	my $dir_pres='';
+	unless(-d $dir){
+		$dir_pres = 0;
+	}else{
+		$dir_pres = 1;
+	}
+
+	return ($dir_pres);
+}
+
+sub check_file {
+	my $file = shift;
+	my $f_pres='';
+	unless(-f $file){
+		$f_pres = 0;
+	}else{
+		unless(-s $file){
+		warn "\n[Error]: The '$file' file is empty and is going to be deleted now.\n";	
+		system("rm $file");
+		$f_pres = 0;	
+		}else{
+		$f_pres = 1;
+		}
+	}
+
+	return ($f_pres);
 }
 
 1;

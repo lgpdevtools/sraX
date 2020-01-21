@@ -35,7 +35,7 @@ my %opt = (
 
 if (@ARGV == 0){
 	$err_msg  = "\nFor running 'sraX', it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
-	$err_msg .= "Suspending the execution of 'sraX' and quitting now!\n";
+	$err_msg .= "sraX execution is stopped and the resistome analysis is aborted now.\n";
 	print STDERR $err_msg;
 	die usage();
 }
@@ -64,9 +64,9 @@ if($opt{version}){
 
        sraX - Systematic Resistome Analysis 
 
-			    version: sraXv1.4
+			    version: sraXv1.5
 
-	 Copyright 2019 Leonardo G. Panunzi
+	 Copyright 2020 Leonardo G. Panunzi
 VERSION
 
 	exit;
@@ -74,7 +74,7 @@ VERSION
 
 unless ($opt{input}){
 	$err_msg  = "\nFor running 'sraX', it's mandatory to provide, at least, a directory containing the genome(s) that you want to analyze.\n";
-	$err_msg .= "Suspending the execution of 'sraX' and quitting now!\n";
+	$err_msg .= "sraX execution is stopped and the resistome analysis is aborted now.\n";
 	print STDERR $err_msg;
 	die usage();
 }else{
@@ -84,18 +84,18 @@ unless ($opt{input}){
 	unless($d_pres == 1){
 		$err_msg = "\n[Error]: The given directory '$opt{input}' is not present\n";
 		$err_msg .= "Please, check its existence or given name.\n";
-		$err_msg .= "Suspending the execution of sraX and quitting now!\n";
+		$err_msg .= "sraX execution is stopped and the resistome analysis is aborted now.\n";
 		print STDERR $err_msg;
 		die usage();
 	}else{
-		warn "\nThe 'sraX' analysis started at:\t".sraXlib::Functions::print_time."\n\n";
+		print STDOUT "\nThe 'sraX' analysis started at:\t".sraXlib::Functions::print_time."\n\n";
 		$f_log = "The 'sraX' analysis started at:\t".sraXlib::Functions::print_time."\n\n";
 	}
 }
 
 my $t_start_time_cp = sraXlib::Functions::running_time;
 
-if( $opt{seqal} ne 'dblastx' && $opt{seqal} ne 'dblastp' && $opt{seqal} ne 'blastx' && $opt{seqal} ne 'blastp' && $opt{seqal} ne 'blastn'){
+if($opt{seqal} ne 'dblastx' && $opt{seqal} ne 'blastx'){
 	$f_log .= sraXlib::Functions::print_e('p', $opt{seqal});
 	$err_msg = sraXlib::Functions::print_e('p', $opt{seqal});
 	print STDERR $err_msg if $opt{debug};
@@ -106,7 +106,7 @@ if( $opt{seqal} ne 'dblastx' && $opt{seqal} ne 'dblastp' && $opt{seqal} ne 'blas
 	print STDERR $err_msg if $opt{debug};
 }
 
-if( $opt{msa} ne 'muscle' && $opt{msa} ne 'clustalo' && $opt{msa} ne 'prank' && $opt{msa} ne 'mafft'){
+if($opt{msa} ne 'muscle' && $opt{msa} ne 'clustalo' && $opt{msa} ne 'mafft'){
 	$f_log .= sraXlib::Functions::print_e('p', $opt{msa});
 	$err_msg = sraXlib::Functions::print_e('p', $opt{msa});
 	print STDERR $err_msg if $opt{debug};
@@ -117,7 +117,7 @@ if( $opt{msa} ne 'muscle' && $opt{msa} ne 'clustalo' && $opt{msa} ne 'prank' && 
 	print STDERR $err_msg if $opt{debug};
 }
 
-if( $opt{dbsearch} ne 'basic' && $opt{dbsearch} ne 'ext' && $opt{dbsearch} ne 'extensive'){
+if($opt{dbsearch} ne 'basic' && $opt{dbsearch} ne 'ext' && $opt{dbsearch} ne 'extensive'){
 	$f_log .= sraXlib::Functions::print_e('p', $opt{dbsearch});
 	$err_msg = sraXlib::Functions::print_e('p', $opt{dbsearch});
 	print STDERR $err_msg if $opt{debug};
@@ -178,7 +178,7 @@ unless ($opt{output}){
 	$f_log .= sraXlib::Functions::print_ne('o', $opt{output});
 	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
 	unless($d_pres == 1){
-		warn "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+		print STDOUT "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 		$f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 	}else{
 		$err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
@@ -192,7 +192,7 @@ unless ($opt{output}){
 	$d_out_abs = abs_path($opt{output});	
 	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
 	unless($d_pres == 1){
-		warn "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+		print STDOUT "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 		$f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 	}else{
 		$err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
@@ -221,7 +221,7 @@ my $t_stop_time_cp = sraXlib::Functions::running_time;
 print "\n\tThe completion of 'sraX' analysis took ";
 printf("%.2f ", $t_stop_time_cp - $t_start_time_cp);
 print " wallclock secs\n\n";
-open	LOG, ">$d_out_abs/Log/sraX_log.txt" or die "Can't open 'log file': $!";
+open	LOG, ">$d_out_abs/Log/sraX_log.txt" or die sraXlib::Functions::print_errf("$d_out_abs/Log/sraX_log.txt","o");
 print	LOG "$f_log\n";
 print	LOG "\n\tThe completion of 'sraX' analysis took ";
 printf	LOG ("%.2f ", $t_stop_time_cp - $t_start_time_cp);
@@ -231,7 +231,7 @@ close	LOG;
 sub usage{
 	warn <<EOF
 
-  sraX v1.4 | by Leonardo G. Panunzi <lgpanunzi\@gmail.com>
+  sraX v1.5 | by Leonardo G. Panunzi <lgpanunzi\@gmail.com>
   Licensed under the GNU GPL <https://www.gnu.org/licenses/gpl.txt>
   http://github.com/lgpdevtools/srax
 
@@ -326,7 +326,7 @@ sub usage{
 
 
 
-					'sraX' was last modified: 16 December 2019
+					'sraX' was last modified: 23rd January 2020
 
 EOF
 	;
