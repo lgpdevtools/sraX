@@ -31,7 +31,7 @@ alternative genome datasets. The main modifications are the repository hyperlink
 etc...):
 
    ```
-   sraX -i Enterococcus_spp -id 75 -c 90 -o Enterococcus_spp_defined_options
+   sraX -i Enterococcus_spp -id 75 -c 90 -db ext -o Enterococcus_spp_defined_options
    ```
 
 #### Dataset #2: 112 genomes belonging to _Shigella sonnei_ [[2]](#references)
@@ -57,7 +57,7 @@ etc...):
    c) Run **sraX** using your own options. The following command, is just an example:
 
    ```
-   sraX -i Salmonella_enterica -id 98 -c 85 -o Salmonella_enterica_AMR_profiles
+   sraX -i Salmonella_enterica -id 98 -c 85 -db ext -o Salmonella_enterica_AMR_profiles
    ```
 
 #### Dataset #5: 76 genomes belonging to _Escherichia coli_ from farm isolates [[5]](#references)
@@ -75,7 +75,7 @@ etc...):
    c) Run **sraX** using your own options. The following command, is just an example:
 
    ```
-   sraX -i Escherichia_coli -t 10 -id 85 -c 75 -o Escherichia_coli_AMR_analysis
+   sraX -i Escherichia_coli -t 10 -id 85 -c 75 -db ext -o Escherichia_coli_AMR_analysis
    ```
 
 <sup>a</sup> [Alternative repository for dataset #5: _Escherichia coli_](https://zenodo.org/record/3571224/files/Escherichia_coli.tar.gz?download=1) (md5:5744faa3b1ea6a5a311014e46c1c489a)
@@ -94,6 +94,7 @@ order to increase AMR DB volume and its detection range.
    The curated ARG data will be downloaded and the headers will be formatted for being effective for **sraX** analysis. Using the bash console, run the following commands:
    
    ```
+   mkdir Test_sraX
    wget -O Test_sraX/public_amrdb/argdit_dna.fa https://github.com/phglab/ARGDIT/blob/master/sample_integrated_dbs/argdit_nt_db.fa?raw=true
 
    awk -F \| '/^>/ { print ">"$2"|"$1"|"$3"|protein_homolog|"$9"|"$5; next } 1' Test_sraX/public_amrdb/argdit_dna.fa > Test_sraX/public_amrdb/argdit_dna_formatted.fa

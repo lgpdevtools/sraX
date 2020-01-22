@@ -147,7 +147,7 @@ sub load_amr_sq{
 	my ($out_hdr, $out_sq)=("","");
 	my %seq;
 	my $str;
-	open(INPUT,"$file") or die "Cannot open input fasta file: $!\n";
+	open(INPUT,"$file") || die "Cannot open input fasta file: $!\n";
 	while(<INPUT>){
 		chomp;
 		if(/^>/){
@@ -176,7 +176,7 @@ sub load_contig{
 
 	my %seq;
 	my $str;
-	open(INPUT,"$gnm_dir/$gnm") or die "Cannot open input fasta file: $!\n";
+	open(INPUT,"$gnm_dir/$gnm") || die "Cannot open input fasta file: $!\n";
 	while(<INPUT>){
 		chomp;
 		if(/^>/){
@@ -200,9 +200,9 @@ sub load_contig{
 sub load_files{
 	my ($fasta_dir, $ext) = @_;
 
-	opendir IN, $fasta_dir or die $!;
+	opendir IN, $fasta_dir || die $!;
 	my @files = readdir IN;
-	closedir IN or die $!;
+	closedir IN || die $!;
 	my @fasta_files;
 	foreach my $ext (@$ext){
 		push @fasta_files, grep /\.$ext$/, @files;
@@ -245,6 +245,12 @@ sub print_errf {
 		warn "\n[Error]: The input '$file' file cannot be opened. sraX execution is stopped and the resistome analysis is aborted now.\n";
 	}
 	exit;
+}
+
+sub print_errd {
+        my $dir = shift;
+        warn "\n[Error]: The '$dir' directory cannot be created. sraX execution is stopped and the resistome analysis is aborted now.\n";
+        exit;
 }
 
 sub check_dir {

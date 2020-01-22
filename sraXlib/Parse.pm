@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 package sraXlib::Parse;
-use FindBin;
-use lib "$FindBin::Bin";
 use strict;
 use warnings;
+use FindBin;
+use lib "$FindBin::Bin";
 use sraXlib::Functions;
 
 sub f_parse {
@@ -14,7 +14,7 @@ sub f_parse {
 	my $d_start_time_sf = sraXlib::Functions::print_time;
 	print "\nThe creation of summary files started at:\t$d_start_time_sf\n\n";
 
-	open (IN, "$d_out/Analysis/Homology_Search/sraX_hs.tsv") || die "[ERROR]: The homology search output file 'sraX_hs.tsv' is not inside its folder: $!\n";
+	open (IN, "$d_out/Analysis/Homology_Search/sraX_hs.tsv") || die sraXlib::Functions::print_errf("$d_out/Analysis/Homology_Search/sraX_hs.tsv","i");
 
 	my (%amr_db_cog_id, %amr_db,
 		%gnm_id, %non_redun, %uniq, 
@@ -337,11 +337,11 @@ sub f_parse {
 	}
 
 	my $gn_coord = "$d_out/Results/Summary_files/sraX_gene_coordinates.tsv";
-	open(F1,">$gn_coord") || die "[ERROR]: The output file $gn_coord cannot be created: $!\n";
+	open(F1,">$gn_coord") || die sraXlib::Functions::print_errf($gn_coord,"o");
 	print F1 "Locus_ID\tGenome\tContig\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\t";
 	print F1 "Num_gaps\tCoverage_p\tIdentity_p\tAMR_Class\tAccession_ID\tGene_description\tAMR_detection_model\tMetadata\n";
 	my $cog_id_dtctd_gn = "$d_out/Results/Summary_files/sraX_blastx_output.tsv";
-	open(F6,">$cog_id_dtctd_gn") || die "[ERROR]: The output file $cog_id_dtctd_gn cannot be created: $!\n";
+	open(F6,">$cog_id_dtctd_gn") || die sraXlib::Functions::print_errf($cog_id_dtctd_gn,"o");
 	print F6 "Locus ID\tFasta file\tContig\tStart query\tEnd query\tARG\tCoverage\tStatus hit\t";
 	print F6 "# gaps\tCoverage (%)\tIdentity (%)\tAMR Class\tAccession ID\tGene description\tAMR detection model\tMetadata\n";
 
@@ -463,7 +463,7 @@ sub f_parse {
 	close F6;
 
 	my $prlg = "$d_out/Results/Summary_files/sraX_putative_paralogs.tsv";
-	open(F2,">$prlg") || die "[ERROR]: The output file $prlg cannot be created: $!\n";
+	open(F2,">$prlg") || die sraXlib::Functions::print_errf($prlg,"o");
 	print F2 "Locus_ID\tFasta_file\tContig\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\t";
 	print F2 "Num_gaps\tCoverage_%\tIdentity_%\tAMR_Database\tAccession_ID\tGene_description\tAMR_Type\n";
 	foreach my $gnm (sort {lc $a cmp lc $b} keys %plgs){
@@ -478,7 +478,7 @@ sub f_parse {
 	close F2;
 
 	my $gn_dtcd = "$d_out/Results/Summary_files/sraX_detected_ARGs.tsv";
-	open(F3,">$gn_dtcd") || die "[ERROR]: The output file $gn_dtcd cannot be created: $!\n";
+	open(F3,">$gn_dtcd") || die sraXlib::Functions::print_errf($gn_dtcd,"o");
 	print F3 "Locus ID\t# Sequences\tARG\tCoverage (%)\tIdentity (%)\tDrug class\tGene accession ID\tGene description\tAMR detection model\n";
 
 	my %non_prlg;
@@ -522,7 +522,7 @@ sub f_parse {
 	print "\nThe creation of HTML files plus embedded summary plots started at:\t$d_start_time_sp\n\n";
 
 	my $gn_dtcdhtml = "$d_out/Results/sraX_analysis.html";
-	open(HTML,">$gn_dtcdhtml") || die "[ERROR]: The output file $gn_dtcdhtml cannot be created: $!\n";
+	open(HTML,">$gn_dtcdhtml") || die sraXlib::Functions::print_errf($gn_dtcdhtml,"o");
 
 	print HTML "<html>\n<head>\n</head>\n<body>\n\n";
 	print HTML "<table id='detected_genes'><tbody><tr bgcolor=#DEDEDE><td style='text-align:center' colspan=11><b>Detected ARGs</b>";
@@ -609,7 +609,7 @@ sub f_parse {
 	my $cog_row = 0;
 	my %uniq_cog_5;
 	foreach my $cog_id (sort {$a<=>$b} keys %filt_last){
-		open(GN_HTML,">$d_out/Analysis/Homology_Search/Individual_ARGs/Locus_$cog_id.html") || die "[ERROR]: The output file 'Locus_$cog_id.html' cannot be created: $!\n";
+		open(GN_HTML,">$d_out/Analysis/Homology_Search/Individual_ARGs/Locus_$cog_id.html") || die sraXlib::Functions::print_errf("$d_out/Analysis/Homology_Search/Individual_ARGs/Locus_$cog_id.html","o");
 
 		print GN_HTML "<html>\n<head>\n</head>\n<body>\n\n";
 		print GN_HTML "<table id='detected_genes'><tbody><tr bgcolor=#DEDEDE><td style='text-align:center' colspan=13><b>Detected ARGs</b>";
@@ -657,11 +657,11 @@ sub f_parse {
 	}
 
 	my $htmp_pa = "$d_out/Results/Plots/Heatmaps/sraX_hmPA.tsv";
-	open(F4,">$htmp_pa") || die "[ERROR]: The output file $htmp_pa cannot be created: $!\n";
+	open(F4,">$htmp_pa") || die sraXlib::Functions::print_errf($htmp_pa,"o");
 	print F4 "Locus_ID\tNum_of_Seqs\tAMR_gene\tATB_Class\tAccession_ID\tGene_description\tAMR_detection_model\t";
 	print F4 join("\t", sort { lc $a cmp lc $b } keys %gnm_id)."\n";
 	my $htmp_id = "$d_out/Results/Plots/Heatmaps/sraX_hmSI.tsv";
-	open(F5,">$htmp_id") || die "[ERROR]: The output file $htmp_id cannot be created: $!\n";
+	open(F5,">$htmp_id") || die sraXlib::Functions::print_errf($htmp_id,"o");
 	print F5 "Locus_ID\tNum_of_Seqs\tAMR_gene\tATB_Class\tAccession_ID\tGene_description\tAMR_detection_model\t";
 	print F5 join("\t", sort { lc $a cmp lc $b } keys %gnm_id)."\n";
 	my $num_gnms = keys %gnm_id;
@@ -730,7 +730,7 @@ sub f_parse {
 	print HTML "<img src='Plots/Proportion_ARG/$snp_prop' alt='SNP_Type' align:center>\n";
 	print HTML "</div>\n";
 
-	open (CTX, "$gn_coord") || die "[ERROR]: The output file 'sraX_gene_coord.tsv' is not inside its folder: $!\n";
+	open (CTX, "$gn_coord") || die sraXlib::Functions::print_errf($gn_coord,"i");
 	my %gnm_ctx;
 	while (<CTX>){
 		chomp;
@@ -748,7 +748,7 @@ sub f_parse {
 	my $arg_row = 0;
 	foreach my $gnm (sort {lc $a cmp lc $b} keys %gnm_ctx){
 		print HTML "<td><a href=Plots/Genomic_Context/$gnm.html target='_blank'>$gnm</a></td></tr>\n";
-		open(CTX_HTML,">$d_out/Results/Plots/Genomic_Context/$gnm.html") || die "[ERROR]: The output file '$gnm.html' cannot be created: $!\n";
+		open(CTX_HTML,">$d_out/Results/Plots/Genomic_Context/$gnm.html") || die sraXlib::Functions::print_errf("$d_out/Results/Plots/Genomic_Context/$gnm.html","o");
 		print CTX_HTML "<html>\n<head>\n</head>\n<body>\n\n";
 		print CTX_HTML "<table id='gnm_ctx'><tbody><tr bgcolor=#DEDEDE><td style='text-align:center' colspan=11><b>Detected ARGs</b>";
 		print CTX_HTML "<tr style='text-align:center' bgcolor=#DEDEDE><td><b>Locus ID<b><td><b>Genome<b><td><b>Contig<b><td><b>Start query<b>";
@@ -788,8 +788,7 @@ sub f_parse {
 		print CTX_HTML "</div>\n";
 		print CTX_HTML "<table border=0><tr><td></td>\n";
 		print CTX_HTML "<table border=0><tr><td></td>\n";
-		my $f_pres = sraXlib::Functions::check_file("$d_out/Results/Plots/Genomic_Context/$gnm.b.png");
-		next unless($f_pres == 1);
+		next unless (sraXlib::Functions::check_file("$d_out/Results/Plots/Genomic_Context/$gnm.b.png") == 1);
 		print CTX_HTML "<h2 align=center>Extensive  information of very distant (15000 bp) ARGs</h2>\n";
 		print CTX_HTML "<div style='width:125%; height: auto; text-align:center'>\n";
 		print CTX_HTML "<img src='$gnm.b.png' align:center>\n";

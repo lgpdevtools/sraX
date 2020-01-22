@@ -221,7 +221,7 @@ my $t_stop_time_cp = sraXlib::Functions::running_time;
 print "\n\tThe completion of 'sraX' analysis took ";
 printf("%.2f ", $t_stop_time_cp - $t_start_time_cp);
 print " wallclock secs\n\n";
-open	LOG, ">$d_out_abs/Log/sraX_log.txt" or die sraXlib::Functions::print_errf("$d_out_abs/Log/sraX_log.txt","o");
+open	LOG, ">$d_out_abs/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out_abs/Log/sraX_log.txt","o");
 print	LOG "$f_log\n";
 print	LOG "\n\tThe completion of 'sraX' analysis took ";
 printf	LOG ("%.2f ", $t_stop_time_cp - $t_start_time_cp);

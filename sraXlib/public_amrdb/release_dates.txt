@@ -1,0 +1,4 @@
+AMR_DB	Version	Date
+CARD	3.0.7	2019-10-29
+ARGminer	1.1.0	2019-04-24
+BacMet	2.0   2018-03-11

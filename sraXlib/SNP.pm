@@ -49,7 +49,7 @@ sub get_SNPs{
 	my $msa = "$abs_path/$locus.aligned";
 
 	my $hdr_ref = "";
-	open(REF,"$abs_path/$sq_file") or die "Cannot open input fasta file:$!\n";
+	open(REF,"$abs_path/$sq_file") || die sraXlib::Functions::print_errf("$abs_path/$sq_file","i");
 	while(<REF>){
 		chomp;
 		if(/^>/){
@@ -68,9 +68,6 @@ sub get_SNPs{
 		unless($sq_type eq 'DNA'){$sq_type='Protein';}
 		system("clustalo --in $abs_path/$sq_file --infmt=fa --out $msa --outfmt=fa --seqtype=$sq_type --threads=6 --force ");
 		system("mv $msa $abs_path/$sq_file");
-	}elsif($msa_algth eq "prank"){
-		system("prank -d=$abs_path/$sq_file -o=$msa -f=fasta -quiet");
-		system("mv $msa $abs_path/$sq_file");
 	}elsif($msa_algth eq "mafft"){
 		system("mafft --maxiterate 1000 --globalpair --thread 6 --quiet $abs_path/$sq_file > $msa");
 		system("mv $msa $abs_path/$sq_file");
@@ -78,7 +75,7 @@ sub get_SNPs{
 		die "[ERROR] The selected MSA algorithm is not currently employed by sraX";
 	}
 
-	open (OUT, ">$abs_path/$locus"."_snps.tsv") or die "The output file can not be created: $!\n";
+	open (OUT, ">$abs_path/$locus"."_snps.tsv") || die sraXlib::Functions::print_errf("$abs_path/$locus","o");
 
 	my %seq;
 	my $hdr;
@@ -86,7 +83,7 @@ sub get_SNPs{
 	my $sq_ref_idx = "";
 	my $sq_num = 0;
 	my @sq_num;
-	open(INPUT,"$abs_path/$sq_file") or die "Cannot open input fasta file:$!\n";
+	open(INPUT,"$abs_path/$sq_file") || die sraXlib::Functions::print_errf("$abs_path/$sq_file","i");
 	while(<INPUT>){
 		chomp;
 		if(/^>/){
@@ -396,7 +393,7 @@ sub get_SNPs{
 	}
 
 	my $html = "$abs_path/SNP/$locus.html";
-	open MSA_HTML, ">$html" or die "Can't open $html: $!";
+	open MSA_HTML, ">$html" || die sraXlib::Functions::print_errf($html,"o");
 	print MSA_HTML "<html>\n<head>\n</head>\n<body>\n\n";
 
 	unless($aro_id eq "Not_indicated"){
