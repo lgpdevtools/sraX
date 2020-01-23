@@ -96,89 +96,76 @@ unless ($opt{input}){
 my $t_start_time_cp = sraXlib::Functions::running_time;
 
 if($opt{seqal} ne 'dblastx' && $opt{seqal} ne 'blastx'){
-	$f_log .= sraXlib::Functions::print_e('p', $opt{seqal});
-	$err_msg = sraXlib::Functions::print_e('p', $opt{seqal});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_e('s', $opt{seqal});
+	print STDERR sraXlib::Functions::print_e('s', $opt{seqal}) if $opt{debug};
 	die usage();
 }else{
-	$f_log .= sraXlib::Functions::print_ne('p', $opt{seqal});
-	$err_msg = sraXlib::Functions::print_ne('p', $opt{seqal});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_ne('s', $opt{seqal});
+	print STDERR sraXlib::Functions::print_ne('s', $opt{seqal}) if $opt{debug};
 }
 
 if($opt{msa} ne 'muscle' && $opt{msa} ne 'clustalo' && $opt{msa} ne 'mafft'){
-	$f_log .= sraXlib::Functions::print_e('p', $opt{msa});
-	$err_msg = sraXlib::Functions::print_e('p', $opt{msa});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_e('a', $opt{msa});
+	print STDERR sraXlib::Functions::print_e('a', $opt{msa}) if $opt{debug};
 	die usage();
 }else{
-	$f_log .= sraXlib::Functions::print_ne('p', $opt{msa});
-	$err_msg = sraXlib::Functions::print_ne('p', $opt{msa});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_ne('a', $opt{msa});
+	print STDERR sraXlib::Functions::print_ne('a', $opt{msa}) if $opt{debug};
 }
 
 if($opt{dbsearch} ne 'basic' && $opt{dbsearch} ne 'ext' && $opt{dbsearch} ne 'extensive'){
-	$f_log .= sraXlib::Functions::print_e('p', $opt{dbsearch});
-	$err_msg = sraXlib::Functions::print_e('p', $opt{dbsearch});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_e('db', $opt{dbsearch});
+	print STDERR sraXlib::Functions::print_e('db', $opt{dbsearch}) if $opt{debug};
 	die usage();
 }else{
-	$f_log .= sraXlib::Functions::print_ne('p', $opt{dbsearch});
-	$err_msg = sraXlib::Functions::print_ne('p', $opt{dbsearch});
-	print STDERR $err_msg if $opt{debug};
+	$f_log .= sraXlib::Functions::print_ne('db', $opt{dbsearch});
+	print STDERR sraXlib::Functions::print_ne('db', $opt{dbsearch}) if $opt{debug};
 }
 
 if( $opt{eval} < 0){
 	$f_log .= sraXlib::Functions::print_e('e', $opt{eval});
-	$err_msg = sraXlib::Functions::print_e('e', $opt{eval});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_e('e', $opt{eval}) if $opt{debug};
 	die usage();
 }else{
 	$f_log .= sraXlib::Functions::print_ne('e', $opt{eval});
-	$err_msg = sraXlib::Functions::print_ne('e', $opt{eval});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_ne('e', $opt{eval}) if $opt{debug};
 }
 
 if( $opt{id} > 100 || $opt{id} < 0){
 	$f_log .= sraXlib::Functions::print_e('id', $opt{id});
-	$err_msg = sraXlib::Functions::print_e('id', $opt{id});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_e('id', $opt{id}) if $opt{debug};
 	die usage();
 }else{
 	$f_log .= sraXlib::Functions::print_ne('id', $opt{id});
-	$err_msg = sraXlib::Functions::print_ne('id', $opt{id});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_ne('id', $opt{id}) if $opt{debug};
 }
 
 if( $opt{aln_cov} > 100 || $opt{aln_cov} < 0){
 	$f_log .= sraXlib::Functions::print_e('c', $opt{aln_cov});
-	$err_msg = sraXlib::Functions::print_e('c', $opt{aln_cov});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_e('c', $opt{aln_cov}) if $opt{debug};
 	die usage();
 }else{
 	$f_log .= sraXlib::Functions::print_ne('c', $opt{aln_cov});
-	$err_msg = sraXlib::Functions::print_ne('c', $opt{aln_cov});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_ne('c', $opt{aln_cov}) if $opt{debug};
 }
 
 if( $opt{threads} > 12 || $opt{threads} < 4){
 	$f_log .= sraXlib::Functions::print_e('t', $opt{threads});
-	$err_msg = sraXlib::Functions::print_e('t', $opt{threads});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_e('t', $opt{threads}) if $opt{debug};
 	die usage();
 }else{
 	$f_log .= sraXlib::Functions::print_ne('t', $opt{threads});
-	$err_msg = sraXlib::Functions::print_ne('t', $opt{threads});
-	print STDERR $err_msg if $opt{debug};
+	print STDERR sraXlib::Functions::print_ne('t', $opt{threads}) if $opt{debug};
 }
 
 unless ($opt{output}){
 	$opt{output}   = $opt{input}."_sraX_".$opt{id}."_".$opt{aln_cov}."_".$opt{seqal};
 	$d_out_abs = abs_path($opt{output});
+	print STDERR sraXlib::Functions::print_ne('o', $opt{output}) if $opt{debug};
 	$f_log .= sraXlib::Functions::print_ne('o', $opt{output});
 	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
 	unless($d_pres == 1){
-		print STDOUT "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+		print "\nThe results will be placed in the following directory: '$opt{output}'.\n" if $opt{debug};
 		$f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 	}else{
 		$err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
@@ -192,7 +179,7 @@ unless ($opt{output}){
 	$d_out_abs = abs_path($opt{output});	
 	my $d_pres = sraXlib::Functions::check_dir($d_out_abs);
 	unless($d_pres == 1){
-		print STDOUT "\nThe results will be placed in the following directory: '$opt{output}'.\n";
+		print "\nThe results will be placed in the following directory: '$opt{output}'.\n" if $opt{debug};
 		$f_log .= "\nThe results will be placed in the following directory: '$opt{output}'.\n";
 	}else{
 		$err_msg  = "\n[Warn]: The directory '$opt{output}' is already present, implying that the script has already been run.\n";
@@ -206,6 +193,9 @@ unless ($opt{output}){
 
 sraXlib::Dir::build_dir_str($d_out_abs);
 
+open STDOUT, ">>$d_out_abs/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out_abs/Log/sraX_log.txt","o");
+print STDOUT "$f_log\n";
+
 unless ($opt{user_sq}){
 	sraXlib::DB::get_publ_db($d_out_abs,"nsq",$opt{dbsearch});
 }else{
@@ -213,20 +203,20 @@ unless ($opt{user_sq}){
 	sraXlib::DB::get_user_db($d_out_abs,$opt{user_sq});
 }
 
-$f_log .= sraXlib::Blast::set_prmt($d_gnm_abs,$d_out_abs,$opt{seqal},$opt{eval},$opt{id},$opt{aln_cov},$opt{threads});
+$err_msg .= sraXlib::Blast::set_prmt($d_gnm_abs,$d_out_abs,$opt{seqal},$opt{eval},$opt{id},$opt{aln_cov},$opt{threads});
+print STDERR $err_msg if $opt{debug};
+
 sraXlib::Parse::f_parse($d_gnm_abs,$d_out_abs,$opt{id},$opt{aln_cov});
 sraXlib::SNP::sq_variants($d_out_abs,$opt{msa});
 
 my $t_stop_time_cp = sraXlib::Functions::running_time;
-print "\n\tThe completion of 'sraX' analysis took ";
-printf("%.2f ", $t_stop_time_cp - $t_start_time_cp);
-print " wallclock secs\n\n";
-open	LOG, ">$d_out_abs/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out_abs/Log/sraX_log.txt","o");
-print	LOG "$f_log\n";
-print	LOG "\n\tThe completion of 'sraX' analysis took ";
-printf	LOG ("%.2f ", $t_stop_time_cp - $t_start_time_cp);
-print	LOG " wallclock secs\n\n";
-close	LOG;
+print  STDERR "\n\tThe completion of 'sraX' analysis took " if $opt{debug};
+printf STDERR ("%.2f ", $t_stop_time_cp - $t_start_time_cp) if $opt{debug};
+print  STDERR " wallclock secs\n\n" if $opt{debug};
+print  STDOUT "\n\tThe completion of 'sraX' analysis took ";
+printf STDOUT ("%.2f ", $t_stop_time_cp - $t_start_time_cp);
+print  STDOUT " wallclock secs\n\n";
+close  STDOUT;
 
 sub usage{
 	warn <<EOF

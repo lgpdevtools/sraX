@@ -24,8 +24,8 @@ sub get_publ_db {
 	my ($stop_time_db,$amr_db_dna,$amr_db_rna,$amr_db_aa);
 	my $start_time_db = sraXlib::Functions::running_time;
 
-	print STDOUT "\nThe compilation process of the local ARG DB started at:\t$d_start_time\n\n";
-	print STDOUT "\n\tThe downloading process of 'CARD' data started at:\t$d_start_time\n\n";
+	print "\nThe compilation process of the local ARG DB started at:\t$d_start_time\n\n";
+	print "\n\tThe downloading process of 'CARD' data started at:\t$d_start_time\n\n";
 
 	my $ua   = LWP::UserAgent->new( ssl_opts => { verify_hostname => 0, } );
 	my $g_card = $ua->get("https://card.mcmaster.ca/download/0/broadstreet-v3.0.7.tar.gz");
@@ -212,27 +212,27 @@ sub get_publ_db {
 	close FASTA_AA;
 
 	if(sraXlib::Functions::check_file($amr_db_dna) == 1){
-		print STDOUT "\tNucleotide sequence data from 'CARD' was successfully fetched\n";
-		print STDOUT "\tTotal number of non-redundant DNA sequences: ";
+		print "\tNucleotide sequence data from 'CARD' was successfully fetched\n";
+		print "\tTotal number of non-redundant DNA sequences: ";
 		system("grep '>' $amr_db_dna | wc -l");
 	}
 
 	if(sraXlib::Functions::check_file($amr_db_rna) == 1){
-		print STDOUT "\tTotal number of non-redundant RNA sequences: ";
+		print "\tTotal number of non-redundant RNA sequences: ";
 		system("grep '>' $amr_db_rna | wc -l");
 	}
 
 	if(sraXlib::Functions::check_file($amr_db_aa) == 1){
-		print STDOUT "\n\tProtein sequence data from 'CARD' was successfully fetched\n";
-		print STDOUT "\tTotal number of non-redundant AA sequences: ";
+		print "\n\tProtein sequence data from 'CARD' was successfully fetched\n";
+		print "\tTotal number of non-redundant AA sequences: ";
 		system("grep '>' $amr_db_aa | wc -l");
 	}
 
 	$stop_time_db = sraXlib::Functions::running_time;
 
-	print STDOUT "\n\tThe collection of FASTA sequences from 'CARD' took ";
+	print "\n\tThe collection of FASTA sequences from 'CARD' took ";
 	printf("%.2f ", $stop_time_db - $start_time_db);
-	print STDOUT " wallclock secs\n\n";
+	print " wallclock secs\n\n";
 
 	unless ($dbsearch !~m/ext|extensive/){
 		$amr_db_aa = "$d_out/tmp/argminer_aa.fa";
@@ -242,7 +242,7 @@ sub get_publ_db {
 		my ($dna_t,$aa_t) = (0,0);
 
 		$d_start_time = sraXlib::Functions::print_time;
-		print STDOUT "\n\tThe downloading process of 'ARGminer' data started at:\t$d_start_time\n\n";
+		print "\n\tThe downloading process of 'ARGminer' data started at:\t$d_start_time\n\n";
 
 		open(FASTA_AA,">$amr_db_aa") || die sraXlib::Functions::print_errf($amr_db_aa,"o");
 
@@ -326,20 +326,20 @@ sub get_publ_db {
 		close FASTA_AA;
 
 		if(sraXlib::Functions::check_file($amr_db_aa) == 1){
-			print STDOUT "\tTotal number of non-redundant AA sequences: $aa_t\n";
+			print "\tTotal number of non-redundant AA sequences: $aa_t\n";
 		}
 
 		$stop_time_db = sraXlib::Functions::running_time;
 
-		print STDOUT "\n\tThe collection of FASTA sequences from 'ARGminer' took ";
+		print "\n\tThe collection of FASTA sequences from 'ARGminer' took ";
 		printf("%.2f ", $stop_time_db - $start_time_db);
-		print STDOUT " wallclock secs\n\n";
+		print " wallclock secs\n\n";
 
 		$amr_db_aa = "$d_out/tmp/bacmet_aa.fa";
 		($gn_id,$acc_id,$gn_def,$det_mod,$amr_class,$m_dat,$nh,$dna_t,$aa_t) = ("","","","","","","",0,0);
 
 		$d_start_time = sraXlib::Functions::print_time;
-		print STDOUT "\n\tThe downloading process of 'BacMet' data started at:\t$d_start_time\n\n";
+		print "\n\tThe downloading process of 'BacMet' data started at:\t$d_start_time\n\n";
 
 		open(FASTA_AA,">$amr_db_aa") || die sraXlib::Functions::print_errf($amr_db_aa,"o");
 
@@ -411,14 +411,14 @@ sub get_publ_db {
 		close FASTA_AA;
 
 		if(sraXlib::Functions::check_file($amr_db_aa) == 1){
-			print STDOUT "\tTotal number of non-redundant AA sequences: $aa_t\n";
+			print "\tTotal number of non-redundant AA sequences: $aa_t\n";
 		}
 
 		$stop_time_db = sraXlib::Functions::running_time;
 
-		print STDOUT "\n\tThe collection of FASTA sequences from 'BacMet' took ";
+		print "\n\tThe collection of FASTA sequences from 'BacMet' took ";
 		printf("%.2f ", $stop_time_db - $start_time_db);
-		print STDOUT " wallclock secs\n\n";
+		print " wallclock secs\n\n";
 	}
 	unless ($usr_or_not eq "usq"){
 		stop_download_amr_db($t_start_time, $d_out);
@@ -431,7 +431,7 @@ sub get_user_db {
 	$d_start_time = sraXlib::Functions::print_time;
 
 	if(sraXlib::Functions::check_file($user_db) == 1){
-		print STDOUT "\n\tThe gathering process of 'USER' data started at:\t$d_start_time\n\n";
+		print "\n\tThe gathering process of 'USER' data started at:\t$d_start_time\n\n";
 		my %add_usr;
 		my $nh;
 		open(FASTA,$user_db) || die sraXlib::Functions::print_errf($user_db,"i");
@@ -497,9 +497,9 @@ sub get_user_db {
 		print "\tProtein sequence data from 'USER' was successfully gathered\n";
 		print "\tTotal number of AA sequences: $aa_t\n";
 		my $stop_time_user_db = sraXlib::Functions::running_time;
-		print STDOUT "\n\tThe collection of FASTA sequences from 'USER' (file: " .$user_db.") took ";
+		print "\n\tThe collection of FASTA sequences from 'USER' (file: " .$user_db.") took ";
 		printf("%.2f ", $stop_time_user_db - $start_time_user_db);
-		print STDOUT " wallclock secs\n\n";
+		print " wallclock secs\n\n";
 		stop_download_amr_db($t_start_time, $d_out);
 	}else{
 		return;
@@ -535,20 +535,20 @@ sub stop_download_amr_db{
 	close ARG_AA;
 
 	my $t_stop_time_f = sraXlib::Functions::running_time;
-	print STDOUT "\nThe collection of all selected sequence repositories took ";
+	print "\nThe collection of all selected sequence repositories took ";
 	printf("%.2f ", $t_stop_time_f - $t_start_time_f);
-	print STDOUT " wallclock secs\n\n";
+	print " wallclock secs\n\n";
 	my $d_stop_time = sraXlib::Functions::print_time;
-	print STDOUT "\n\nThe final ARG DB is composed of the following FASTA sequences:\n";
-	print STDOUT "-" x 63 . "\n"; 
+	print "\n\nThe final ARG DB is composed of the following FASTA sequences:\n";
+	print "-" x 63 . "\n"; 
 	print "Total number of compiled DNA sequences: ";
 	system("grep '>' $amr_dna | wc -l");
 	print "Total number of compiled RNA sequences: ";
 	system("grep '>' $amr_rna | wc -l");
 	print "Total number of compiled AA sequences: ";
 	system("grep '>' $amr_aa | wc -l");
-	print STDOUT "-" x 63;
-	print STDOUT "\n\nThe compilation process of the ARG DB finished at:\t$d_stop_time\n\n";
+	print "-" x 63;
+	print "\n\nThe compilation process of the ARG DB finished at:\t$d_stop_time\n\n";
 }
 
 1;

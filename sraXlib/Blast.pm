@@ -17,7 +17,6 @@ my $rna_abs_path= "";
 sub set_prmt {
 	my ($d_gnm,$d_out,$bprog,$eval,$idty,$cvrg,$thrd) = @_;
 
-	my $f_out = "$d_out/Analysis/Homology_Search/sraX_hs.tsv";
 	$min_eval = $eval;
 	$min_idty = $idty;
 	$min_cvrg = $cvrg;
@@ -26,6 +25,10 @@ sub set_prmt {
 	$aa_abs_path	= "$d_out/ARG_DB/arg_aa.fa";
 	$dna_abs_path	= "$d_out/ARG_DB/arg_dna.fa";
 	$rna_abs_path 	= "$d_out/ARG_DB/arg_rna.fa";
+	
+	my $f_out = "$d_out/Analysis/Homology_Search/sraX_hs.tsv";
+	open (OUT, ">$f_out") || die sraXlib::Functions::print_errf($f_out,"o");
+        print OUT "Fasta_file\tContig_ID\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\tNum_gaps\tCoverage_%\tIdentity_%\tATB_Drug_Class\tAccession_ID\tAMR_gene_definition\tAMR_detection_model\tMeta_data\n";
 
 	if($bprog eq "dblastx"){
 		system("diamond makedb --in $aa_abs_path -d $aa_abs_path --quiet");
@@ -36,13 +39,10 @@ sub set_prmt {
 	}else{}
 
 	my $msg = "";
-	print STDOUT "\nThe parsed data is written in the '$f_out' output file.\n";
-	print STDOUT "Carrying out the execution of sraX!\n";
+	print "\nThe parsed data is written in the '$f_out' output file.\n";
+	print "Carrying out the execution of sraX!\n";
 	$msg .= "\nThe parsed data is written in the '$f_out' output file.\n"; 
 	$msg .= "Carrying out the execution of sraX!\n";
-
-	open (OUT, ">$f_out") || die sraXlib::Functions::print_errf($f_out,"o");
-	print OUT "Fasta_file\tContig_ID\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\tNum_gaps\tCoverage_%\tIdentity_%\tATB_Drug_Class\tAccession_ID\tAMR_gene_definition\tAMR_detection_model\tMeta_data\n";
 
 	$msg .=	homology_seach($d_gnm,$d_out,$bprog);
 
@@ -54,12 +54,12 @@ sub homology_seach{
 
 	my $t_start_time = sraXlib::Functions::running_time;
 	my $d_start_time = sraXlib::Functions::print_time;
-	print STDOUT "\nThe homology search process started at:\t$d_start_time\n\n";
+	print "\nThe homology search process started at:\t$d_start_time\n\n";
 	my $msg = "\nThe homology search process started at:\t$d_start_time\n\n";
 
 	my $fasta = sraXlib::Functions::load_files($d_gnm, ["fasta", "fas", "fa", "fna"]);
 	my $t_gnm = scalar @$fasta;
-	print STDOUT "\tNumber of Genomes to analyze: $t_gnm\n";
+	print "\tNumber of Genomes to analyze: $t_gnm\n";
 	$msg .= "\tNumber of Genomes to analyze: $t_gnm\n";
 	foreach my $fasta (@$fasta){
 		my $pid = $pm->start and next;
@@ -68,7 +68,7 @@ sub homology_seach{
 		my $bprog_out = "$d_out/Analysis/Homology_Search/Individual_Genomes/$anlzd_fa";
 		$fasta = "$d_gnm/$fasta";
 
-		print STDOUT "\tThe genome $anlzd_fa is being analyzed\n";
+		print "\tThe genome $anlzd_fa is being analyzed\n";
 		$msg .= "\tThe genome $anlzd_fa is being analyzed\n";
 
 		if($bprog eq "dblastx"){
@@ -185,9 +185,9 @@ sub homology_seach{
 
 		my $stop_time_gnm = sraXlib::Functions::running_time;
 		my $span_time_gnm = ($stop_time_gnm - $start_time_gnm);
-		print STDOUT "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: ";
+		print "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: ";
 		printf("%.2f ", $stop_time_gnm - $start_time_gnm);
-		print STDOUT " wallclock secs\n";
+		print " wallclock secs\n";
 		$msg .= "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: $span_time_gnm wallclock secs\n";
 		$pm->finish(0);
 	}
@@ -206,8 +206,10 @@ sub homology_seach{
 	my $t_stop_time = sraXlib::Functions::running_time;
 	my $t_span_time = ($t_stop_time - $t_start_time);
 	my $d_stop_time = sraXlib::Functions::print_time;
-	print STDOUT "\n\tThe homology search of AMR genes in the complete dataset took $t_span_time wallclock secs\n\n";
-	print STDOUT "\nThe homology search process finished at:\t$d_stop_time\n\n";
+	print "\n\tThe homology search of AMR genes in the complete dataset took ";
+	printf ("%.2f ", $t_span_time );
+	print " wallclock secs\n\n";
+	print "\nThe homology search process finished at:\t$d_stop_time\n\n";
 
 	$msg .= "\n\tThe homology search of AMR genes in the complete dataset took $t_span_time wallclock secs\n\n";
 	$msg .= "\nThe homology search process finished at:\t$d_stop_time\n\n";
