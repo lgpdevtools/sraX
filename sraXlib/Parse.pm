@@ -9,7 +9,7 @@ use sraXlib::Functions;
 sub f_parse {
 	my ($d_gnm,$d_out,$idty,$cvrg)=@_;
 
-
+	open LOG, ">>$d_out/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out/Log/sraX_log.txt","o");
 	my $t_start_time_sf = sraXlib::Functions::running_time;
 	my $d_start_time_sf = sraXlib::Functions::print_time;
 	print "\nThe creation of summary files started at:\t$d_start_time_sf\n\n";
@@ -810,10 +810,19 @@ sub f_parse {
 	print "\nThe creation of sequence clusters started at:\t$d_start_time_cls\n\n";
 	print "\n\n\tClustering of homologous sequences for SNP detection\n";
 	print "\t                    'ARG ID'\t\t  'Cluster ID':\n";
+	
+	print LOG "\n\tThe creation of HTML files plus embedded summary plots took ";
+	printf LOG ("%.2f ", $t_stop_time_sp - $t_start_time_sp);
+	print LOG " wallclock secs\n\n";
+	print LOG "\nThe creation of HTML files plus embedded summary plots finished at:\t$d_stop_time_sp\n\n";
+	print LOG "\nThe creation of sequence clusters started at:\t$d_start_time_cls\n\n";
+	print LOG "\n\n\tClustering of homologous sequences for SNP detection\n";
+	print LOG "\t                    'ARG ID'\t\t  'Cluster ID':\n";
 
 	foreach my $amr_gn (sort {lc $a cmp lc $b} keys %gnm_table){
 		my ($cog_id,$num_sq,$amr_gn,$amr_db,$amr_gn_acc) = split(/\t/, $gnm_table{$amr_gn});
 		print "\tProcessing the gene '$amr_gn'\t\t=> $cog_id\n";
+		print LOG "\tProcessing the gene '$amr_gn'\t\t=> $cog_id\n";
 		for my $i ( 0 .. $#{ $msa{$cog_id} } ){
 			my @dat = split (/\t/, $msa{$cog_id}[$i]);
 			parse_fasta($d_gnm,$d_out,$cog_id,$dat[0],$dat[4],$dat[1],$dat[2],$dat[3],$dat[11],$dat[13]);
@@ -826,8 +835,10 @@ sub f_parse {
 	print " wallclock secs\n\n";
 	my $d_stop_time_cls = sraXlib::Functions::print_time;
 	print "\nThe creation of sequence clusters finished at:\t$d_stop_time_cls\n\n";
-
-
+	print LOG "\n\tThe creation of sequence clusters took ";
+	printf LOG ("%.2f ", $t_stop_time_cls - $t_start_time_cls);
+	print LOG " wallclock secs\n\n";
+	print LOG "\nThe creation of sequence clusters finished at:\t$d_stop_time_cls\n\n";
 }
 
 my %not_dup_sq;

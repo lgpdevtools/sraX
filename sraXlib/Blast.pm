@@ -25,7 +25,7 @@ sub set_prmt {
 	$aa_abs_path	= "$d_out/ARG_DB/arg_aa.fa";
 	$dna_abs_path	= "$d_out/ARG_DB/arg_dna.fa";
 	$rna_abs_path 	= "$d_out/ARG_DB/arg_rna.fa";
-	
+
 	my $f_out = "$d_out/Analysis/Homology_Search/sraX_hs.tsv";
 	open (OUT, ">$f_out") || die sraXlib::Functions::print_errf($f_out,"o");
         print OUT "Fasta_file\tContig_ID\tStart_query\tEnd_query\tAMR_gene\tCoverage\tStatus_hit\tNum_gaps\tCoverage_%\tIdentity_%\tATB_Drug_Class\tAccession_ID\tAMR_gene_definition\tAMR_detection_model\tMeta_data\n";
@@ -38,29 +38,24 @@ sub set_prmt {
 		system("makeblastdb -in $rna_abs_path -dbtype nucl -hash_index -logfile '$rna_abs_path.log'");
 	}else{}
 
-	my $msg = "";
-	print "\nThe parsed data is written in the '$f_out' output file.\n";
-	print "Carrying out the execution of sraX!\n";
-	$msg .= "\nThe parsed data is written in the '$f_out' output file.\n"; 
-	$msg .= "Carrying out the execution of sraX!\n";
-
-	$msg .=	homology_seach($d_gnm,$d_out,$bprog);
-
-	return($msg);
+	homology_seach($d_gnm,$d_out,$bprog);
 }
 
 sub homology_seach{
 	my ($d_gnm,$d_out,$bprog) = @_;
 
+	open LOG, ">>$d_out/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out/Log/sraX_log.txt","o");
+
 	my $t_start_time = sraXlib::Functions::running_time;
 	my $d_start_time = sraXlib::Functions::print_time;
+	
 	print "\nThe homology search process started at:\t$d_start_time\n\n";
-	my $msg = "\nThe homology search process started at:\t$d_start_time\n\n";
+	print LOG "\nThe homology search process started at:\t$d_start_time\n\n";
 
 	my $fasta = sraXlib::Functions::load_files($d_gnm, ["fasta", "fas", "fa", "fna"]);
 	my $t_gnm = scalar @$fasta;
 	print "\tNumber of Genomes to analyze: $t_gnm\n";
-	$msg .= "\tNumber of Genomes to analyze: $t_gnm\n";
+	print LOG "\tNumber of Genomes to analyze: $t_gnm\n";
 	foreach my $fasta (@$fasta){
 		my $pid = $pm->start and next;
 		my $start_time_gnm = sraXlib::Functions::running_time;
@@ -69,7 +64,7 @@ sub homology_seach{
 		$fasta = "$d_gnm/$fasta";
 
 		print "\tThe genome $anlzd_fa is being analyzed\n";
-		$msg .= "\tThe genome $anlzd_fa is being analyzed\n";
+		print LOG "\tThe genome $anlzd_fa is being analyzed\n";
 
 		if($bprog eq "dblastx"){
 			system("diamond blastx --db '$aa_abs_path.dmnd' --query $fasta --out $bprog_out"."_aa.out --outfmt 6 qseqid sseqid gaps qcovhsp slen pident length mismatch gapopen qstart qend sstart send --top 50 --evalue $min_eval --id $min_idty --threads $num_thrd --more-sensitive --salltitles --sallseqid --quiet");
@@ -186,9 +181,12 @@ sub homology_seach{
 		my $stop_time_gnm = sraXlib::Functions::running_time;
 		my $span_time_gnm = ($stop_time_gnm - $start_time_gnm);
 		print "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: ";
-		printf("%.2f ", $stop_time_gnm - $start_time_gnm);
+		printf("%.2f ", $span_time_gnm);
 		print " wallclock secs\n";
-		$msg .= "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: $span_time_gnm wallclock secs\n";
+		print LOG "\tThe homology search of AMR genes in the " . $anlzd_fa . " genome took: ";
+		printf LOG ("%.2f ", $span_time_gnm);
+		print LOG " wallclock secs\n";
+		
 		$pm->finish(0);
 	}
 	$pm->wait_all_children;
@@ -210,11 +208,11 @@ sub homology_seach{
 	printf ("%.2f ", $t_span_time );
 	print " wallclock secs\n\n";
 	print "\nThe homology search process finished at:\t$d_stop_time\n\n";
+	print LOG "\n\tThe homology search of AMR genes in the complete dataset took ";
+	printf LOG ("%.2f ", $t_span_time );
+	print LOG " wallclock secs\n\n";
+	print LOG "\nThe homology search process finished at:\t$d_stop_time\n\n";
 
-	$msg .= "\n\tThe homology search of AMR genes in the complete dataset took $t_span_time wallclock secs\n\n";
-	$msg .= "\nThe homology search process finished at:\t$d_stop_time\n\n";
-
-	return($msg);
 }
 
 1;

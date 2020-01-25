@@ -21,11 +21,15 @@ my %sq_type;
 sub get_publ_db {
 	my ($d_out,$usr_or_not,$dbsearch) = @_;
 
+	open LOG, ">>$d_out/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out/Log/sraX_log.txt","o");
+
 	my ($stop_time_db,$amr_db_dna,$amr_db_rna,$amr_db_aa);
 	my $start_time_db = sraXlib::Functions::running_time;
 
 	print "\nThe compilation process of the local ARG DB started at:\t$d_start_time\n\n";
 	print "\n\tThe downloading process of 'CARD' data started at:\t$d_start_time\n\n";
+	print LOG "\nThe compilation process of the local ARG DB started at:\t$d_start_time\n\n";
+	print LOG "\n\tThe downloading process of 'CARD' data started at:\t$d_start_time\n\n";
 
 	my $ua   = LWP::UserAgent->new( ssl_opts => { verify_hostname => 0, } );
 	my $g_card = $ua->get("https://card.mcmaster.ca/download/0/broadstreet-v3.0.7.tar.gz");
@@ -34,6 +38,12 @@ sub get_publ_db {
 		print "\t".$g_card->status_line."\n";
 		print "\tSome problems have impeded the correct downloading of 'CARD' data.\n";
 		print "\tIn consequence, a previously pre-downloaded version of 'CARD' will be employed for the sraX analysis.\n\n";
+
+		print LOG "\tFailed to fetch data from 'CARD' AMR DB\n";
+		print LOG "\t".$g_card->status_line."\n";
+		print LOG "\tSome problems have impeded the correct downloading of 'CARD' data.\n";
+		print LOG "\tIn consequence, a previously pre-downloaded version of 'CARD' will be employed for the sraX analysis.\n\n";
+
 		system("cp $FindBin::Bin/sraXlib/public_amrdb/card.tar.gz $d_out/tmp/tmpcard.tar.gz");
 	}else{
 		open my $fh, ">", "$d_out/tmp/tmpcard.tar.gz";
@@ -233,6 +243,9 @@ sub get_publ_db {
 	print "\n\tThe collection of FASTA sequences from 'CARD' took ";
 	printf("%.2f ", $stop_time_db - $start_time_db);
 	print " wallclock secs\n\n";
+	print LOG "\n\tThe collection of FASTA sequences from 'CARD' took ";
+	printf LOG ("%.2f ", $stop_time_db - $start_time_db);
+	print LOG " wallclock secs\n\n";
 
 	unless ($dbsearch !~m/ext|extensive/){
 		$amr_db_aa = "$d_out/tmp/argminer_aa.fa";
@@ -243,6 +256,7 @@ sub get_publ_db {
 
 		$d_start_time = sraXlib::Functions::print_time;
 		print "\n\tThe downloading process of 'ARGminer' data started at:\t$d_start_time\n\n";
+		print LOG "\n\tThe downloading process of 'ARGminer' data started at:\t$d_start_time\n\n";
 
 		open(FASTA_AA,">$amr_db_aa") || die sraXlib::Functions::print_errf($amr_db_aa,"o");
 
@@ -253,14 +267,30 @@ sub get_publ_db {
 			print "\t".$g_argminer->status_line."\n";
 			print "\tSome problems have impeded the correct downloading of 'ARGminer' data.\n";
 			print "\tIn consequence, a previously pre-downloaded version of 'ARGminer' will be employed for the sraX analysis.\n\n";
+
+			print LOG "\tFailed to fetch data from 'ARGminer' AMR DB\n";
+			print LOG "\t".$g_argminer->status_line."\n";
+			print LOG "\tSome problems have impeded the correct downloading of 'ARGminer' data.\n";
+			print LOG "\tIn consequence, a previously pre-downloaded version of 'ARGminer' will be employed for the sraX analysis.\n\n";
 			system("cp $FindBin::Bin/sraXlib/public_amrdb/argminer_A.fa $d_out/tmp/tmpargminer.fa");
 		}else{
 			open my $fh, ">", "$d_out/tmp/tmpargminer.fa";
 			print {$fh} $g_argminer->content;
-
-			print "\tProtein sequence data from 'ARGminer' was successfully fetched\n";
-			print "\tTotal number of AA sequences: ";
-			system("grep '>' $d_out/tmp/tmpargminer.fa | wc -l");
+			my $fp  = sraXlib::Functions::check_file($fh);
+                        close $fh;
+                        unless($fp == 0){
+                                my $n_sq = 0;
+                                open(N_SQ,"$d_out/tmp/tmpargminer.fa") || die sraXlib::Functions::print_errf("$d_out/tmp/tmpargminer.fa","i");
+                                while(<N_SQ>){
+                                        chomp $_;
+                                        $n_sq++ if ( $_ =~ />/ );
+                                }
+                                close N_SQ;
+                                print "\tProtein sequence data from 'ARGminer' was successfully fetched\n";
+                                print "\tTotal number of AA sequences: $n_sq\n";
+                                print LOG "\tProtein sequence data from 'ARGminer' was successfully fetched\n";
+                                print LOG "\tTotal number of AA sequences: $n_sq\n";
+                        }
 		}
 
 		open(ARGminer,"$d_out/tmp/tmpargminer.fa") || die sraXlib::Functions::print_errf("$d_out/tmp/tmpargminer.fa","i");
@@ -327,6 +357,7 @@ sub get_publ_db {
 
 		if(sraXlib::Functions::check_file($amr_db_aa) == 1){
 			print "\tTotal number of non-redundant AA sequences: $aa_t\n";
+			print LOG "\tTotal number of non-redundant AA sequences: $aa_t\n";
 		}
 
 		$stop_time_db = sraXlib::Functions::running_time;
@@ -334,12 +365,16 @@ sub get_publ_db {
 		print "\n\tThe collection of FASTA sequences from 'ARGminer' took ";
 		printf("%.2f ", $stop_time_db - $start_time_db);
 		print " wallclock secs\n\n";
+		print LOG "\n\tThe collection of FASTA sequences from 'ARGminer' took ";
+		printf LOG ("%.2f ", $stop_time_db - $start_time_db);
+		print LOG " wallclock secs\n\n";
 
 		$amr_db_aa = "$d_out/tmp/bacmet_aa.fa";
 		($gn_id,$acc_id,$gn_def,$det_mod,$amr_class,$m_dat,$nh,$dna_t,$aa_t) = ("","","","","","","",0,0);
 
 		$d_start_time = sraXlib::Functions::print_time;
 		print "\n\tThe downloading process of 'BacMet' data started at:\t$d_start_time\n\n";
+		print LOG "\n\tThe downloading process of 'BacMet' data started at:\t$d_start_time\n\n";
 
 		open(FASTA_AA,">$amr_db_aa") || die sraXlib::Functions::print_errf($amr_db_aa,"o");
 
@@ -350,14 +385,30 @@ sub get_publ_db {
 			print "\t".$g_bacmet->status_line."\n";
 			print "\tSome problems have impeded the correct downloading of 'BacMet' data.\n";
 			print "\tIn consequence, a previously pre-downloaded version of 'BacMet' will be employed for the sraX analysis.\n\n";
+
+			print LOG "\tFailed to fetch data from 'BacMet' AMR DB\n";
+			print LOG "\t".$g_bacmet->status_line."\n";
+			print LOG "\tSome problems have impeded the correct downloading of 'BacMet' data.\n";
+			print LOG "\tIn consequence, a previously pre-downloaded version of 'BacMet' will be employed for the sraX analysis.\n\n";
 			system("cp $FindBin::Bin/sraXlib/public_amrdb/bacmet.fa $d_out/tmp/tmpbacmet.fa");
 		}else{
 			open my $fh, ">", "$d_out/tmp/tmpbacmet.fa";
 			print {$fh} $g_bacmet->content;
-
-			print "\tProtein sequence data from 'BacMet' was successfully fetched\n";
-			print "\tTotal number of AA sequences: ";
-			system("grep '>' $d_out/tmp/tmpbacmet.fa | wc -l");
+			my $fp	= sraXlib::Functions::check_file($fh);
+			close $fh;
+			unless($fp == 0){
+				my $n_sq = 0;
+				open(N_SQ,"$d_out/tmp/tmpbacmet.fa") || die sraXlib::Functions::print_errf("$d_out/tmp/tmpbacmet.fa","i");
+				while(<N_SQ>){
+					chomp $_;
+					$n_sq++ if ( $_ =~ />/ );
+				}
+				close N_SQ;
+				print "\tProtein sequence data from 'BacMet' was successfully fetched\n";
+				print "\tTotal number of AA sequences: $n_sq\n";
+				print LOG "\tProtein sequence data from 'BacMet' was successfully fetched\n";
+				print LOG "\tTotal number of AA sequences: $n_sq\n";
+			}
 		}
 
 		open(BacMet,"$d_out/tmp/tmpbacmet.fa") || die sraXlib::Functions::print_errf("$d_out/tmp/tmpbacmet.fa","i");
@@ -412,6 +463,7 @@ sub get_publ_db {
 
 		if(sraXlib::Functions::check_file($amr_db_aa) == 1){
 			print "\tTotal number of non-redundant AA sequences: $aa_t\n";
+			print LOG "\tTotal number of non-redundant AA sequences: $aa_t\n";
 		}
 
 		$stop_time_db = sraXlib::Functions::running_time;
@@ -419,6 +471,9 @@ sub get_publ_db {
 		print "\n\tThe collection of FASTA sequences from 'BacMet' took ";
 		printf("%.2f ", $stop_time_db - $start_time_db);
 		print " wallclock secs\n\n";
+		print LOG "\n\tThe collection of FASTA sequences from 'BacMet' took ";
+		printf LOG ("%.2f ", $stop_time_db - $start_time_db);
+		print LOG " wallclock secs\n\n";
 	}
 	unless ($usr_or_not eq "usq"){
 		stop_download_amr_db($t_start_time, $d_out);
@@ -493,6 +548,8 @@ sub get_user_db {
 		unless($dna_t == 0){
 			print "\tNucleotide sequence data from 'USER' was successfully gathered\n";
 			print "\tTotal number of DNA sequences: $dna_t\n";
+			print LOG "\tNucleotide sequence data from 'USER' was successfully gathered\n";
+			print LOG "\tTotal number of DNA sequences: $dna_t\n";
 		}
 		print "\tProtein sequence data from 'USER' was successfully gathered\n";
 		print "\tTotal number of AA sequences: $aa_t\n";
@@ -501,6 +558,11 @@ sub get_user_db {
 		printf("%.2f ", $stop_time_user_db - $start_time_user_db);
 		print " wallclock secs\n\n";
 		stop_download_amr_db($t_start_time, $d_out);
+		print LOG "\tProtein sequence data from 'USER' was successfully gathered\n";
+		print LOG "\tTotal number of AA sequences: $aa_t\n";
+		print LOG "\n\tThe collection of FASTA sequences from 'USER' (file: " .$user_db.") took ";
+		printf LOG ("%.2f ", $stop_time_user_db - $start_time_user_db);
+		print LOG " wallclock secs\n\n";
 	}else{
 		return;
 	}
@@ -517,14 +579,19 @@ sub stop_download_amr_db{
 	open(ARG_RNA,">$amr_rna") || die sraXlib::Functions::print_errf($amr_rna,"o");
 	open(ARG_AA,">$amr_aa") || die sraXlib::Functions::print_errf($amr_aa,"o");
 
+	my %t_sq_type;
 	foreach my $sq (keys %sq_type){
 		if (defined $sq_type{$sq}{dna} && defined $sq_type{$sq}{aa}){
 			print ARG_DNA ">$sq\n$sq_type{$sq}{dna}\n";
 			print ARG_AA ">$sq\n$sq_type{$sq}{aa}\n";
+			$t_sq_type{dna}++;
+			$t_sq_type{aa}++;
 		}elsif(defined $sq_type{$sq}{aa}){
 			print ARG_AA ">$sq\n$sq_type{$sq}{aa}\n";
+			$t_sq_type{aa}++;
 		}elsif(defined $sq_type{$sq}{rna}){
 			print ARG_RNA ">$sq\n$sq_type{$sq}{rna}\n";
+			$t_sq_type{rna}++;
 		}else{
 			next;
 		}
@@ -541,14 +608,21 @@ sub stop_download_amr_db{
 	my $d_stop_time = sraXlib::Functions::print_time;
 	print "\n\nThe final ARG DB is composed of the following FASTA sequences:\n";
 	print "-" x 63 . "\n"; 
-	print "Total number of compiled DNA sequences: ";
-	system("grep '>' $amr_dna | wc -l");
-	print "Total number of compiled RNA sequences: ";
-	system("grep '>' $amr_rna | wc -l");
-	print "Total number of compiled AA sequences: ";
-	system("grep '>' $amr_aa | wc -l");
+	print "Total number of compiled DNA sequences: $t_sq_type{dna}\n";
+	print "Total number of compiled RNA sequences: $t_sq_type{rna}\n";
+	print "Total number of compiled AA sequences: $t_sq_type{aa}\n";
 	print "-" x 63;
 	print "\n\nThe compilation process of the ARG DB finished at:\t$d_stop_time\n\n";
+	print LOG "\nThe collection of all selected sequence repositories took ";
+	printf LOG ("%.2f ", $t_stop_time_f - $t_start_time_f);
+	print LOG " wallclock secs\n\n";
+	print LOG "\n\nThe final ARG DB is composed of the following FASTA sequences:\n";
+	print LOG "-" x 63 . "\n"; 
+	print LOG "Total number of compiled DNA sequences: $t_sq_type{dna}\n";
+	print LOG "Total number of compiled RNA sequences: $t_sq_type{rna}\n";
+	print LOG "Total number of compiled AA sequences: $t_sq_type{aa}\n";
+	print LOG "-" x 63;
+	print LOG "\n\nThe compilation process of the ARG DB finished at:\t$d_stop_time\n\n";
 }
 
 1;

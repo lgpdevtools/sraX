@@ -10,12 +10,15 @@ sub sq_variants {
 	my $d_dna_path = "$d_out/Analysis/MSA/DNA";
 	my $m_type = "";
 
+	open LOG, ">>$d_out/Log/sraX_log.txt" || die sraXlib::Functions::print_errf("$d_out/Log/sraX_log.txt","o");
 	my $t_start_time_snp = sraXlib::Functions::running_time;
 	my $d_start_time_snp = sraXlib::Functions::print_time;
 	print "\nThe SNP analysis started at:\t$d_start_time_snp\n\n";
+	print LOG "\nThe SNP analysis started at:\t$d_start_time_snp\n\n";
 
 	my $dna_sqs = sraXlib::Functions::load_files($d_dna_path, ["fna","fasta", "fas", "fa"]);
 	print "\tThe DNA variant detection will be performed in: ", scalar @$dna_sqs, " genes.\n";
+	print LOG "\tThe DNA variant detection will be performed in: ", scalar @$dna_sqs, " genes.\n";
 	foreach my $dna_sq (@$dna_sqs){
 		$m_type = get_SNPs($d_dna_path, $dna_sq, "DNA", $msa_slctd);
 		system("mv $d_dna_path/*_snps.tsv $d_out/Analysis/MSA/DNA/SNP/");
@@ -23,6 +26,7 @@ sub sq_variants {
 
 	my $aa_sqs = sraXlib::Functions::load_files($d_aa_path, ["fna","fasta", "fas", "fa"]);
 	print "\tThe AA variant detection will be performed in: ", scalar @$aa_sqs, " genes.\n";
+	print LOG "\tThe AA variant detection will be performed in: ", scalar @$aa_sqs, " genes.\n";
 	foreach my $aa_sq (@$aa_sqs){
 		$m_type = get_SNPs($d_aa_path, $aa_sq, "AA", $msa_slctd);
 		system("mv $d_aa_path/*_snps.tsv $d_out/Analysis/MSA/AA/SNP/");
