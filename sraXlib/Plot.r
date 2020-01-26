@@ -2,7 +2,7 @@
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)==0) {
-  stop("At least one argument must be supplied (input file).n", call.=FALSE)
+  stop("At least one argument must be supplied (input file)", call.=FALSE)
 }
 
 htmp_pa = paste(args[1],'Results/Plots/Heatmaps/sraX_hmPA', sep='/')
@@ -11,8 +11,8 @@ gn_coord = paste(args[1],'Results/Summary_files/sraX_gene_coordinates', sep='/')
 gn_ctx = paste(args[1],'Results/Plots/Genomic_Context/', sep='/')
 
 library(ggplot2)
-library(gridExtra)
-library(dplyr)
+library(gridExtra, warn.conflicts = FALSE))
+library(dplyr, warn.conflicts = FALSE))
 
 l_col <- c(
 '#FFFF00','#1CE6FF','#FF34FF','#FF4A46','#008941','#006FA6','#A30059',
