@@ -409,13 +409,19 @@ n_gnms    = length(unique(atbclass_data[[1]]))
 n_classes = length(unique(atbclass_data[[2]]))
 
 W_hm = 40
-H_hm = n_gnms * 1.25
+H_hm = n_gnms + (n_gnms/12)
 fsb = 2.5
 fsg = 10
 
-atbclass <- ggplot(data = atbclass_data, aes(x = Genome, y = P, fill= atbclass_col)) +  # facet_grid(~Genome) +
+if(n_gnms <= 10){
+	ncoleg.bar = (n_classes %/% 5) + 1
+}else{
+	ncoleg.bar = 1
+}
+
+atbclass <- ggplot(data = atbclass_data, aes(x = Genome, y = P, fill= atbclass_col)) +
 	geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
-	scale_fill_identity('Drug classes', labels = atbclass_data[[2]], breaks = atbclass_data[[5]], guide = 'legend') +
+	scale_fill_identity('Drug classes', labels = stringr::str_trunc(as.character(atbclass_data[[2]]),12), breaks = atbclass_data[[5]], guide = guide_legend(ncol = ncoleg.bar)) +
 	geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb) +
 	scale_x_discrete(label = function(x) stringr::str_trunc(x, 12)) +
 	theme(axis.text.y = element_text(size = fsg)) +
@@ -440,7 +446,7 @@ mutloci_data[[5]] <- l_col[as.factor(mutloci_data[[2]])]
 names(mutloci_data)[5]<-'atbclass_col'
 
 n_gnms_pv = length(unique(mutloci_data[[1]]))
-H_hm_m = n_gnms_pv # HERE!
+H_hm_m = n_gnms_pv
 
 mutloci <- ggplot(data = mutloci_data, aes(x = Genome, y = P, fill= atbclass_col)) +
 	geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
