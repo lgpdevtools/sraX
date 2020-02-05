@@ -11,8 +11,8 @@ gn_coord = paste(args[1],'Results/Summary_files/sraX_gene_coordinates', sep='/')
 gn_ctx = paste(args[1],'Results/Plots/Genomic_Context/', sep='/')
 
 library(ggplot2)
-library(gridExtra, warn.conflicts = FALSE))
-library(dplyr, warn.conflicts = FALSE))
+library(gridExtra, warn.conflicts = FALSE)
+library(dplyr, warn.conflicts = FALSE)
 
 l_col <- c(
 '#FFFF00','#1CE6FF','#FF34FF','#FF4A46','#008941','#006FA6','#A30059',
@@ -154,62 +154,62 @@ hm_pa_t_hclust <- hclust(hm_pa_t_dist, method = 'ward.D2')
 dend <- as.dendrogram(hm_pa_t_hclust)
 hm_col_pa <- c('grey90','#666699')
 hm_pa[[3]] <- l_col[as.factor(hm_pa[[2]])]
-names(hm_pa)[3]<-'Cls_col'
+names(hm_pa)[3]<-'atbclass_col'
 color.colside = hm_pa[[3]]
 
 if(nrow(hm_pa_submat)<=12){
-plotH = 5;
-cex.row.pa = 1
+	plotH = 5;
+	cex.roW = 1
 }else if(nrow(hm_pa_submat)>12 && nrow(hm_pa_submat)<=120){
-plotH = 10;
-cex.row.pa = 0.85
+	plotH = 10;
+	cex.roW = 0.85
 }else if(nrow(hm_pa_submat)>120 && nrow(hm_pa_submat)<=240){
-plotH = 12;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 12;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>240 && nrow(hm_pa_submat)<=360){
-plotH = 14;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 14;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>360 && nrow(hm_pa_submat)<=500){
-plotH = 18;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 18;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>500 && nrow(hm_pa_submat)<=800){
-plotH = 22;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 22;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>800 && nrow(hm_pa_submat)<=1200){
-plotH = 24;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 24;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>1200 && nrow(hm_pa_submat)<=1500){
-plotH = 28;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 28;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>1500 && nrow(hm_pa_submat)<=2000){
-plotH = 32;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 32;
+	cex.roW = (100/nrow(hm_pa_submat))
 }else if(nrow(hm_pa_submat)>2000 && nrow(hm_pa_submat)<=10000){
-plotH = 45;
-cex.row.pa = (100/nrow(hm_pa_submat))
+	plotH = 45;
+	cex.roW = (100/nrow(hm_pa_submat))
 }
 
 if(ncol(hm_pa_submat)<=12){
-plotW = 6;
-cex.col.pa = 1.125
+	plotW = 6;
+	cex.col.pa = 1.125
 }else if(ncol(hm_pa_submat)>12 && ncol(hm_pa_submat)<=24){
-plotW = 10;
-cex.col.pa = 1 
+	plotW = 10;
+	cex.col.pa = 1 
 }else if(ncol(hm_pa_submat)>24 && ncol(hm_pa_submat)<=40){
-plotW = 14;
-cex.col.pa = 0.95
+	plotW = 14;
+	cex.col.pa = 0.95
 }else if(ncol(hm_pa_submat)>40 && ncol(hm_pa_submat)<=60){
-plotW = 16;
-cex.col.pa = 0.95
+	plotW = 16;
+	cex.col.pa = 0.95
 }else if(ncol(hm_pa_submat)>60 && ncol(hm_pa_submat)<=120){
-plotW = 20;
-cex.col.pa = 0.85
+	plotW = 20;
+	cex.col.pa = 0.85
 }else if(ncol(hm_pa_submat)>120 && ncol(hm_pa_submat)<=200){
-plotW = 24;
-cex.col.pa = 0.75
+	plotW = 24;
+	cex.col.pa = 0.75
 }else if(ncol(hm_pa_submat)>200 && ncol(hm_pa_submat)<=500){
-plotW = 28;
-cex.col.pa = 0.65
+	plotW = 28;
+	cex.col.pa = 0.65
 }
 
 lmat_op=rbind(c(5,0,4),c(0,0,1),c(3,0,2),c(0,0,0))
@@ -218,58 +218,58 @@ lwid_op=c(0.85,0.1,8)
 margins_op=c(8, 10)
 
 try({
-png(file=paste(htmp_pa,'png', sep='.'), width=plotW, height=plotH, pointsize=14, units='in', res=800)
-par(xpd = T, mar = c(0,0,1,1))
-gplots::heatmap.2(hm_pa_submat,
-          ylab 		= 'Genomes',
-          xlab 		= 'ARGs',
-          Rowv		= dend,
-          Colv		= 'NA',
-          dendrogram 	= 'row',
-          notecol 	= 'black',
-          density.info 	= 'none',
-          trace 	= 'none',
-	  margins 	= margins_op,
-          col 		= hm_col_pa, 
-	  key		= F,
-          scale		= 'none',
-          key.title	= NA,
-          lmat 		= lmat_op,
-          lwid 		= lwid_op,
-          lhei 		= lhei_op,
-          cexCol	= cex.col.pa,
-          cexRow	= cex.row.pa,
-          ColSideColors	= color.colside,
-          sepwidth	= c(0,0),
-          sepcolor	= 'white',
-	  srtCol	= 45,
-         )
+	png(file=paste(htmp_pa,'png', sep='.'), width=plotW, height=plotH, pointsize=14, units='in', res=800)
+	par(xpd = T, mar = c(0,0,1,1))
+	gplots::heatmap.2(hm_pa_submat,
+			  ylab 		= 'Genomes',
+			  xlab 		= 'ARGs',
+			  Rowv		= dend,
+			  Colv		= 'NA',
+			  dendrogram 	= 'row',
+			  notecol 	= 'black',
+			  density.info 	= 'none',
+			  trace 	= 'none',
+			  margins 	= margins_op,
+			  col 		= hm_col_pa, 
+			  key		= F,
+			  scale		= 'none',
+			  key.title	= NA,
+			  lmat 		= lmat_op,
+			  lwid 		= lwid_op,
+			  lhei 		= lhei_op,
+			  cexCol	= cex.col.pa,
+			  cexRow	= cex.roW,
+			  ColSideColors	= color.colside,
+			  sepwidth	= c(0,0),
+			  sepcolor	= 'white',
+			  srtCol	= 45,
+			  )
 
 	legend(
-        'topright',
-        legend = c('Absence','Presence'),
-        col = unique(hm_col_pa),
-        lty= 1,
-        lwd = 5,
-        cex=.75,
-        box.lwd = 0,
-        box.col = 'white',
-        bg = 'white',
-        )
+	       'topright',
+	       legend = c('Absence','Presence'),
+	       col = unique(hm_col_pa),
+	       lty= 1,
+	       lwd = 5,
+	       cex=.75,
+	       box.lwd = 0,
+	       box.col = 'white',
+	       bg = 'white',
+	       )
 
 	legend(
-	'topleft', xpd=TRUE,
-	legend = unique(hm_pa[[2]]),
-	col = unique(color.colside),
-        ncol= 5,
-	lty= 1,
-	lwd = 5,
-	cex=.35,
-	box.lwd = 0,
-	box.col = 'white',
-	bg = 'white',
-	)
-dev.off()
+	       'topleft', xpd=TRUE,
+	       legend = unique(hm_pa[[2]]),
+	       col = unique(color.colside),
+	       ncol= 5,
+	       lty= 1,
+	       lwd = 5,
+	       cex=.35,
+	       box.lwd = 0,
+	       box.col = 'white',
+	       bg = 'white',
+	       )
+	dev.off()
 }, silent=T)
 
 hm_id = read.table(paste(htmp_id,'tsv', sep='.'), quote = '', sep='\t', header=T, blank.lines.skip =F, stringsAsFactors=F,row.names = NULL)
@@ -282,62 +282,62 @@ hm_id_t_hclust <- hclust(hm_id_t_dist, method = 'ward.D2')
 dend <- as.dendrogram(hm_id_t_hclust)
 hm_col_id <- colorRampPalette(c('#fbfbfb','#da9e07', '#F93232'))(100)
 hm_id[[3]] <- l_col[as.factor(hm_id[[2]])]
-names(hm_id)[3]<-'Cls_col'
+names(hm_id)[3]<-'atbclass_col'
 color.colside = hm_id[[3]]
 
 if(nrow(hm_id_submat)<=12){
-plotH = 5;
-cex.row.id = 1
+	plotH = 5;
+	cex.row.id = 1
 }else if(nrow(hm_id_submat)>12 && nrow(hm_id_submat)<=120){
-plotH = 10;
-cex.row.id = 0.85
+	plotH = 10;
+	cex.row.id = 0.85
 }else if(nrow(hm_id_submat)>120 && nrow(hm_id_submat)<=240){
-plotH = 12;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 12;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>240 && nrow(hm_id_submat)<=360){
-plotH = 14;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 14;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>360 && nrow(hm_id_submat)<=500){
-plotH = 18;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 18;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>500 && nrow(hm_id_submat)<=800){
-plotH = 22;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 22;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>800 && nrow(hm_id_submat)<=1200){
-plotH = 24;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 24;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>1200 && nrow(hm_id_submat)<=1500){
-plotH = 28;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 28;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>1500 && nrow(hm_id_submat)<=2000){
-plotH = 32;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 32;
+	cex.row.id = (100/nrow(hm_id_submat))
 }else if(nrow(hm_id_submat)>2000 && nrow(hm_id_submat)<=10000){
-plotH = 45;
-cex.row.id = (100/nrow(hm_id_submat))
+	plotH = 45;
+	cex.row.id = (100/nrow(hm_id_submat))
 }
 
 if(ncol(hm_id_submat)<=12){
-plotW = 6;
-cex.col.id = 1.125
+	plotW = 6;
+	cex.col.id = 1.125
 }else if(ncol(hm_id_submat)>12 && ncol(hm_id_submat)<=24){
-plotW = 10;
-cex.col.id = 1 
+	plotW = 10;
+	cex.col.id = 1 
 }else if(ncol(hm_id_submat)>24 && ncol(hm_id_submat)<=40){
-plotW = 14;
-cex.col.id = 0.95
+	plotW = 14;
+	cex.col.id = 0.95
 }else if(ncol(hm_id_submat)>40 && ncol(hm_id_submat)<=60){
-plotW = 16;
-cex.col.id = 0.95
+	plotW = 16;
+	cex.col.id = 0.95
 }else if(ncol(hm_id_submat)>60 && ncol(hm_id_submat)<=120){
-plotW = 20;
-cex.col.id = 0.85
+	plotW = 20;
+	cex.col.id = 0.85
 }else if(ncol(hm_id_submat)>120 && ncol(hm_id_submat)<=200){
-plotW = 24;
-cex.col.id = 0.75
+	plotW = 24;
+	cex.col.id = 0.75
 }else if(ncol(hm_id_submat)>200 && ncol(hm_id_submat)<=500){
-plotW = 28;
-cex.col.id = 0.65
+	plotW = 28;
+	cex.col.id = 0.65
 }
 
 lmat_op=rbind(c(5,0,4),c(0,0,1),c(3,0,2),c(0,0,0))
@@ -346,541 +346,290 @@ lwid_op=c(0.85,0.1,8)
 margins_op=c(8, 10)
 
 try({
-png(file=paste(htmp_id,'png', sep='.'), width=plotW, height=plotH, pointsize=14, units='in', res=800)
-par(xpd = T, mar = c(0,0,1,1))
-gplots::heatmap.2(hm_id_submat,
-          ylab 		= 'Genomes',
-          xlab 		= 'ARGs',
-          Rowv		= dend,
-          Colv		= 'NA',
-          dendrogram 	= 'row', 
-          notecol 	= 'black',
-          density.info 	= 'none', 
-          trace 	= 'none', 
-	  margins 	= margins_op,
-          col 		= hm_col_id, 
-          key 		= T,
-          scale		= 'none',
-          symm		= F,
-          symkey	= F,
-	  keysize	=1,
-          key.par = list(mar=c(4, 1, 0.5, 0.2),cex=0.75),
-          key.title	= NA,
-	  key.xlab	= 'BlastP identity (%)',
-	  lmat 		= lmat_op,
-	  lwid 		= lwid_op,
-	  lhei 		= lhei_op,
-          cexCol	= cex.col.id,
-          cexRow	= cex.row.id,
-          ColSideColors	= color.colside,
-          sepwidth	= c(0,0),
-          sepcolor	= 'white',
-	  srtCol	= 45,
-         )
+	png(file=paste(htmp_id,'png', sep='.'), width=plotW, height=plotH, pointsize=14, units='in', res=800)
+	par(xpd = T, mar = c(0,0,1,1))
+	gplots::heatmap.2(hm_id_submat,
+			  ylab 		= 'Genomes',
+			  xlab 		= 'ARGs',
+			  Rowv		= dend,
+			  Colv		= 'NA',
+			  dendrogram 	= 'row', 
+			  notecol 	= 'black',
+			  density.info 	= 'none', 
+			  trace 	= 'none', 
+			  margins 	= margins_op,
+			  col 		= hm_col_id, 
+			  key 		= T,
+			  scale		= 'none',
+			  symm		= F,
+			  symkey	= F,
+			  keysize	=1,
+			  key.par = list(mar=c(4, 1, 0.5, 0.2),cex=0.75),
+			  key.title	= NA,
+			  key.xlab	= 'BlastP identity (%)',
+			  lmat 		= lmat_op,
+			  lwid 		= lwid_op,
+			  lhei 		= lhei_op,
+			  cexCol	= cex.col.id,
+			  cexRow	= cex.row.id,
+			  ColSideColors	= color.colside,
+			  sepwidth	= c(0,0),
+			  sepcolor	= 'white',
+			  srtCol	= 45,
+			  )
 
-dev.off()
+	dev.off()
 }, silent=T)
 
 
 theme_bar <- theme_grey() + theme(
-panel.background = element_blank(),
-panel.grid.minor.x = element_blank(),
-panel.grid.major.x = element_blank(),
-plot.title = element_text(color='#111970', face='bold', size=20, hjust=0),
-axis.ticks.y = element_blank(),
-axis.text.y = element_text(hjust = 1,face='bold', colour = 'grey15', size=10),
-axis.text.x = element_text(vjust = 1,face='bold', colour = 'grey15', size=10),
-axis.line.x =  element_line(colour = 'grey20', size = 0.5),
-axis.ticks.x = element_line(colour = 'grey20', size = 0.85),
-strip.background = element_blank()
-)
-
+	panel.background = element_blank(),
+	panel.grid.minor.x = element_blank(),
+	panel.grid.major.x = element_blank(),
+	plot.title = element_text(color='#111970', face='bold', size=20, hjust=0),
+	axis.ticks.y = element_blank(),
+	axis.text.y = element_text(hjust = 1,face='bold', colour = 'grey15', size=6),
+	axis.text.x = element_text(vjust = 1,face='bold', colour = 'grey15', size=10),
+	axis.line.x =  element_line(colour = 'grey20', size = 0.5),
+	axis.ticks.x = element_line(colour = 'grey20', size = 0.85),
+	strip.background = element_blank()
+				  )
 
 amr_data <- read.table(paste(gn_coord,'tsv', sep='.'), quote = '', sep='\t', header=T, row.names = NULL, fill = TRUE)
 amr_data[[12]] <- as.factor(amr_data[[12]])
 amr_data[[6]] <- as.factor(amr_data[[6]])
 
-amr_data_ph <- amr_data[amr_data[,'AMR_detection_model'] == 'protein homolog',] %>%
-group_by(Genome,AMR_Class) %>%
-summarise(N=n()) %>%
-mutate(P=100*(N/sum(N)))
-amr_data_ph[[5]] <- l_col[as.factor(amr_data_ph[[2]])]
-names(amr_data_ph)[5]<-'Cls_col'
-n_classes = length(unique(amr_data_ph[[2]]))
-n_gnms    = length(unique(amr_data_ph[[1]]))
+atbclass_data <- amr_data[amr_data[,'AMR_detection_model'] == 'protein homolog',] %>%
+	group_by(Genome,AMR_Class) %>%
+	summarise(N=n()) %>%
+	mutate(P=100*(N/sum(N)))
+atbclass_data[[5]] <- l_col[as.factor(atbclass_data[[2]])]
+names(atbclass_data)[5]<-'atbclass_col'
+n_gnms    = length(unique(atbclass_data[[1]]))
+n_classes = length(unique(atbclass_data[[2]]))
 
-if(n_classes <= 30){
-w.pa = 3 * n_classes
-}else if(n_classes > 30 && n_classes <= 60){
-w.pa = 1.25 * n_classes
-}else{
-w.pa = 90
-}
+W_hm = 40
+H_hm = n_gnms * 1.25
+fsb = 2.5
+fsg = 10
 
-if(n_gnms <= 30){
-h.pa = 3.25 * n_gnms
-fsb.pa = 2
-fsg.pa = 10
-}else if(n_gnms > 30 && n_gnms <= 60){
-h.pa = 1.65 * n_gnms
-fsb.pa = 2
-fsg.pa = 10
-}else if(n_gnms > 60 && n_gnms <= 120){
-h.pa = 0.85 * n_gnms
-fsb.pa = 2
-fsg.pa = 9 
-}else if(n_gnms > 120 && n_gnms <= 240){
-h.pa = 0.55 * n_gnms
-fsb.pa = 2
-fsg.pa = 8.5 
-}else if(n_gnms > 240 && n_gnms <= 360){
-h.pa = 0.45 * n_gnms
-fsb.pa = 1.85
-fsg.pa = 7.5
-}else if(n_gnms > 360 && n_gnms <= 500){
-h.pa = 0.35 * n_gnms
-fsb.pa = 1.75
-fsg.pa = 6
-}else if(n_gnms > 500 && n_gnms <= 800){
-h.pa = 0.25 * n_gnms
-fsb.pa = 1.5
-fsg.pa = 5
-}else if(n_gnms > 800 && n_gnms <= 1200){
-h.pa = 0.18 * n_gnms
-fsb.pa = 1.25
-fsg.pa = 5
-}else if(n_gnms > 1200 && n_gnms <= 1500){
-h.pa = 0.125 * n_gnms
-fsb.pa = 1
-fsg.pa = 4 
-}else if(n_gnms > 1500 && n_gnms <= 2000){
-h.pa = 0.085 * n_gnms
-fsb.pa = 0.85
-fsg.pa = 4 
-}else if(n_gnms > 2000 && n_gnms <= 10000){
-h.pa = 0.05 * n_gnms
-fsb.pa = 0.5
-fsg.pa = 3
-}else{
-h.pa = 100
-fsb.pa = 0.25
-fsg.pa = 2
-}
-
-pdrgclss <- ggplot(data = amr_data_ph, aes(x = Genome, y = P, fill= Cls_col)) +  # facet_grid(~Genome) +
-geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
-scale_fill_identity('Drug classes', labels = amr_data_ph[[2]], breaks = amr_data_ph[[5]], guide = 'legend') +
-geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb.pa) +
-theme(axis.text.y = element_text(size = fsg.pa)) +
-ylab('Proportion') +
-labs(title = 'Proportion of Drug Classes by Genome',
-subtitle = 'AMR linked to the presence of ARGs.',
-caption = paste('Total number of genomes: ', n_gnms, '\n', 'Total number of ARGs:', length(unique(amr_data[amr_data[,'AMR_detection_model'] == 'protein homolog',][[6]])), sep=' '))+
+atbclass <- ggplot(data = atbclass_data, aes(x = Genome, y = P, fill= atbclass_col)) +  # facet_grid(~Genome) +
+	geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
+	scale_fill_identity('Drug classes', labels = atbclass_data[[2]], breaks = atbclass_data[[5]], guide = 'legend') +
+	geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb) +
+	scale_x_discrete(label = function(x) stringr::str_trunc(x, 12)) +
+	theme(axis.text.y = element_text(size = fsg)) +
+	ylab('Proportion') +
+	labs(title = 'Proportion of Drug Classes by Genome',
+	     subtitle = 'AMR linked to the presence of ARGs.',
+	     caption = paste('Total number of genomes: ', n_gnms, '\n', 'Total number of ARGs:', length(unique(amr_data[amr_data[,'AMR_detection_model'] == 'protein homolog',][[6]])), sep=' '))+
 coord_flip() +
 theme_bar
 
 try({
-png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_ph.png', sep='/'),width=w.pa,height=h.pa,pointsize=10,units='cm',family='sans',res=300)
-print(pdrgclss)
-dev.off()
+	png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_ph.png', sep='/'),width=W_hm,height=H_hm,pointsize=10,units='cm',family='sans',res=300)
+	print(atbclass)
+	dev.off()
 }, silent=T)
 
-amr_data_pv <- amr_data[amr_data[,'AMR_detection_model'] != 'protein homolog',] %>%
-group_by(Genome,AMR_Class) %>%
-summarise(N=n()) %>%
-mutate(P=100*(N/sum(N)))
-amr_data_pv[[5]] <- l_col[as.factor(amr_data_pv[[2]])]
-names(amr_data_pv)[5]<-'Cls_col'
+mutloci_data <- amr_data[amr_data[,'AMR_detection_model'] != 'protein homolog',] %>%
+	group_by(Genome,AMR_Class) %>%
+	summarise(N=n()) %>%
+	mutate(P=100*(N/sum(N)))
+mutloci_data[[5]] <- l_col[as.factor(mutloci_data[[2]])]
+names(mutloci_data)[5]<-'atbclass_col'
 
-n_gnms_pv = length(unique(amr_data_pv[[1]]))
-# h.pv = 2 * n_gnms_pv
-w.pv = 14 * (length(unique(amr_data_pv[[2]])))
+n_gnms_pv = length(unique(mutloci_data[[1]]))
+H_hm_m = n_gnms_pv # HERE!
 
-if(n_gnms_pv <= 30){
-h.pv = 2.5 * n_gnms_pv
-fsb.pv = 2
-fsg.pv = 10
-
-}else if(n_gnms_pv > 30   && n_gnms_pv <= 60){
-h.pv = n_gnms_pv
-fsb.pv = 2
-fsg.pv = 10
-
-}else if(n_gnms_pv > 60   && n_gnms_pv <= 120){
-h.pv = 0.85 * n_gnms_pv
-fsb.pv = 2
-fsg.pv = 9
-
-}else if(n_gnms_pv > 120  && n_gnms_pv <= 240){
-h.pv = 0.65 * n_gnms_pv
-fsb.pv = 2
-fsg.pv = 8.5
-
-}else if(n_gnms_pv > 240  && n_gnms_pv <= 360){
-h.pv = 0.45 * n_gnms_pv
-fsb.pv = 1.85
-fsg.pv = 7.5
-
-}else if(n_gnms_pv > 360  && n_gnms_pv <= 500){
-h.pv = 0.35 * n_gnms_pv
-fsb.pv = 1.75
-fsg.pv = 6
-
-}else if(n_gnms_pv > 500  && n_gnms_pv <= 800){
-h.pv = 0.25 * n_gnms_pv
-fsb.pv = 1.5
-fsg.pv = 5
-
-}else if(n_gnms_pv > 800  && n_gnms_pv <= 1200){
-h.pv = 0.15 * n_gnms_pv
-fsb.pv = 1.25
-fsg.pv = 5
-
-}else if(n_gnms_pv > 1200 && n_gnms_pv <= 1500){
-h.pv = 0.075 * n_gnms_pv
-fsb.pv = 1
-fsg.pv = 4
-
-}else if(n_gnms_pv > 1500 && n_gnms_pv <= 2000){
-h.pv = 0.065 * n_gnms_pv
-fsb.pv = 0.85
-fsg.pv = 4
-
-}else if(n_gnms_pv > 2000 && n_gnms_pv <= 10000){
-h.pv = 0.045 * n_gnms_pv
-fsb.pv = 0.5
-fsg.pv = 3
-
-}else{
-h.pv = 100
-fsb.pv = 0.25
-fsg.pv = 2
-
-}
-
-pmutloc <- ggplot(data = amr_data_pv, aes(x = Genome, y = P, fill= Cls_col)) +
-geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
-scale_fill_identity('Mutated locus', labels = amr_data_pv[[2]], breaks = amr_data_pv[[5]], guide = 'legend') +
-geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb.pv) +
-theme(axis.text.y = element_text(size = fsg.pv)) +
-ylab('Proportion') +
-labs(title = 'Type and fraction of ARGs with putative SNPs by Genome',
-subtitle = 'AMR linked to the presence of SNPs on certain ARGs.',
-caption = paste('Total number of genomes: ', n_gnms_pv, '\n', 'Total number of ARGs with putative SNPs:', length(unique(amr_data[amr_data[,'AMR_detection_model'] != 'protein homolog',][[6]])), sep=' '))+
+mutloci <- ggplot(data = mutloci_data, aes(x = Genome, y = P, fill= atbclass_col)) +
+	geom_bar(position = 'fill',stat = 'identity', color='black', alpha = 0.85) +
+	scale_fill_identity('Mutated locus', labels = mutloci_data[[2]], breaks = mutloci_data[[5]], guide = 'legend') +
+	geom_text(aes(x=Genome, label = paste(N, '(', sprintf('%3.2f',P), '%)', sep = ' ')), position = position_fill(vjust = .5), size=fsb) +
+	scale_x_discrete(label = function(x) stringr::str_trunc(x, 12)) +
+	theme(axis.text.y = element_text(size = fsg)) +
+	ylab('Proportion') +
+	labs(title = 'Type and fraction of ARGs with putative SNPs by Genome',
+	     subtitle = 'AMR linked to the presence of SNPs on certain ARGs.',
+	     caption = paste('Total number of genomes: ', n_gnms_pv, '\n', 'Total number of ARGs with putative SNPs:', length(unique(amr_data[amr_data[,'AMR_detection_model'] != 'protein homolog',][[6]])), sep=' '))+
 coord_flip() +
 theme_bar
 
 try({
-png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_pv.png', sep='/'),width=w.pv,height=h.pv,pointsize=12,units='cm',family='sans',res=600)
-print(pmutloc)
-dev.off()
+	png(file=paste(args[1],'Results/Plots/Proportion_ARG/sraX_prop_args_pv.png', sep='/'),width=W_hm,height=H_hm_m,pointsize=12,units='cm',family='sans',res=300)
+	print(mutloci)
+	dev.off()
 }, silent=T)
 
 
 theme_arg <- function() {
-    theme_grey() + theme(
-    panel.background = element_blank(),
-    panel.grid.minor.x = element_blank(),
-    panel.grid.major.x = element_blank(),
-    axis.ticks.y = element_blank(),
-    axis.text.y=element_blank(),
-    axis.line.x =  element_line(colour = 'grey20', size = 0.5),
-    axis.ticks.x = element_line(colour = 'grey20', size = 0.5),
-    strip.text = element_text(colour = 'grey20', size = 10),
-    strip.background = element_blank()
-  )
+	theme_grey() + theme(
+	panel.background = element_blank(),
+	panel.grid.minor.x = element_blank(),
+	panel.grid.major.x = element_blank(),
+	axis.ticks.y = element_blank(),
+	axis.text.y=element_blank(),
+	axis.line.x =  element_line(colour = 'grey20', size = 0.5),
+	axis.ticks.x = element_line(colour = 'grey20', size = 0.5),
+	strip.text = element_text(colour = 'grey20', size = 10),
+	strip.background = element_blank()
+			     )
 }
 
 gn_colors_rnd <- c(sample(l_col, length(unique(amr_data[[6]])), replace=TRUE))
 df <- data.frame('genome' = NA, 'contig' = NA, 'gene' = NA,'x' = NA, 'y' = NA, 'gene_id' = NA,'xgene'=NA,'ygene'=NA,'dclass'=NA)
 
 for (i in 1:nrow(amr_data)){
-amr_data_r <- amr_data[,c(2:6,10:12)]
-gene <- amr_data_r[i, ]
-gn_w <- abs(gene[[4]] - gene[[3]])
-pointer_w <- as.numeric(gn_w*0.15)
-pointer_w <- ifelse(pointer_w < 10, gn_w, pointer_w)
-pointer_h <- as.numeric(4)
-pointer_full_h <- as.numeric(pointer_h/2)
-strand <- ifelse(gene[[4]] > gene[[3]], 1, -1)
+	amr_data_r <- amr_data[,c(2:6,10:12)]
+	gene <- amr_data_r[i, ]
+	gn_w <- abs(gene[[4]] - gene[[3]])
+	pointer_w <- as.numeric(gn_w*0.15)
+	pointer_w <- ifelse(pointer_w < 10, gn_w, pointer_w)
+	pointer_h <- as.numeric(4)
+	pointer_full_h <- as.numeric(pointer_h/2)
+	strand <- ifelse(gene[[4]] > gene[[3]], 1, -1)
 
-if(strand == -1){
-gene[, c('End_query', 'Start_query')] <- gene[, c('Start_query', 'End_query')]
-body <- gene[[3]] + pointer_w
-}else{
-body <- gene[[4]] - pointer_w
-}
+	if(strand == -1){
+		gene[, c('End_query', 'Start_query')] <- gene[, c('Start_query', 'End_query')]
+		body <- gene[[3]] + pointer_w
+	}else{
+		body <- gene[[4]] - pointer_w
+	}
 
-x.gene <- (gene[[3]] + (gn_w/2))
-df2 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df3 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = -pointer_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df5 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = pointer_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df6 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-	
-if(strand == 1){
-df1 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df4 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = 0, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df7 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-}else{
-df1 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df4 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = 0, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-df7 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
-}
-df <- rbind(df,df1,df2,df3,df4,df5,df6,df7)
-df <- df[complete.cases(df), ]
+	x.gene <- (gene[[3]] + (gn_w/2))
+	df2 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+	df3 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = -pointer_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+	df5 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = pointer_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+	df6 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = body, 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+
+	if(strand == 1){
+		df1 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+		df4 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = 0, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+		df7 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+	}else{
+		df1 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = -pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+		df4 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[3]], 'y' = 0, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+		df7 <- data.frame('genome' = gene[[1]], 'contig' = gene[[2]], 'gene' = gene[[5]],'x' = gene[[4]], 'y' = pointer_full_h, 'gene_id' = i,'xgene'= x.gene,'ygene'= 0,'dclass'=gene[[8]])
+	}
+	df <- rbind(df,df1,df2,df3,df4,df5,df6,df7)
+	df <- df[complete.cases(df), ]
 }
 
 df[[10]] <- l_col[as.factor(df[[3]])]
 names(df)[10]<-'gncolor'
 
 for(j in unique(df[[1]])){
-dfj <- df[df[,'genome'] == j,]
-gn = length(unique(dfj[[6]]))
-cnt = length(unique(dfj[[2]]))
-print(paste('Genome: ',j, sep=''))
-print(paste('Number of Contigs: ',cnt, sep=''))
-print(paste('Number of detected ARGs: ',gn, sep=''))
+        dfj <- df[df[,'genome'] == j,]
+        gn = length(unique(dfj[[6]]))
+        cnt = length(unique(dfj[[2]]))
+        print(paste('Genome: ',j, sep=''))
+        print(paste('Number of Contigs: ',cnt, sep=''))
+        print(paste('Number of detected ARGs: ',gn, sep=''))
 
-gn_min = min(dfj[[4]])
-gn_max = max(dfj[[4]])
-x_min = gn_min
-x_max = gn_max + 500
-if(gn_min > 500){
-x_min = gn_min - 500
-}
-	if(cnt==1){
-	arg_span = (gn_max - gn_min)
-		if(arg_span >= 1e6){
-		scalefact = 5e5
-		}else{
-		scalefact = 5e4
-		}
+        gn_min = min(dfj[[4]])
+        gn_max = max(dfj[[4]])
+        x_min = gn_min
+        x_max = gn_max + 500
+        H_gc = 6
+        W_gc = 60
 
-	n_regions = (arg_span %/% scalefact)
-
-	w = 45
-	h = 6
-	gtx = 2.5
-	gnctx <- ggplot(data = dfj, aes(x=x, y=y)) +
-	geom_polygon(aes(fill = gncolor, group = gene_id), color='black', alpha = 0.85) +
-	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-	facet_wrap(~ contig, scales = 'free', ncol = 5) +
-	scale_fill_identity('AMR genes', labels = dfj[[3]], breaks = dfj[[10]], guide = 'legend') +
-	ggtitle(paste('Distribution of ARGs: '),paste(j, ' genome')) +
-	coord_cartesian(xlim = c(x_min, x_max))+
-	xlab('Chromosome position (bp)') +
-	ylab(paste(j, ' genome')) +
-	theme_arg()
-	try({
-        png(file=paste(gn_ctx,j,'.a.png', sep=''),width=w,height=h,pointsize=12,units='cm',family='sans',res=300)
-	print(gnctx)
-	dev.off()
-	}, silent=T)
-
-	if (n_regions < 1){
-	next
-	}else{
-
-	w = 60
-	h = 6 * (n_regions + 1)
-
-	zoom_r <- NULL
-        for (r in 1:(n_regions+1)){
-
-		if (r == 1){
-		r_min = x_min
-		r_max = r_min + scalefact
-		}else if (r == max(n_regions+1)){
-		r_max = x_max
-		r_min = r_max - scalefact
-		}else{
-		r_max = r * scalefact
-                r_min = r_max - scalefact
-		}
-
-		zoom_r[[r]] <- ggplot(data = dfj, aes(x=x, y=y)) +
-               	geom_polygon(aes(fill = gncolor, group = gene_id), color='black', alpha = 0.85) +
-               	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-               	facet_wrap(~ contig, scales = 'free', ncol = 5) +
-               	scale_fill_identity('AMR genes', labels = dfj[[3]], breaks = dfj[[10]], guide = 'legend') +
-               	ggtitle(paste('Distribution of ARGs: '),paste(j, ' genome')) +
-               	coord_cartesian(xlim = c(r_min, r_max)) +
-               	xlab('Chromosome position (bp)') +
-               	ylab(paste(j, ' genome')) +
-               	theme_arg()
+        if(gn_min > 500){
+                x_min = gn_min - 500
         }
 
-	try({
-	png(file=paste(gn_ctx,j,'.b.png', sep=''),width=w,height=h,pointsize=12,units='cm',family='sans',res=300)
-	arg_list <- c(zoom_r, list(ncol=1))
-	do.call(grid.arrange, arg_list)
-	dev.off()
-	}, silent=T)
+        if(cnt <= 5){
+                ncoleg = (gn %/% H_gc) + 1
+        }else{
+                ncoleg = 2
+        }
 
-	}
+        gn_plot <- ggplot(data = dfj, aes(x=x, y=y)) +
+                geom_polygon(aes(fill = gncolor, group = gene_id), color='black', alpha = 0.85) +
+                geom_text(aes(label = gene, x = xgene, y = ygene), size=5, check_overlap = TRUE) +
+                facet_wrap(~ contig, scales = 'free', ncol = 5) +
+                scale_fill_identity('AMR genes', labels = stringr::str_trunc(dfj[[3]],12), breaks = dfj[[10]], guide = guide_legend(ncol = ncoleg)) +
+                ggtitle(paste('Distribution of ARGs: '),paste(j, ' genome')) +
+                xlab('Chromosome position (bp)') +
+                ylab(paste(j, ' genome')) +
+                theme_arg()
 
-	}else{
-        	if (cnt <= 4 && gn <= 4){
-        	w = 18 * cnt
-		h = 8 * gn
-        	}else if (cnt <= 4 && gn > 5){
-                w = 18 * cnt
-                h = 0.35 * gn
-		}else if (cnt > 5 && gn <= 4){
-                w = 3 * cnt
-                h = 6 * gn
-		}else if (cnt > 5 && gn > 4){
-                w =  3 * cnt
-                h = 0.75 * gn
-		}else{
-		}
-		
-        	gtx = 3.5
-	
-	p <- ggplot(data = dfj, aes(x=x, y=y)) +
-	geom_polygon(aes(fill = gncolor, group = gene_id), color='black', alpha = 0.85) +
-	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-	facet_wrap(~ contig, scales = 'free', ncol = 5) +
-	scale_fill_identity('AMR genes', labels = dfj[[3]], breaks = dfj[[10]], guide = 'legend') +
-	ggtitle(paste('Distribution of ARGs: '),paste(j, ' genome')) +
-	xlab('Chromosome position (bp)') +
-	ylab(paste(j, ' genome')) +
-	theme_arg()
-	
-	try({
-	png(file=paste(gn_ctx,j,'.a.png', sep=''),width=w,height=h,pointsize=12,units='cm',family='sans',res=300)
-	print(p)
-	dev.off()
-	}, silent=T)
+        n_lines = (cnt %/% 5)
 
-	zoom_cnt <- NULL
-	n_cnt_plot <- 0
-	for(k in unique(dfj[[2]])){
-	cnt_data <- dfj[dfj[,'contig'] == k,]
-	cnt_min = min(cnt_data[[4]])
-	cnt_max = max(cnt_data[[4]])
-	x_min = cnt_min
-	x_max = cnt_max + 500
-		if(cnt_min > 500){
-		x_min = cnt_min - 500
-		}
-	arg_span_cnt  = (cnt_max - cnt_min)
+        if(n_lines > 1){
+                H_gc_m = H_gc * n_lines
+        }else{
+                H_gc_m = H_gc
+        }
 
-		if(arg_span_cnt >= 5e4){
-        	        scalfct_cnt = 5e4
-                }else{
-                	scalfct_cnt = 1e4
+        try({
+                png(file=paste(gn_ctx,j,'.a.png', sep=''),width=W_gc,height=H_gc_m,pointsize=12,units='cm',family='sans',res=300)
+                print(gn_plot)
+                dev.off()
+        }, silent=T)
+
+        zoom_cnt <- NULL
+        n_cnt_plot <- 0
+        gn_zoom <- 0
+        for(k in unique(dfj[[2]])){
+                cnt_data <- dfj[dfj[,'contig'] == k,]
+                cnt_min = min(cnt_data[[4]])
+                cnt_max = max(cnt_data[[4]])
+                x_min = cnt_min
+                x_max = cnt_max + 500
+                if(cnt_min > 500){
+                        x_min = cnt_min - 500
                 }
+                n_regions_cnt = ((cnt_max - cnt_min) %/% 2.5e4)
 
-	n_regions_cnt = (arg_span_cnt %/% scalfct_cnt)
+                cnt_plot <- ggplot(data = cnt_data, aes(x=x, y=y)) +
+                        geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
+                        geom_text(aes(label = gene, x = xgene, y = ygene), size=5, check_overlap = TRUE) +
+                        facet_wrap(~ contig, scales = 'free', ncol = 1) +
+                        scale_fill_identity('AMR genes', labels = stringr::str_trunc(cnt_data[[3]],12), breaks = cnt_data[[10]], guide = guide_legend(ncol = 2)) +
+                        xlab('Chromosome position (bp)') +
+                        ylab(paste(stringr::str_trunc(j,12), '/', stringr::str_trunc(k,12))) +
+                        theme_arg()
 
-		if(arg_span_cnt > 1.5e4 && n_regions_cnt <= 1){
-		zoom_cnt[[k]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
-		geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
-		geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-		facet_wrap(~ contig, scales = 'free', ncol = 1) +
-		scale_fill_identity('AMR genes', labels = cnt_data[[3]], breaks = cnt_data[[10]], guide = 'legend') +
-		ggtitle(paste('Distribution of AMR genes: '),paste(j, ' genome')) +
-		coord_cartesian(xlim = c(x_min, x_max)) +
-		xlab('Chromosome position (bp)') +
-		ylab(paste(k, ' genomic region')) +
-		theme_arg()
-		n_cnt_plot <- n_cnt_plot + 1
-		}else if (n_regions_cnt > 1) {
-		
-        		r_min = x_min
-			r_max = r_min + scalfct_cnt	
-			zoom_cnt[[1]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
-                	geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
-                	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-                	facet_wrap(~ contig, scales = 'free', ncol = 1) +
-                	scale_fill_identity('AMR genes', labels = cnt_data[[3]], breaks = cnt_data[[10]], guide = 'legend') +
-                	ggtitle(paste('Distribution of AMR genes: '),paste(j, ' genome')) +
-                	coord_cartesian(xlim = c(r_min, r_max)) +	
-			xlab('Chromosome position (bp)') +
-                	ylab(paste(k, ' genomic region')) +
-                	theme_arg()
-			
-			r_max = x_max
-                        r_min = r_max - scalfct_cnt	
-			zoom_cnt[[2]] <- ggplot(data = cnt_data, aes(x=x, y=y)) +
-                	geom_polygon(aes(fill = gncolor, group = gene_id,), color='black', alpha = 0.85) +
-                	geom_text(aes(label = gene, x = xgene, y = ygene), size=gtx, check_overlap = TRUE) +
-                	facet_wrap(~ contig, scales = 'free', ncol = 1) +
-                	scale_fill_identity('AMR genes', labels = cnt_data[[3]], breaks = cnt_data[[10]], guide = 'legend') +
-                	ggtitle(paste('Distribution of AMR genes: '),paste(j, ' genome')) +
-                	coord_cartesian(xlim = c(r_min, r_max)) +	
-			xlab('Chromosome position (bp)') +
-                	ylab(paste(k, ' genomic region')) +
-                	theme_arg()
-		
-			n_cnt_plot <- max(n_regions_cnt+1)
+                if (n_regions_cnt >= 1) {       
+                        for (r in 1:(n_regions_cnt+1)){
+                                r_min = (r * 2.5e4) + x_min
 
-		}else{
-		next
-		}
-}
+                                if (r == 1){
+                                        r_min = x_min
+                                        r_max = x_min + 2.5e4
+                                }else if (r == (n_regions_cnt+1)){
+                                        r_min = ((r-1) * 2.5e4) + x_min
+                                        r_max = x_max
+                                }else{
+                                        r_min = ((r-1) * 2.5e4) + x_min
+                                        r_max = (r * 2.5e4) + x_min
+                                }
 
-if(n_cnt_plot > 1 && n_cnt_plot <= 3){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=w,height=h,pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
+                                for(l in unique(cnt_data[[3]])){
+                                        gn_data <- cnt_data[cnt_data[,'gene'] == l,]
+                                        gn_min = min(gn_data[[4]])
+                                        gn_max = max(gn_data[[4]])
+                                        if(r_max >= gn_max && r_min <= gn_min){
+                                                gn_zoom <- gn_zoom + 1
+                                                zoom_cnt[[gn_zoom]] <- cnt_plot + coord_cartesian(xlim = c(r_min, r_max))
+                                                n_cnt_plot <- n_cnt_plot + 1
+                                                break
+                                        }else{
+                                        }
+                                }
+                        }
+                }
+        }
 
-}else if(n_cnt_plot > 3 && n_cnt_plot <= 5){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=w,height=(1.5*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
+        H_gc_m = H_gc * n_cnt_plot
 
-}else if(n_cnt_plot > 5 && n_cnt_plot <= 8){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=w,height=(2*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
+        try({
+                png(file=paste(gn_ctx,j,'.b.png', sep=''),width=W_gc,height=H_gc_m,pointsize=12,units='cm',family='sans',res=300)
+                arg_list <- c(zoom_cnt, list(ncol=1))
+                do.call(grid.arrange, arg_list)
+                dev.off()
+        }, silent=T)
 
-}else if(n_cnt_plot > 8 && n_cnt_plot <= 10){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=w,height=(2.5*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
-
-}else if(n_cnt_plot > 10 && n_cnt_plot <= 12){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=(1.5*w),height=(8*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
-
-}else if(n_cnt_plot > 12 && n_cnt_plot <= 14){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=(2*w),height=(10*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
-
-}else if(n_cnt_plot > 14){
-try({
-png(file=paste(gn_ctx,j,'.b.png', sep=''),width=(3*w),height=(14*h),pointsize=12,units='cm',family='sans',res=300)
-arg_list <- c(zoom_cnt, list(ncol=1))
-do.call(grid.arrange, arg_list)
-dev.off()
-}, silent=T)
-
-}else{
-}
-
-}
 }
 
 q()
